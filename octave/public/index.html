@@ -1,0 +1,388 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octave Documents</title>
+    <!-- Brand Typography: Playfair Display for headings, Inter for clean UI text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Octave Brand Colors */
+            --octave-primary: #794725; /* Pickled Bean */
+            --octave-primary-light: #9d633b;
+            --octave-bg: #F4F1EA; /* Serene Earthy Sand */
+            --octave-card-bg: #FFFFFF;
+            --text-dark: #2C2A29;
+            --text-muted: #6B6661;
+            --border-color: #E6E1D6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--octave-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Playfair Display', serif;
+            color: var(--octave-primary);
+        }
+
+        /* Header Layout */
+        header {
+            background-color: var(--octave-card-bg);
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(121, 71, 37, 0.05);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* Controls: Search and Filters */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 16px 24px 16px 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            color: var(--text-dark);
+        }
+
+        .search-container input:focus {
+            border-color: var(--octave-primary);
+            box-shadow: 0 4px 15px rgba(121, 71, 37, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 20px;
+            height: 20px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--octave-primary);
+            color: var(--octave-primary);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--octave-primary);
+            color: white;
+        }
+
+        /* Card Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Individual Card Styling */
+        .card {
+            background: var(--octave-card-bg);
+            border-radius: 12px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--octave-primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(121, 71, 37, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            background: var(--octave-bg);
+            color: var(--octave-primary);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: var(--octave-bg);
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* Empty State */
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: var(--text-muted);
+            font-style: italic;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Octave Documents</h1>
+        <p>A centralized sanctuary for strategies, Audits, PoVs and Analysis.</p>
+    </header>
+
+    <main class="container">
+        
+        <div class="controls">
+            <!-- Search -->
+            <div class="search-container">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search reports and strategies...">
+            </div>
+
+            <!-- Tag Filters -->
+            <div class="filters" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="strategy">Strategy</button>
+                <button class="filter-btn" data-filter="audit">Audit</button>
+                <button class="filter-btn" data-filter="pov">PoV</button>
+                <button class="filter-btn" data-filter="analysis">Analysis</button>
+            </div>
+        </div>
+
+        <div class="grid" id="cardGrid">
+            
+            <!-- Card 1 -->
+            <a href="https://octave.wppenterprise.workers.dev/china-region-pov" class="card" data-tags="strategy,pov" target="_blank">
+                <div class="card-header">
+                    <h2 class="card-title brand-font">China Region Assets Rendering Strategy</h2>
+                    <div class="card-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">Detailed POV and strategic framework for optimizing asset rendering and delivery within the China region.</p>
+                <div class="card-tags">
+                    <span class="tag">Strategy</span>
+                    <span class="tag">PoV</span>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a href="https://octave.wppenterprise.workers.dev/product-demos" class="card" data-tags="strategy,analysis,audit" target="_blank">
+                <div class="card-header">
+                    <h2 class="card-title brand-font">Octave Product Demos Analysis and Audit</h2>
+                    <div class="card-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">In-depth analysis and perspective on Octave product demos to inform strategic decisions.</p>
+                <div class="card-tags">
+                    <span class="tag">Strategy</span>
+                    <span class="tag">Analysis</span>
+                    <span class="tag">Audit</span>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a href="https://octave.wppenterprise.workers.dev/development-lifecycle" class="card" data-tags="pov" target="_blank">
+                <div class="card-header">
+                    <h2 class="card-title brand-font">Proposed Development Lifecycle to Enhance Productivity and help Tommy to relieve stress</h2>
+                    <div class="card-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">Proposing a strategic development lifecycle to help collaborate with Octave team and elevate productivity.</p>
+                <div class="card-tags">
+                    <span class="tag">PoV</span>
+                </div>
+            </a>
+
+            <!-- Card 4 -->
+            <a href="https://octave.wppenterprise.workers.dev/frontify-integration" class="card" data-tags="analysis,pov" target="_blank">
+                <div class="card-header">
+                    <h2 class="card-title brand-font">Frontify preview Integration Strategy</h2>
+                    <div class="card-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">Strategic approach to integrating Frontify previews into our workflow.</p>
+                <div class="card-tags">
+                    <span class="tag">PoV</span>
+                    <span class="tag">Analysis</span>
+                </div>
+            </a>
+
+            <div class="no-results" id="noResults">No documents found matching your criteria.</div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
+            const noResults = document.getElementById('noResults');
+
+            let currentSearch = '';
+            let currentFilter = 'all';
+
+            // Filter logic
+            function filterCards() {
+                let visibleCount = 0;
+                const searchTerm = currentSearch.toLowerCase();
+
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.card-desc').textContent.toLowerCase();
+                    const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+
+                    const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
+                    const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
+
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+
+            // Search listener
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                filterCards();
+            });
+
+            // Tag filter listeners
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active class
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Update filter and run
+                    currentFilter = btn.dataset.filter;
+                    filterCards();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
