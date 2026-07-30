@@ -1,0 +1,664 @@
+<html data-type="html" data-identifier="9a0f31d5-88b4-45d5-a5c8-5e77e05a4b31" data-title="NFL RFP Clarification Questions - Word Document" data-version="1" width="850" height="1600"><head>
+<meta charset="UTF-8">
+<title id="doc-title">NFL RFP - Clarification Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Barlow+Condensed:wght@600;700&amp;family=Calibri:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e8e8;
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    padding: 20px 0;
+    color: #333;
+  }
+
+  /* Word doc page simulation - Letter size 8.5" x 11" */
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: #fff;
+    margin: 0 auto 20px;
+    padding: 0.75in 1in;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    position: relative;
+    page-break-after: always;
+  }
+
+  /* NFL header band on each page */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #013369 0%, #013369 60%, #d50a0a 60%, #d50a0a 100%);
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 2px solid #013369;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-header-left { display: flex; align-items: center; gap: 12px; }
+  .shield-sm {
+    width: 34px; height: 40px;
+    background: linear-gradient(180deg, #013369 0%, #013369 50%, #d50a0a 50%, #d50a0a 100%);
+    clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+    border: 1.5px solid #013369;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 10px;
+  }
+  .doc-header h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #013369;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+  .doc-header h1 small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: #d50a0a;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .doc-header .meta {
+    text-align: right;
+    font-size: 10px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .doc-header .meta strong { color: #013369; }
+
+  /* Title block on first page */
+  .title-block {
+    text-align: center;
+    padding: 60px 40px;
+    margin: 40px 0;
+    background: linear-gradient(135deg, #013369 0%, #001a3d 100%);
+    color: #fff;
+    position: relative;
+  }
+  .title-block::before, .title-block::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 4px;
+    background: #d50a0a;
+  }
+  .title-block::before { top: 0; }
+  .title-block::after { bottom: 0; }
+  .title-block .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+  }
+  .title-block h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 32px;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+  .title-block .subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ff6b6b;
+  }
+  .title-block .divider {
+    width: 60px;
+    height: 3px;
+    background: #d50a0a;
+    margin: 20px auto;
+  }
+  .title-block .rfp-info {
+    font-size: 13px;
+    line-height: 1.8;
+    opacity: 0.9;
+    margin-top: 20px;
+  }
+
+  /* Info box */
+  .info-box {
+    background: #f4f5f7;
+    border-left: 4px solid #d50a0a;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  .info-box strong {
+    font-family: 'Oswald', sans-serif;
+    color: #013369;
+    text-transform: uppercase;
+    font-size: 11pt;
+    letter-spacing: 0.5px;
+  }
+
+  /* Section headings */
+  h2.category-heading {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    background: #013369;
+    padding: 8px 15px;
+    font-size: 13pt;
+    letter-spacing: 1px;
+    margin: 25px 0 12px;
+    border-left: 5px solid #d50a0a;
+  }
+
+  /* Question rows */
+  .question {
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    background: #fafbfc;
+    border-left: 3px solid #013369;
+    page-break-inside: avoid;
+  }
+  .question-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .row-id {
+    background: #d50a0a;
+    color: #fff;
+    padding: 2px 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10pt;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-ref {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 600;
+  }
+  .question-text {
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #222;
+    margin-bottom: 6px;
+  }
+  .rationale {
+    font-size: 9pt;
+    line-height: 1.4;
+    color: #555;
+    font-style: italic;
+    padding-top: 6px;
+    border-top: 1px dashed #ddd;
+  }
+  .rationale strong {
+    font-style: normal;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #013369;
+    font-size: 8.5pt;
+  }
+
+  /* Footer */
+  .doc-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 1in;
+    right: 1in;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .doc-footer .confidential { color: #d50a0a; font-weight: 700; }
+
+  /* Print button (screen only) */
+  .print-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+  }
+  .print-btn {
+    background: #d50a0a;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .print-btn:hover { background: #a10808; }
+
+  /* Category intro on page */
+  .category-intro {
+    font-size: 10pt;
+    color: #666;
+    margin-bottom: 12px;
+    padding: 8px 15px;
+    background: #eef1f5;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* Signoff */
+  .signoff {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 3px double #013369;
+  }
+  .signoff h3 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 13pt;
+    margin-bottom: 10px;
+  }
+  .signoff p { font-size: 10.5pt; line-height: 1.6; margin-bottom: 8px; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; margin: 0; }
+    .print-controls { display: none; }
+    .page::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-controls">
+  <button class="print-btn" id="print-doc">🖨️ Print / Save as PDF</button>
+</div>
+
+<!-- PAGE 1: Title -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="ph1">Request for Proposal Response<small>Digital Media – Product Development Services</small></h1>
+    </div>
+    <div class="meta">
+      <strong>Confidential</strong><br>
+      Prepared: July 2026<br>
+      Version 1.0
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="eyebrow">Response to NFL Enterprises LLC</div>
+    <h1 id="main-title">Clarification<br>Questions</h1>
+    <div class="divider"></div>
+    <div class="subtitle">Digital Media Product Development Services</div>
+    <div class="rfp-info">
+      Submitted to: <strong>Michael Lujan</strong> · michael.lujan@nfl.com<br>
+      Deadline: <strong>July 14, 2026</strong><br>
+      Reference: NFL RFP – Product Development Services (Released July 7, 2026)
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Purpose of This Document</strong><br>
+    This document contains our clarification questions submitted in advance of the October 1, 2026 RFP response deadline, in accordance with Section 15.1 of the NFL RFP. Questions are organized by category and reference the applicable RFP row IDs and section numbers. Each question includes a rationale explaining the business or technical reason behind the inquiry to help NFL prioritize responses.
+  </div>
+
+  <div class="info-box">
+    <strong>Question Summary</strong><br>
+    <table style="width:100%; margin-top:8px; font-size:10.5pt;">
+      <tbody><tr><td style="padding:3px 0;"><strong>Category A</strong> — Scope &amp; Volume</td><td style="text-align:right;"><strong>6 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category B</strong> — Team &amp; Engagement Model</td><td style="text-align:right;"><strong>5 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category C</strong> — Technology &amp; Architecture</td><td style="text-align:right;"><strong>5 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category D</strong> — Governance, Quality &amp; SLAs</td><td style="text-align:right;"><strong>4 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category E</strong> — Transition &amp; Continuity</td><td style="text-align:right;"><strong>4 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category F</strong> — Commercial</td><td style="text-align:right;"><strong>4 questions</strong></td></tr>
+      <tr><td style="padding:3px 0;"><strong>Category G</strong> — Legal &amp; Compliance</td><td style="text-align:right;"><strong>4 questions</strong></td></tr>
+      <tr style="border-top:2px solid #013369;"><td style="padding:6px 0; font-family:'Oswald',sans-serif; color:#013369; text-transform:uppercase;">Total Questions</td><td style="text-align:right; font-family:'Oswald',sans-serif; color:#d50a0a;"><strong>32</strong></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Clarification Questions</div>
+    <div class="confidential">CONFIDENTIAL</div>
+    <div>Page 1 of 5</div>
+  </div>
+</div>
+
+<!-- PAGE 2: Categories A & B -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="ph2">Clarification Questions<small>Categories A – B</small></h1>
+    </div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <h2 class="category-heading">Category A — Scope &amp; Volume</h2>
+  <div class="category-intro">Questions relating to backlog size, velocity, and coverage boundaries to right-size our proposed engagement.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.1</span><span class="section-ref">#8 Project Overview</span></div>
+    <div class="question-text">What is the current backlog size (story points or initiative count) and roadmap horizon for FY27–FY28 across the 7 pods (Backend, CTV, DTC, Identity, Mobile, Video, Web)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To right-size proposed pod structure and forecast capacity requirements.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.2</span><span class="section-ref">#10.1 Current Needs</span></div>
+    <div class="question-text">How many concurrent initiatives/epics are typically in-flight simultaneously across all pods, and what is the average duration of an epic?</div>
+    <div class="rationale"><strong>Rationale:</strong> To model delivery cadence and validate 2-week sprint fit vs. longer initiative planning cycles.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.3</span><span class="section-ref">#10.1 Current Needs</span></div>
+    <div class="question-text">What is the current sprint velocity (average story points/sprint) per pod, and what target velocity uplift is expected from partner engagement?</div>
+    <div class="rationale"><strong>Rationale:</strong> To establish baseline metrics and set realistic uplift commitments in our proposal.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.4</span><span class="section-ref">#10.1 Current Needs</span></div>
+    <div class="question-text">Is there a target split between new feature development, bug fixes, and technical debt (e.g., 60/20/20)? How is technical debt currently prioritized?</div>
+    <div class="rationale"><strong>Rationale:</strong> To align capacity allocation and understand tech debt burden inherited on Day 1.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.5</span><span class="section-ref">#7 Company Description</span></div>
+    <div class="question-text">Are NFL RedZone, NFL+ Premium features, and NFL Network programming apps included in this scope, or handled by separate teams/partners?</div>
+    <div class="rationale"><strong>Rationale:</strong> To confirm boundaries and avoid scope ambiguity in pricing.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">A1.6</span><span class="section-ref">#8 Project Overview</span></div>
+    <div class="question-text">What is the anticipated total partner headcount ballpark (single pod, multiple pods, dozens of resources)? Is this augmentation of the current ~74-person team or partial replacement?</div>
+    <div class="rationale"><strong>Rationale:</strong> To right-size our response and understand competitive dynamics.</div>
+  </div>
+
+  <h2 class="category-heading">Category B — Team &amp; Engagement Model</h2>
+  <div class="category-intro">Questions about operating structure, reporting lines, and time-zone requirements.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">B2.1</span><span class="section-ref">#11 Current State Context</span></div>
+    <div class="question-text">Will the selected partner own end-to-end product pods, or embed individuals within existing NFL-led pods? Is a hybrid model acceptable?</div>
+    <div class="rationale"><strong>Rationale:</strong> To design the appropriate operating model and role definitions.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">B2.2</span><span class="section-ref">#11 Current State Context</span></div>
+    <div class="question-text">What is the expected ratio of NFL FTE to partner resources within each pod (e.g., 50/50, 30/70)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To structure blended teams and clarify accountability boundaries.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">B2.3</span><span class="section-ref">#17.6 Governance</span></div>
+    <div class="question-text">Will partner-provided leads (Delivery Lead, Tech Lead) report to NFL Product Owners/Engineering Managers, or operate with functional autonomy?</div>
+    <div class="rationale"><strong>Rationale:</strong> To align governance model and reporting structures.</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Clarification Questions</div>
+    <div class="confidential">CONFIDENTIAL</div>
+    <div>Page 2 of 5</div>
+  </div>
+</div>
+
+<!-- PAGE 3: Categories B (cont) & C -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="ph3">Clarification Questions<small>Categories B – C</small></h1>
+    </div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">B2.4</span><span class="section-ref">#16.4 Working Arrangements</span></div>
+    <div class="question-text">What is the required Pacific Time overlap window (e.g., 4-hour minimum, 6-hour minimum, full workday)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To validate global delivery model feasibility and staffing locations.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">B2.5</span><span class="section-ref">#16.4 Working Arrangements</span></div>
+    <div class="question-text">For on-site game-day support in Inglewood, CA: how many resources are expected on-site, how many weekends per season, and are travel/lodging costs pass-through or embedded in rates?</div>
+    <div class="rationale"><strong>Rationale:</strong> To accurately price travel and staffing model for game-day support.</div>
+  </div>
+
+  <h2 class="category-heading">Category C — Technology &amp; Architecture</h2>
+  <div class="category-intro">Questions to understand the current technical estate and integration surface.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">C3.1</span><span class="section-ref">#11 Current State Context</span></div>
+    <div class="question-text">Is there an architecture diagram or system topology map available (under NDA) showing CTV/DTC/Video/Identity service relationships?</div>
+    <div class="rationale"><strong>Rationale:</strong> To assess technical complexity and identify integration risks.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">C3.2</span><span class="section-ref">#16.6 Technology Stack</span></div>
+    <div class="question-text">Which backend services, CMS, video streaming stack, and CDN do the frontend applications interface with? Are Node.js/BFF (Backend-for-Frontend) layers part of the frontend scope?</div>
+    <div class="rationale"><strong>Rationale:</strong> To confirm true scope boundaries beyond the "frontend" React/RN stack.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">C3.3</span><span class="section-ref">#10.1 Current Needs</span></div>
+    <div class="question-text">What is the current maturity of the design system? Are Figma tokens implemented, is there a cross-platform component library, and what parity exists between web/mobile/CTV?</div>
+    <div class="rationale"><strong>Rationale:</strong> To understand design system evolution work vs. maintenance work.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">C3.4</span><span class="section-ref">#10.2 Future Needs</span></div>
+    <div class="question-text">Which AI/ML platforms and infrastructure are currently used or preferred (AWS SageMaker, Vertex AI, in-house)? Are there existing personalization/recommendation engines the partner would inherit?</div>
+    <div class="rationale"><strong>Rationale:</strong> To align AI/ML capability delivery and avoid rebuilding existing infrastructure.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">C3.5</span><span class="section-ref">#16.12 AI Governance</span></div>
+    <div class="question-text">Which AI coding tools are pre-approved by NFL (e.g., GitHub Copilot Business, Cursor, Claude Code, Amazon Q)? What is the approval process for proposing new tools?</div>
+    <div class="rationale"><strong>Rationale:</strong> To confirm AI toolchain readiness and any onboarding overhead.</div>
+  </div>
+
+  <h2 class="category-heading">Category D — Governance, Quality &amp; SLAs</h2>
+  <div class="category-intro">Questions on quality gates, incident response, and performance measurement.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">D4.1</span><span class="section-ref">#16.9 Quality and Performance</span></div>
+    <div class="question-text">What quantitative quality gates are in place today (defect escape rate, uptime SLA %, page load benchmarks, Core Web Vitals targets, crash-free session rates)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To calibrate quality commitments and measurable KPIs in our proposal.</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Clarification Questions</div>
+    <div class="confidential">CONFIDENTIAL</div>
+    <div>Page 3 of 5</div>
+  </div>
+</div>
+
+<!-- PAGE 4: D (cont), E, F -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="ph4">Clarification Questions<small>Categories D – F</small></h1>
+    </div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">D4.2</span><span class="section-ref">#10.1 Current Needs</span></div>
+    <div class="question-text">How is "zero-tolerance downtime during live events" contractually defined? Are service credits, penalties, or bonus structures being contemplated?</div>
+    <div class="rationale"><strong>Rationale:</strong> To understand financial risk exposure and incentive alignment.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">D4.3</span><span class="section-ref">#17.11 Risk Management</span></div>
+    <div class="question-text">What is the expected incident response model (24/7 on-call rotation, MTTR targets, SEV-1 through SEV-4 definitions)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To size on-call staffing and cost model accurately.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">D4.4</span><span class="section-ref">#7 Company Description</span></div>
+    <div class="question-text">Will partner performance be tied to NFL+ subscriber growth or revenue KPIs? If so, what specific metrics are being considered?</div>
+    <div class="rationale"><strong>Rationale:</strong> To evaluate outcome-based commercial constructs.</div>
+  </div>
+
+  <h2 class="category-heading">Category E — Transition &amp; Continuity</h2>
+  <div class="category-intro">Questions on incumbent transitions, ramp-up, and geographic delivery constraints.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">E5.1</span><span class="section-ref">#16.2 Timeline</span></div>
+    <div class="question-text">Are there incumbent partners the selected provider(s) would transition from? If so, what is the expected knowledge-transfer window and are incumbents contractually obligated to support KT?</div>
+    <div class="rationale"><strong>Rationale:</strong> To de-risk transition and estimate KT-related capacity needs.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">E5.2</span><span class="section-ref">#17.13 Capacity</span></div>
+    <div class="question-text">What is the expected ramp curve from contract signing (December 2026) to full productivity (April 2027)? Are earlier overlap engagements in 2026 in scope and separately funded?</div>
+    <div class="rationale"><strong>Rationale:</strong> To structure ramp-up pricing and staffing plan.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">E5.3</span><span class="section-ref">#16.15 Subcontracting</span></div>
+    <div class="question-text">Which geographies are acceptable for delivery personnel? Are nearshore (LATAM, Canada) and/or offshore (India, Eastern Europe, SE Asia) locations permitted for non-game-critical work?</div>
+    <div class="rationale"><strong>Rationale:</strong> To design cost-optimized global delivery model.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">E5.4</span><span class="section-ref">#16.15 Subcontracting</span></div>
+    <div class="question-text">What is the approval pathway and typical timeline for subcontracting arrangements? Are there pre-approved delivery centers or preferred locations?</div>
+    <div class="rationale"><strong>Rationale:</strong> To plan blended-shore delivery model and approval lead times.</div>
+  </div>
+
+  <h2 class="category-heading">Category F — Commercial</h2>
+  <div class="category-intro">Questions on pricing structure, escalation, and outcome-based models.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">F6.1</span><span class="section-ref">#17.8 Pricing</span></div>
+    <div class="question-text">Does NFL have a preferred pricing model (dedicated pod retainer, time &amp; materials, outcome-based, hybrid)? Any structures explicitly not acceptable?</div>
+    <div class="rationale"><strong>Rationale:</strong> To align pricing proposal with NFL preferences and avoid disqualification.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">F6.2</span><span class="section-ref">#17.8 Pricing</span></div>
+    <div class="question-text">Are annual rate escalations expected in the definitive agreement? If so, tied to what benchmark (CPI, ECI, fixed %)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To model multi-year pricing and financial commitments.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">F6.3</span><span class="section-ref">#17.8 Pricing</span></div>
+    <div class="question-text">Will the engagement include volume commitments or minimum guarantees, or will it be purely consumption-based?</div>
+    <div class="rationale"><strong>Rationale:</strong> To assess revenue predictability and staffing risk.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">F6.4</span><span class="section-ref">#17.14 Innovation</span></div>
+    <div class="question-text">Are shared-risk / gain-share commercial structures on the table (e.g., partner compensation tied to NFL+ subscriber milestones, engagement-hour reductions from AI productivity)?</div>
+    <div class="rationale"><strong>Rationale:</strong> To propose innovative commercial constructs aligned to NFL's growth goals.</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Clarification Questions</div>
+    <div class="confidential">CONFIDENTIAL</div>
+    <div>Page 4 of 5</div>
+  </div>
+</div>
+
+<!-- PAGE 5: G + signoff -->
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="ph5">Clarification Questions<small>Category G &amp; Sign-Off</small></h1>
+    </div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <h2 class="category-heading">Category G — Legal &amp; Compliance</h2>
+  <div class="category-intro">Questions on MSA terms, security, insurance, and accessibility standards.</div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">G7.1</span><span class="section-ref">#2.2.2 Contract Terms</span></div>
+    <div class="question-text">Can the draft MSA or NFL's standard terms be shared before final response — particularly indemnification caps, liability limits, and IP-warranty language for AI-assisted output?</div>
+    <div class="rationale"><strong>Rationale:</strong> To identify material contractual risks early and price accordingly.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">G7.2</span><span class="section-ref">#16.11 Security</span></div>
+    <div class="question-text">Is the background-check standard NFL-defined (specific scope) or provider-defined per Section 16.11? Are additional checks required for personnel accessing NFL+ subscriber data?</div>
+    <div class="rationale"><strong>Rationale:</strong> To confirm HR/security compliance requirements and cost.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">G7.3</span><span class="section-ref">#2.2.2 Contract Terms</span></div>
+    <div class="question-text">What is the preferred minimum cyber-insurance coverage (aggregate and per-occurrence limits)? Any specific carriers or coverage types required?</div>
+    <div class="rationale"><strong>Rationale:</strong> To size insurance requirements and reflect cost in pricing.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header"><span class="row-id">G7.4</span><span class="section-ref">#16.13 Accessibility</span></div>
+    <div class="question-text">Is WCAG 2.1 Level AA the current standard, or is there a roadmap toward WCAG 2.2 or 3.0? Are there any additional accessibility standards (Section 508, EN 301 549) for international audiences?</div>
+    <div class="rationale"><strong>Rationale:</strong> To scope accessibility testing tools and skillsets required.</div>
+  </div>
+
+  <div class="signoff">
+    <h3 id="signoff-h">Submission Details</h3>
+    <p><strong>Submitted To:</strong> Michael Lujan, NFL Digital Media Product &amp; Technology<br>
+    <strong>Email:</strong> michael.lujan@nfl.com<br>
+    <strong>Submission Date:</strong> On or before July 14, 2026<br>
+    <strong>Reference:</strong> NFL Digital Media – Product Development Services RFP (Released July 7, 2026)</p>
+
+    <p style="margin-top:20px;">We appreciate the opportunity to engage with the NFL on this important initiative and look forward to receiving clarifications that will enable us to submit a comprehensive and well-calibrated response by the October 1, 2026 deadline.</p>
+
+    <table style="width:100%; margin-top:30px; font-size:11pt;">
+      <tbody><tr>
+        <td style="width:50%; padding-right:20px;">
+          <div style="border-bottom:1px solid #333; height:40px;"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:9pt; color:#666; margin-top:5px;">Authorized Signature</div>
+        </td>
+        <td style="width:50%;">
+          <div style="border-bottom:1px solid #333; height:40px;"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:9pt; color:#666; margin-top:5px;">Date</div>
+        </td>
+      </tr>
+    </tbody></table>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Clarification Questions</div>
+    <div class="confidential">CONFIDENTIAL</div>
+    <div>Page 5 of 5</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('print-doc').addEventListener('click', function() {
+    window.print();
+  });
+</script>
+
+
+</body></html>

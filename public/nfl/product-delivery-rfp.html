@@ -1,0 +1,1158 @@
+<html data-type="html" data-identifier="8de93a39-b5ca-43c9-8d73-6f4b1439ee0d" data-title="NFL Digital Media RFP - Response Brief" data-version="4" width="1200" height="900"><head>
+<meta charset="UTF-8">
+<title id="page-title">NFL Digital Media RFP — Response Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f5f7;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    background: #000;
+    color: #fff;
+    padding: 8px 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-bar span { color: #d50a0a; font-weight: 700; }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    background: #013369;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+  }
+  .shield {
+    width: 44px;
+    height: 52px;
+    background: linear-gradient(180deg, #013369 0%, #013369 50%, #d50a0a 50%, #d50a0a 100%);
+    clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+    border: 2px solid #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .logo-text {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .logo-text small { display: block; font-size: 11px; font-weight: 400; opacity: 0.8; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 20px; list-style: none; }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: #d50a0a; border-bottom-color: #d50a0a; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #013369 0%, #001a3d 60%, #000 100%);
+    color: #fff;
+    padding: 90px 40px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px),
+      radial-gradient(circle at 80% 20%, rgba(213,10,10,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 1100px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block;
+    background: #d50a0a;
+    color: #fff;
+    padding: 6px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: #d50a0a; }
+  .hero p {
+    font-size: 19px;
+    max-width: 780px;
+    opacity: 0.92;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+    max-width: 900px;
+  }
+  .stat {
+    border-left: 3px solid #d50a0a;
+    padding-left: 16px;
+  }
+  .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-top: 6px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-header { margin-bottom: 40px; }
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #d50a0a;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .section-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #013369;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+  }
+  .section-header p {
+    color: #555;
+    font-size: 17px;
+    margin-top: 14px;
+    max-width: 780px;
+  }
+
+  /* ===== SCOPE GRID ===== */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .scope-card {
+    background: #fff;
+    border-top: 4px solid #013369;
+    padding: 26px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: all 0.25s;
+  }
+  .scope-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(1,51,105,0.15);
+    border-top-color: #d50a0a;
+  }
+  .scope-card .icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .scope-card h3 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 19px;
+    color: #013369;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .scope-card p { font-size: 14px; color: #555; }
+
+  /* ===== OBJECTIVES BAND ===== */
+  .band {
+    background: #013369;
+    color: #fff;
+    padding: 70px 40px;
+    position: relative;
+  }
+  .band-inner { max-width: 1200px; margin: 0 auto; }
+  .band .section-header h2 { color: #fff; }
+  .band .section-eyebrow { color: #ff4b4b; }
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+  }
+  .goal {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 30px;
+    border-left: 4px solid #d50a0a;
+  }
+  .goal-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #d50a0a;
+    line-height: 1;
+  }
+  .goal h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin: 12px 0 8px;
+  }
+  .goal p { font-size: 14px; opacity: 0.85; }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #013369 0%, #d50a0a 100%);
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 26px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 6px;
+    width: 17px;
+    height: 17px;
+    background: #d50a0a;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #013369;
+  }
+  .timeline-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #d50a0a;
+  }
+  .timeline-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    color: #013369;
+    text-transform: uppercase;
+    margin: 4px 0;
+  }
+  .timeline-item p { color: #555; font-size: 15px; }
+
+  /* ===== COMPETITIVE INTELLIGENCE ===== */
+  .competitor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .competitor-card {
+    background: #fff;
+    border-top: 4px solid #7f8c8d;
+    padding: 26px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 4px;
+  }
+  .competitor-card.incumbent {
+    border-top-color: #013369;
+    background: linear-gradient(180deg, #f7f9fc 0%, #fff 200px);
+  }
+  .competitor-card.emerging {
+    border-top-color: #d50a0a;
+  }
+  .comp-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .comp-badge.incumbent-bg { background: #013369; color: #fff; }
+  .comp-badge.emerging-bg { background: #d50a0a; color: #fff; }
+  .comp-badge.threat-bg { background: #e67e22; color: #fff; }
+
+  .competitor-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .competitor-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .comp-bullets {
+    list-style: none;
+  }
+  .comp-bullets li {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+  }
+  .comp-bullets li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 10px;
+    color: #013369;
+  }
+  .competitor-card.emerging .comp-bullets li::before {
+    color: #d50a0a;
+  }
+
+  /* ===== WPP CAPABILITY LENS ===== */
+  .capability-table-container {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 24px;
+  }
+  .cap-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .cap-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: #1a1a1a;
+    padding: 16px 12px;
+    border-bottom: 2px solid #013369;
+  }
+  .cap-table th.agency-col {
+    color: #013369;
+    font-size: 16px;
+  }
+  .cap-table td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #eef1f5;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .agency-name-cell {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    color: #013369;
+    text-transform: uppercase;
+  }
+  .agency-subtitle {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: none;
+    color: #7f8c8d;
+    font-weight: normal;
+    margin-top: 4px;
+  }
+  .cap-marker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+  .cap-marker.lead {
+    background: #ebf5ff;
+    color: #013369;
+  }
+  .cap-marker.support {
+    background: #fdf2f2;
+    color: #d50a0a;
+  }
+  .cap-marker.none {
+    background: #f4f5f7;
+    color: #95a5a6;
+    font-weight: normal;
+  }
+  .cap-desc {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ===== QUESTIONS ACCORDION ===== */
+  .accordion { display: grid; gap: 12px; }
+  .acc-item {
+    background: #fff;
+    border-left: 4px solid #013369;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .acc-head {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .acc-head:hover { background: #f8f9fb; }
+  .acc-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #013369;
+    letter-spacing: 0.5px;
+  }
+  .acc-count {
+    background: #d50a0a;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    padding: 2px 12px;
+    font-size: 13px;
+    margin-left: 12px;
+    letter-spacing: 1px;
+  }
+  .acc-toggle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    color: #d50a0a;
+    transition: transform 0.3s;
+  }
+  .acc-item.open .acc-toggle { transform: rotate(45deg); }
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .acc-body ol {
+    padding: 0 24px 24px 50px;
+    color: #444;
+  }
+  .acc-body li { margin-bottom: 10px; font-size: 15px; }
+
+  /* ===== EFFICIENCY LEVERS ===== */
+  .levers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .lever {
+    background: #fff;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s;
+  }
+  .lever:hover { border-bottom-color: #d50a0a; transform: translateY(-2px); }
+  .lever-icon {
+    background: #013369;
+    color: #fff;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .lever h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .lever ul { padding-left: 18px; color: #555; font-size: 14px; }
+  .lever ul li { margin-bottom: 6px; }
+  .lever .metric {
+    display: inline-block;
+    background: #d50a0a;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    padding: 2px 10px;
+    font-size: 13px;
+    margin-right: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== NEXT STEPS CTA ===== */
+  .cta {
+    background: linear-gradient(135deg, #d50a0a 0%, #8b0606 100%);
+    color: #fff;
+    padding: 70px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -10%;
+    width: 120%; height: 200%;
+    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
+  }
+  .cta-inner { position: relative; max-width: 900px; margin: 0 auto; }
+  .cta h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 46px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .cta p { font-size: 18px; margin-bottom: 30px; opacity: 0.95; }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: #fff; color: #d50a0a; }
+  .btn-primary:hover { background: #013369; color: #fff; }
+  .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
+  .btn-secondary:hover { background: #fff; color: #d50a0a; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #000;
+    color: #999;
+    padding: 40px;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  footer strong { color: #fff; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 44px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .scope-grid, .goals-grid, .levers, .competitor-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .section-header h2 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>NFL Enterprises LLC · Digital Media Product Development RFP</div>
+  <div><span>●</span> RESPONSE DUE: OCT 1, 2026</div>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-text">
+      RFP Brief
+      <small>Product Development Services</small>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#intelligence">Competitive Intelligence</a></li>
+    <li><a href="#wpp-lens">WPP Lens</a></li>
+    <li><a href="#questions">Questions</a></li>
+    <li><a href="#efficiencies">Efficiencies</a></li>
+    <li><a href="#next">Next Steps</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="overview">
+  <div class="hero-content">
+    <span class="hero-tag">Response Brief · FY27 Engagement</span>
+    <h1 id="hero-title">Building The Future Of <span>NFL Digital</span></h1>
+    <p id="hero-desc">The NFL is seeking integrated partners for Product Development Services across NFL+, NFL.com, NFL Mobile, and 9 Connected TV platforms — accelerating direct-to-consumer growth and raising the bar on every fan touchpoint.</p>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">10M</div>
+        <div class="stat-label">NFL+ Subscriber Target</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$1B</div>
+        <div class="stat-label">Revenue Goal</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">9</div>
+        <div class="stat-label">CTV Platforms</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Zero</div>
+        <div class="stat-label">Game-Day Downtime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="scope">
+  <div class="section-header">
+    <div class="section-eyebrow">The Ask</div>
+    <h2 id="scope-title">Scope of Services</h2>
+    <p id="scope-desc">Comprehensive product development capabilities delivered by senior practitioners embedded as extensions of the NFL Digital Media team — not outsourced black boxes.</p>
+  </div>
+
+  <div class="scope-grid">
+    <div class="scope-card">
+      <div class="icon">🎨</div>
+      <h3 id="s1">UX/UI Design</h3>
+      <p>Design system maintenance &amp; evolution across web, mobile, and CTV. Figma-native workflows aligned to NFL brand.</p>
+    </div>
+    <div class="scope-card">
+      <div class="icon">⚙️</div>
+      <h3 id="s2">Full-Stack Engineering</h3>
+      <p>JavaScript, TypeScript, React, React Native. Mandatory stack — no alternate frameworks accepted.</p>
+    </div>
+    <div class="scope-card">
+      <div class="icon">📱</div>
+      <h3 id="s3">Mobile &amp; CTV</h3>
+      <p>iOS, Android, and 9 CTV platforms: Apple TV, Google TV, Fire TV, LG, Samsung, Vizio, Roku, Xbox, Vega.</p>
+    </div>
+    <div class="scope-card">
+      <div class="icon">🤖</div>
+      <h3 id="s4">AI-Enabled Delivery</h3>
+      <p>AI-assisted coding, testing, review as standard. Applied ML for personalization, recommendations, content discovery.</p>
+    </div>
+    <div class="scope-card">
+      <div class="icon">🏈</div>
+      <h3 id="s5">Game-Day Support</h3>
+      <p>Zero-tolerance uptime during live games. On-site presence at Inglewood, CA for pre-season &amp; Week 1.</p>
+    </div>
+    <div class="scope-card">
+      <div class="icon">🔄</div>
+      <h3 id="s6">Agile Delivery</h3>
+      <p>2-week sprint cadence, SAFe practices, small frequent releases, integrated in Jira/GitHub/Figma alongside NFL staff.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="objectives">
+  <div class="band-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Strategic Intent</div>
+      <h2 id="obj-title">Business Objectives</h2>
+    </div>
+    <div class="goals-grid">
+      <div class="goal">
+        <div class="goal-num">01</div>
+        <h4 id="g1">Grow NFL+ DTC</h4>
+        <p>Scale the direct-to-consumer streaming service toward 10M subscribers and $1B revenue.</p>
+      </div>
+      <div class="goal">
+        <div class="goal-num">02</div>
+        <h4 id="g2">Elevate Product Quality</h4>
+        <p>Raise UX bar across every fan touchpoint — from NFL.com to CTV apps and NFL+.</p>
+      </div>
+      <div class="goal">
+        <div class="goal-num">03</div>
+        <h4 id="g3">Enable Innovation</h4>
+        <p>Applied AI/ML for personalization, recommendations, and next-gen fan engagement at NFL scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="timeline">
+  <div class="section-header">
+    <div class="section-eyebrow">The Path Forward</div>
+    <h2 id="tl-title">Key Milestones</h2>
+    <p id="tl-desc">Critical dates for the RFP process from release through engagement kick-off.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 7, 2026</div>
+      <div class="timeline-title" id="t1">RFP Released</div>
+      <p>Distributed by NFL Procurement to invited bidders.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 10, 2026</div>
+      <div class="timeline-title" id="t2">Intent to Bid</div>
+      <p>Confirmation of participation to Armen Habosian.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 22, 2026</div>
+      <div class="timeline-title" id="t3">Clarification Questions Due</div>
+      <p>All questions submitted to michael.lujan@nfl.com.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Oct 1, 2026</div>
+      <div class="timeline-title" id="t4">RFP Response Due</div>
+      <p>5:00 PM Eastern Time — final submission deadline.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Nov – Dec 2026</div>
+      <div class="timeline-title" id="t5">Evaluation &amp; Selection</div>
+      <p>Shortlisting, presentations, reference checks, contract negotiations.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 2027</div>
+      <div class="timeline-title" id="t6">Engagement Kick-Off</div>
+      <p>Onboarding aligned to NFL Fiscal Year 2027 — with potential earlier overlap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPETITIVE INTELLIGENCE (NOW REORDERED AFTER TIMELINE) ===== -->
+<section class="content" id="intelligence" style="background: #eef1f5; max-width: none; border-bottom: 1px solid #dcdfe4;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <div class="section-header">
+      <div class="section-eyebrow">The Landscape</div>
+      <h2>Competitive Intelligence</h2>
+      <p>Tracking the known incumbent players, channel experience providers, and emerging innovators recognized by the NFL in recent initiatives.</p>
+    </div>
+
+    <div class="competitor-grid">
+      <!-- Accenture -->
+      <div class="competitor-card incumbent">
+        <div class="comp-badge incumbent-bg">Incumbent Player</div>
+        <h3>Accenture Song</h3>
+        <h4>Large-Scale Engineering &amp; Operations</h4>
+        <ul class="comp-bullets">
+          <li><strong>Current Footprint:</strong> Main systems integrator and primary engine of scale; heavily involved in enterprise-level delivery.</li>
+          <li><strong>Threat Profile:</strong> Highly likely to receive this RFP to defend their current operational footprint with extensive resource scale.</li>
+          <li><strong>Vulnerability:</strong> Historically perceived as a costly, process-heavy "outsourced black box" rather than an embedded, nimble team partner.</li>
+        </ul>
+      </div>
+
+      <!-- YinzCam -->
+      <div class="competitor-card incumbent">
+        <div class="comp-badge threat-bg">Incumbent Specialty</div>
+        <h3>YinzCam</h3>
+        <h4>Channel Experience Provider</h4>
+        <ul class="comp-bullets">
+          <li><strong>Digital Presence:</strong> Longtime developer of custom club-level mobile apps and immersive venue-based fan experiences.</li>
+          <li><strong>Recent Plays:</strong> Actively pitching next-gen innovations like the Dallas Stars Draft Central "Digital Takeover" live dashboard.</li>
+          <li><strong>Pitch Vector:</strong> Pushing hard on highly customized, immersive digital fan hubs directly integrated with live statistical feeds.</li>
+        </ul>
+      </div>
+
+      <!-- Draft Innovation Winners -->
+      <div class="competitor-card emerging">
+        <div class="comp-badge emerging-bg">Emerging Innovators</div>
+        <h3>NFL Innovation Hub Winners</h3>
+        <h4>Specialized Fan Engagement Tech</h4>
+        <ul class="comp-bullets">
+          <li><strong>FanFest:</strong> Recognized at the Draft Experience; specialized in interactive gaming, loyalty, and real-time social engagement mechanics.</li>
+          <li><strong>mycrocast:</strong> Audio-focused innovator providing specialized real-time, low-latency fan commentaries and custom audio streams.</li>
+          <li><strong>You. Smart. Thing.</strong> Specialized in travel demand management, routing, and personalized journey mapping for live event venues.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WPP CAPABILITY LENS (NOW REORDERED AFTER TIMELINE) ===== -->
+<section class="content" id="wpp-lens">
+  <div class="section-header">
+    <div class="section-eyebrow">Strategic Framing</div>
+    <h2>WPP Capability Lens &amp; Lead Agency Matrix</h2>
+    <p>To deliver maximum value and address NFL's scale, we align distinct WPP operating brands to their core disciplines, clearly separating MarTech Operations from pure-play Mobile and Product Engineering.</p>
+  </div>
+
+  <div class="capability-table-container">
+    <table class="cap-table">
+      <thead>
+        <tr>
+          <th class="agency-col" style="width: 25%;">WPP Agency Partner</th>
+          <th style="width: 25%;">Product Dev &amp; UX/UI</th>
+          <th style="width: 25%;">MarTech Operations &amp; Scale</th>
+          <th style="width: 25%;">Fan Engagement &amp; Personalization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Bottle Rocket -->
+        <tr>
+          <td class="agency-name-cell">
+            Bottle Rocket
+            <span class="agency-subtitle">Specialized Digital Product Agency</span>
+          </td>
+          <td>
+            <span class="cap-marker lead">● Lead Agency</span>
+            <span class="cap-desc">Mobile-first engineering, cross-platform React Native development, and UX/UI design system architecture. Core product development engine.</span>
+          </td>
+          <td>
+            <span class="cap-marker support">◌ Support</span>
+            <span class="cap-desc">Supports local product integration and delivery pod assembly under agile standards.</span>
+          </td>
+          <td>
+            <span class="cap-marker support">◌ Support</span>
+            <span class="cap-desc">Builds customized, high-uptime mobile and TV interfaces for direct fan interactions.</span>
+          </td>
+        </tr>
+
+        <!-- VML -->
+        <tr>
+          <td class="agency-name-cell">
+            VML
+            <span class="agency-subtitle">End-to-End Digital Transformation</span>
+          </td>
+          <td>
+            <span class="cap-marker lead">● Lead Agency</span>
+            <span class="cap-desc">UX/UI design leadership, product strategy, high-scale web platforms (React/TypeScript), and program governance.</span>
+          </td>
+          <td>
+            <span class="cap-marker lead">● Lead Agency</span>
+            <span class="cap-desc">Enterprise scale, continuous integration, global delivery pod orchestration, and programmatic governance.</span>
+          </td>
+          <td>
+            <span class="cap-marker lead">● Lead Agency</span>
+            <span class="cap-desc">Personalization strategy, content-discovery algorithms, and creative tech executions (applied AI/ML).</span>
+          </td>
+        </tr>
+
+        <!-- Verticurl -->
+        <tr>
+          <td class="agency-name-cell">
+            Verticurl
+            <span class="agency-subtitle">Marketing Technology (MarTech) Operations</span>
+          </td>
+          <td>
+            <span class="cap-marker support">◌ Support</span>
+            <span class="cap-desc">Frontend(React/VueJS) and Backend(Node/Java) development, custom engineering, and UX/UI design are Verticurl's stronghold.</span>
+          </td>
+          <td>
+            <span class="cap-marker lead">● Lead Agency</span>
+            <span class="cap-desc">MarTech platform integration, campaign orchestration, high-velocity email/push execution, and offshore/nearshore delivery scale.</span>
+          </td>
+          <td>
+            <span class="cap-marker support">◌ Support</span>
+            <span class="cap-desc">Integrates consumer data feeds (NFLID, subscriber logs) with campaign tools to automate targeted fan outreach.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="content" id="questions" style="background:#eef1f5; max-width:none;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-header">
+      <div class="section-eyebrow">Clarifications</div>
+      <h2 id="q-title">Questions to Submit by Jul 22</h2>
+      <p id="q-desc">Grouped by theme — targeted questions to expose scope depth, complexity, and hidden operational overhead.</p>
+    </div>
+
+    <div class="accordion" id="accordion">
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Scope &amp; Volume</span><span class="acc-count">6 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>What is the current backlog size and roadmap horizon for FY27–FY28?</li>
+          <li>How many concurrent initiatives/epics are in-flight across the 7 pods?</li>
+          <li>What is current sprint velocity per team and target velocity uplift?</li>
+          <li>Expected split between new features vs. bug fixes vs. tech debt?</li>
+          <li>Are NFL RedZone, NFL+ Premium, and NFL Network programming in scope?</li>
+          <li>Expected partner headcount ballpark — augmentation or replacement?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Team &amp; Engagement Model</span><span class="acc-count">5 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Will partner own end-to-end pods or embed individuals across NFL-led pods?</li>
+          <li>Expected split between NFL FTE and partner in each pod?</li>
+          <li>Reporting lines for partner leads (Delivery Lead, Tech Lead)?</li>
+          <li>Required Pacific Time overlap window (4 hrs, 6 hrs, full workday)?</li>
+          <li>Game-day on-site: how many resources, how many weekends, billable travel?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Technology &amp; Architecture</span><span class="acc-count">5 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Availability of architecture diagram / system map (NDA-gated)?</li>
+          <li>Backend services, CMS, streaming stack, CDN — Node.js/BFF layers in scope?</li>
+          <li>Design system maturity (Figma tokens, cross-platform parity)?</li>
+          <li>Preferred AI/ML platforms (SageMaker, Vertex, in-house)?</li>
+          <li>Pre-approved AI coding tools (Copilot, Cursor, Claude Code)?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Governance, Quality &amp; SLAs</span><span class="acc-count">4 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Quantitative quality gates today (defect escape, uptime %, Core Web Vitals)?</li>
+          <li>How is "zero-tolerance downtime" contractually defined — service credits?</li>
+          <li>Incident response expectation (24/7 on-call, MTTR targets)?</li>
+          <li>KPIs tied to NFL+ subscriber growth that partner will be measured on?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Transition, Continuity &amp; Risk</span><span class="acc-count">4 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Are there incumbent partners? Knowledge-transfer window?</li>
+          <li>Expected ramp curve from signing (Dec 2026) to full productivity (Apr 2027)?</li>
+          <li>Acceptable delivery geographies (US-only, nearshore, offshore)?</li>
+          <li>Subcontracting restrictions to nearshore/offshore centers?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Commercial</span><span class="acc-count">4 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Preferred pricing model (T&amp;M, retainer, outcome-based, hybrid)?</li>
+          <li>Annual rate escalations — tied to what index?</li>
+          <li>Volume commitments or minimum guarantees?</li>
+          <li>Shared-risk/gain-share tied to NFL+ subscriber milestones?</li>
+        </ol></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head"><div><span class="acc-title">Legal &amp; Compliance</span><span class="acc-count">3 Questions</span></div><span class="acc-toggle">+</span></div>
+        <div class="acc-body"><ol>
+          <li>Draft MSA / standard terms — especially IP warranty for AI-assisted output?</li>
+          <li>Background-check standard (NFL-defined or provider-defined)?</li>
+          <li>Preferred cyber-insurance minimum coverage?</li>
+        </ol></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="efficiencies">
+  <div class="section-header">
+    <div class="section-eyebrow">Our Value Proposition</div>
+    <h2 id="eff-title">Efficiency &amp; Value Levers</h2>
+    <p id="eff-desc">Where we can deliver material efficiencies, cost optimization, and velocity gains for the NFL.</p>
+  </div>
+
+  <div class="levers">
+    <div class="lever">
+      <div class="lever-icon">🤖</div>
+      <div>
+        <h4 id="l1">AI-Native Delivery</h4>
+        <ul>
+          <li><span class="metric">+20–35%</span>Velocity uplift on greenfield feature work</li>
+          <li><span class="metric">+40%</span>Automated unit test coverage generation</li>
+          <li>AI-driven PR review &amp; code summarization</li>
+          <li>Auto-maintained ADRs, runbooks, onboarding docs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="lever-icon">🧱</div>
+      <div>
+        <h4 id="l2">Reusable Platform Assets</h4>
+        <ul>
+          <li>Shared design tokens across Web, Mobile, 9 CTV apps</li>
+          <li>Cross-platform React/React Native component library</li>
+          <li>CTV abstraction layer unifying logic across device families</li>
+          <li>Reduces per-platform maintenance cost significantly</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="lever-icon">🔄</div>
+      <div>
+        <h4 id="l3">Delivery Process Efficiency</h4>
+        <ul>
+          <li>Senior-heavy pods — minimal leadership overhead</li>
+          <li>Follow-the-sun game-day coverage with PT overlap</li>
+          <li>Hardened CI/CD in GitHub Actions &amp; Jenkins</li>
+          <li>Feature-flag driven safe, frequent deployments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="lever-icon">📊</div>
+      <div>
+        <h4 id="l4">Operational Overhead Reduction</h4>
+        <ul>
+          <li>Synthetic game-day load tests &amp; chaos engineering</li>
+          <li>Quantified tech debt burndown roadmap</li>
+          <li>AI-powered searchable knowledge base</li>
+          <li>Faster onboarding: weeks → days</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="lever-icon">💰</div>
+      <div>
+        <h4 id="l5">Commercial Efficiency</h4>
+        <ul>
+          <li><span class="metric">–25 to –40%</span>Nearshore/offshore hybrid (where approved)</li>
+          <li>Blended pod pricing — predictable annual budget</li>
+          <li>Seasonality-flex model (scale up playoffs / down off-season)</li>
+          <li>Outcome-based tied to NFL+ subscriber milestones</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="lever-icon">🛡️</div>
+      <div>
+        <h4 id="l6">De-Risked Compliance</h4>
+        <ul>
+          <li>Pre-existing SOC 2 Type II / ISO 27001 posture</li>
+          <li>Established AI governance &amp; approved tools registry</li>
+          <li>IP indemnification for AI-assisted deliverables</li>
+          <li>WCAG 2.1 AA built into Definition of Done</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="next">
+  <div class="cta-inner">
+    <h2 id="cta-title">Ready to Take the Field</h2>
+    <p id="cta-desc">Six critical actions to position our response as the winning bid before the October 1, 2026 deadline.</p>
+    <div class="cta-buttons">
+      <a href="outline.html" class="btn btn-primary" id="btn1">Draft Response Outline</a>
+      <a href="questions.html" class="btn btn-secondary" id="btn2">Build Clarification Doc</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p id="foot"><strong>NFL Digital Media RFP Response Brief</strong> · Prepared for Internal Bid Planning · Confidential</p>
+</footer>
+
+<script>
+  // Accordion toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const heads = document.querySelectorAll('.acc-head');
+    heads.forEach(function(h) {
+      h.addEventListener('click', function() {
+        const item = h.parentElement;
+        const body = item.querySelector('.acc-body');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.acc-item').forEach(function(i) {
+          i.classList.remove('open');
+          i.querySelector('.acc-body').style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Open first by default
+    const first = document.querySelector('.acc-item');
+    if (first) {
+      first.classList.add('open');
+      const fb = first.querySelector('.acc-body');
+      fb.style.maxHeight = fb.scrollHeight + 'px';
+    }
+  });
+</script>
+
+
+</body></html>

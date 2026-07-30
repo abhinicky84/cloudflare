@@ -1,0 +1,845 @@
+<html data-type="html" data-identifier="fc1c25a2-93bf-4e35-9f04-076f0603d0d1" data-title="NFL RFP Interactive Pricing Model" data-version="1" width="1200" height="1400"><head>
+<meta charset="UTF-8">
+<title id="title">NFL Pricing Model Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f5f7;
+    color: #1a1a1a;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #013369 0%, #001a3d 100%);
+    color: #fff;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .shield {
+    width: 48px; height: 56px;
+    background: linear-gradient(180deg, #013369 0%, #013369 50%, #d50a0a 50%, #d50a0a 100%);
+    clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+    border: 2px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px;
+  }
+  .brand-text h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+  .brand-text p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .total-badge {
+    background: #d50a0a;
+    padding: 12px 24px;
+    text-align: right;
+    box-shadow: 0 4px 12px rgba(213,10,10,0.4);
+  }
+  .total-badge .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+  .total-badge .amt {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  /* Main grid */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .panel {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    padding: 24px;
+  }
+  .panel.full { grid-column: 1 / -1; }
+  .panel-title {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid #d50a0a;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Role config */
+  .role-row {
+    display: grid;
+    grid-template-columns: 1.5fr 0.6fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .role-row:last-child { border-bottom: none; }
+  .role-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #013369;
+    letter-spacing: 0.5px;
+  }
+  .role-row input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+  }
+  .role-row input[type="number"]:focus {
+    outline: none;
+    border-color: #d50a0a;
+  }
+  .role-cost {
+    font-family: 'Oswald', sans-serif;
+    color: #013369;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .role-header {
+    display: grid;
+    grid-template-columns: 1.5fr 0.6fr 1fr 1fr;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #666;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #013369;
+    margin-bottom: 8px;
+  }
+  .role-header div:nth-child(4) { text-align: right; }
+
+  /* Delivery model slider */
+  .slider-group { margin-bottom: 20px; }
+  .slider-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    color: #013369;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .slider-group label span {
+    color: #d50a0a;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: linear-gradient(90deg, #013369 0%, #d50a0a 100%);
+    outline: none;
+    border-radius: 3px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: #fff;
+    border: 3px solid #d50a0a;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px;
+    background: #fff;
+    border: 3px solid #d50a0a;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .mix-viz {
+    display: flex;
+    height: 30px;
+    margin-top: 10px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  .mix-viz div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    transition: width 0.3s;
+  }
+  .mix-onshore { background: #013369; }
+  .mix-nearshore { background: #d50a0a; }
+  .mix-offshore { background: #4a5568; }
+
+  /* Extras */
+  .extras-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: #f8f9fb;
+    border-left: 3px solid #013369;
+  }
+  .toggle-row label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #013369;
+  }
+  .switch { position: relative; width: 40px; height: 22px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-sw {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc;
+    border-radius: 22px;
+    transition: 0.3s;
+  }
+  .slider-sw::before {
+    content: '';
+    position: absolute;
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  .switch input:checked + .slider-sw { background: #d50a0a; }
+  .switch input:checked + .slider-sw::before { transform: translateX(18px); }
+
+  /* Summary */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .summary-card {
+    background: #013369;
+    color: #fff;
+    padding: 20px;
+    border-left: 4px solid #d50a0a;
+  }
+  .summary-card .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .summary-card .val {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  .summary-card .sub {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  /* Breakdown table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table th {
+    background: #013369;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+    font-size: 12px;
+  }
+  table th:last-child, table td:last-child { text-align: right; }
+  table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  table tr.total-row td {
+    background: #f4f5f7;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+    color: #013369;
+    font-size: 15px;
+    border-top: 2px solid #d50a0a;
+    border-bottom: none;
+  }
+  table tr.grand-total td {
+    background: #d50a0a;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+  }
+
+  /* Chart bars */
+  .bar-chart { padding: 10px 0; }
+  .bar-item {
+    margin-bottom: 14px;
+  }
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #013369;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .bar-label span:last-child { color: #d50a0a; font-family: 'Oswald', sans-serif; }
+  .bar-track {
+    background: #eee;
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #013369 0%, #d50a0a 100%);
+    transition: width 0.4s ease;
+  }
+
+  /* Scenario compare */
+  .scenarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  .scenario-card {
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #eee;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .scenario-card:hover {
+    transform: translateY(-4px);
+    border-color: #d50a0a;
+    box-shadow: 0 8px 20px rgba(213,10,10,0.15);
+  }
+  .scenario-card.active {
+    border-color: #013369;
+    background: #f0f4fa;
+  }
+  .scenario-card h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #013369;
+    margin-bottom: 8px;
+  }
+  .scenario-card .price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #d50a0a;
+    margin: 10px 0;
+  }
+  .scenario-card .savings {
+    background: #013369;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .scenario-card p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+  }
+
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  .btn {
+    padding: 10px 22px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #d50a0a; color: #fff; }
+  .btn-primary:hover { background: #a10808; }
+  .btn-secondary { background: #013369; color: #fff; }
+  .btn-secondary:hover { background: #001a3d; }
+
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    .summary-grid, .scenarios { grid-template-columns: 1fr 1fr; }
+    .extras-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="shield">NFL</div>
+    <div class="brand-text">
+      <h1 id="brand-title">Pricing Model Calculator</h1>
+      <p id="brand-sub">Digital Media Product Development · Standardized Pod</p>
+    </div>
+  </div>
+  <div class="total-badge">
+    <div class="label">Annual Total</div>
+    <div class="amt" id="grand-total">$0</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Team Composition -->
+  <div class="panel">
+    <div class="panel-title">Team Composition</div>
+    <div class="role-header">
+      <div>Role</div>
+      <div>Qty</div>
+      <div>Rate ($/hr)</div>
+      <div>Annual Cost</div>
+    </div>
+    <div id="roles"></div>
+    <div style="margin-top: 15px; padding: 12px; background: #f0f4fa; border-left: 3px solid #013369;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#666;">Total Headcount</div>
+      <div style="font-family:'Oswald',sans-serif; font-size:22px; color:#013369;" id="headcount">0 FTE</div>
+    </div>
+  </div>
+
+  <!-- Delivery Model -->
+  <div class="panel">
+    <div class="panel-title">Delivery Model Mix</div>
+
+    <div class="slider-group">
+      <label>Onshore (US) <span id="onshore-pct">100%</span></label>
+      <input type="range" id="onshore" min="0" max="100" value="100">
+    </div>
+
+    <div class="slider-group">
+      <label>Nearshore (LATAM/Canada) <span id="nearshore-pct">0%</span></label>
+      <input type="range" id="nearshore" min="0" max="100" value="0">
+    </div>
+
+    <div class="slider-group">
+      <label>Offshore (India/EE) <span id="offshore-pct">0%</span></label>
+      <input type="range" id="offshore" min="0" max="100" value="0">
+    </div>
+
+    <div class="mix-viz" id="mix-viz"></div>
+
+    <div style="margin-top: 20px; padding: 12px; background: #fff5f5; border-left: 3px solid #d50a0a;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#666;">Blended Rate Multiplier</div>
+      <div style="font-family:'Oswald',sans-serif; font-size:22px; color:#d50a0a;" id="multiplier">1.00x</div>
+      <div style="font-size:11px; color:#666; margin-top:3px;">Nearshore = 0.70x · Offshore = 0.45x of onshore rates</div>
+    </div>
+  </div>
+
+  <!-- Add-ons -->
+  <div class="panel full">
+    <div class="panel-title">Add-Ons &amp; Program Costs</div>
+    <div class="extras-grid">
+
+      <div class="toggle-row">
+        <label>Game-Day On-Site Support (Inglewood, CA)</label>
+        <label class="switch"><input type="checkbox" id="gameday" checked=""><span class="slider-sw"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <label>Weekend On-Call Premium (22 Game Weekends)</label>
+        <label class="switch"><input type="checkbox" id="oncall" checked=""><span class="slider-sw"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <label>AI Tooling Licenses (Copilot/Cursor)</label>
+        <label class="switch"><input type="checkbox" id="aitools" checked=""><span class="slider-sw"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <label>Fractional Account Exec + Solution Architect</label>
+        <label class="switch"><input type="checkbox" id="overhead" checked=""><span class="slider-sw"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <label>Playoff/Super Bowl Surge Buffer (+5%)</label>
+        <label class="switch"><input type="checkbox" id="surge"><span class="slider-sw"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <label>Gain-Share Model (–10% base, milestone-based)</label>
+        <label class="switch"><input type="checkbox" id="gainshare"><span class="slider-sw"></span></label>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="panel full">
+    <div class="panel-title">Annual Cost Summary</div>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="label">Core Labor</div>
+        <div class="val" id="s-labor">$0</div>
+        <div class="sub">Pod resources annual</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Game-Day Support</div>
+        <div class="val" id="s-gameday">$0</div>
+        <div class="sub">Travel + on-call</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Tools + Overhead</div>
+        <div class="val" id="s-extras">$0</div>
+        <div class="sub">AI licenses + program</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Monthly Retainer</div>
+        <div class="val" id="s-monthly">$0</div>
+        <div class="sub">Predictable billing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breakdown Table -->
+  <div class="panel">
+    <div class="panel-title">Cost Breakdown</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Line Item</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="breakdown"></tbody>
+    </table>
+  </div>
+
+  <!-- Bar Chart -->
+  <div class="panel">
+    <div class="panel-title">Cost Allocation</div>
+    <div class="bar-chart" id="barchart"></div>
+  </div>
+
+  <!-- Scenarios -->
+  <div class="panel full">
+    <div class="panel-title">Preset Scenarios <span style="font-family:'Barlow Condensed',sans-serif; font-size:12px; color:#666; letter-spacing:1px;">CLICK TO APPLY</span></div>
+    <div class="scenarios">
+      <div class="scenario-card" data-preset="onshore">
+        <h4>100% Onshore</h4>
+        <div class="price" id="p1">$3.16M</div>
+        <span class="savings">Baseline</span>
+        <p>All US-based senior practitioners. Maximum time-zone alignment and lowest coordination overhead.</p>
+      </div>
+      <div class="scenario-card active" data-preset="nearshore">
+        <h4>Nearshore Blend</h4>
+        <div class="price" id="p2">$2.68M</div>
+        <span class="savings">Save ~15%</span>
+        <p>75% Onshore / 25% Nearshore (LATAM). Full PT overlap maintained. Recommended default.</p>
+      </div>
+      <div class="scenario-card" data-preset="global">
+        <h4>Global Blend</h4>
+        <div class="price" id="p3">$2.05M</div>
+        <span class="savings">Save ~35%</span>
+        <p>50% Onshore / 50% Offshore. Requires NFL approval &amp; PT overlap safeguards.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" id="reset-btn">Reset to Default</button>
+      <button class="btn btn-primary" id="print-btn">Print / Export</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // Role definitions with default rates
+  const rolesData = [
+    { id: 'sreng', name: 'Senior Engineer', qty: 6, rate: 175 },
+    { id: 'pdes', name: 'Product Designer', qty: 1, rate: 165 },
+    { id: 'qa', name: 'QA Engineer', qty: 1, rate: 145 },
+    { id: 'dlead', name: 'Delivery Lead', qty: 1, rate: 185 },
+    { id: 'tlead', name: 'Tech Lead (optional)', qty: 0, rate: 210 },
+    { id: 'pm', name: 'Product Manager (optional)', qty: 0, rate: 190 }
+  ];
+
+  const HOURS = 1880;
+  const NEARSHORE_MULT = 0.70;
+  const OFFSHORE_MULT = 0.45;
+
+  function fmt(n) {
+    if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+    if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function fmtFull(n) {
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  // Build role rows
+  function buildRoles() {
+    const container = document.getElementById('roles');
+    container.innerHTML = '';
+    rolesData.forEach(r => {
+      const row = document.createElement('div');
+      row.className = 'role-row';
+      row.innerHTML = `
+        <div class="role-name">${r.name}</div>
+        <input type="number" min="0" max="20" value="${r.qty}" data-id="${r.id}" data-field="qty">
+        <input type="number" min="50" max="500" value="${r.rate}" data-id="${r.id}" data-field="rate">
+        <div class="role-cost" id="cost-${r.id}">$0</div>
+      `;
+      container.appendChild(row);
+    });
+    container.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('input', e => {
+        const role = rolesData.find(r => r.id === e.target.dataset.id);
+        role[e.target.dataset.field] = parseFloat(e.target.value) || 0;
+        calculate();
+      });
+    });
+  }
+
+  // Sliders - keep sum <= 100
+  function bindSliders() {
+    const on = document.getElementById('onshore');
+    const near = document.getElementById('nearshore');
+    const off = document.getElementById('offshore');
+
+    function normalize(changed) {
+      let o = parseInt(on.value);
+      let n = parseInt(near.value);
+      let f = parseInt(off.value);
+      let total = o + n + f;
+      if (total !== 100) {
+        // Adjust the other two proportionally
+        if (changed === 'on') {
+          const rest = 100 - o;
+          const otherTotal = n + f;
+          if (otherTotal === 0) { n = rest; f = 0; }
+          else { n = Math.round(rest * (n/otherTotal)); f = rest - n; }
+          near.value = n; off.value = f;
+        } else if (changed === 'near') {
+          const rest = 100 - n;
+          const otherTotal = o + f;
+          if (otherTotal === 0) { o = rest; f = 0; }
+          else { o = Math.round(rest * (o/otherTotal)); f = rest - o; }
+          on.value = o; off.value = f;
+        } else {
+          const rest = 100 - f;
+          const otherTotal = o + n;
+          if (otherTotal === 0) { o = rest; n = 0; }
+          else { o = Math.round(rest * (o/otherTotal)); n = rest - o; }
+          on.value = o; near.value = n;
+        }
+      }
+      calculate();
+    }
+
+    on.addEventListener('input', () => normalize('on'));
+    near.addEventListener('input', () => normalize('near'));
+    off.addEventListener('input', () => normalize('off'));
+  }
+
+  // Toggles
+  document.querySelectorAll('.toggle-row input, .extras-grid input').forEach(t => {
+    t.addEventListener('change', calculate);
+  });
+
+  // Presets
+  document.querySelectorAll('.scenario-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const p = card.dataset.preset;
+      if (p === 'onshore') { setMix(100,0,0); }
+      else if (p === 'nearshore') { setMix(75,25,0); }
+      else if (p === 'global') { setMix(50,0,50); }
+    });
+  });
+
+  function setMix(o, n, f) {
+    document.getElementById('onshore').value = o;
+    document.getElementById('nearshore').value = n;
+    document.getElementById('offshore').value = f;
+    calculate();
+  }
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    rolesData[0].qty = 6; rolesData[0].rate = 175;
+    rolesData[1].qty = 1; rolesData[1].rate = 165;
+    rolesData[2].qty = 1; rolesData[2].rate = 145;
+    rolesData[3].qty = 1; rolesData[3].rate = 185;
+    rolesData[4].qty = 0; rolesData[4].rate = 210;
+    rolesData[5].qty = 0; rolesData[5].rate = 190;
+    setMix(100,0,0);
+    document.getElementById('gameday').checked = true;
+    document.getElementById('oncall').checked = true;
+    document.getElementById('aitools').checked = true;
+    document.getElementById('overhead').checked = true;
+    document.getElementById('surge').checked = false;
+    document.getElementById('gainshare').checked = false;
+    buildRoles();
+    calculate();
+  });
+
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+
+  // Calculation
+  function calculate() {
+    const on = parseInt(document.getElementById('onshore').value) / 100;
+    const near = parseInt(document.getElementById('nearshore').value) / 100;
+    const off = parseInt(document.getElementById('offshore').value) / 100;
+
+    document.getElementById('onshore-pct').textContent = Math.round(on*100) + '%';
+    document.getElementById('nearshore-pct').textContent = Math.round(near*100) + '%';
+    document.getElementById('offshore-pct').textContent = Math.round(off*100) + '%';
+
+    const mult = (on * 1.0) + (near * NEARSHORE_MULT) + (off * OFFSHORE_MULT);
+    document.getElementById('multiplier').textContent = mult.toFixed(2) + 'x';
+
+    // Mix viz
+    const viz = document.getElementById('mix-viz');
+    viz.innerHTML = `
+      ${on>0 ? `<div class="mix-onshore" style="width:${on*100}%">${on>=0.1?Math.round(on*100)+'%':''}</div>` : ''}
+      ${near>0 ? `<div class="mix-nearshore" style="width:${near*100}%">${near>=0.1?Math.round(near*100)+'%':''}</div>` : ''}
+      ${off>0 ? `<div class="mix-offshore" style="width:${off*100}%">${off>=0.1?Math.round(off*100)+'%':''}</div>` : ''}
+    `;
+
+    // Labor
+    let laborTotal = 0;
+    let headcount = 0;
+    rolesData.forEach(r => {
+      const cost = r.qty * r.rate * HOURS * mult;
+      laborTotal += cost;
+      headcount += r.qty;
+      document.getElementById('cost-' + r.id).textContent = fmtFull(cost);
+    });
+
+    document.getElementById('headcount').textContent = headcount + ' FTE';
+
+    // Extras
+    const gameday = document.getElementById('gameday').checked ? 36000 : 0;
+    const oncall = document.getElementById('oncall').checked ? 88000 : 0;
+    const aitools = document.getElementById('aitools').checked ? (headcount * 510) : 0;
+    const overhead = document.getElementById('overhead').checked ? 108000 : 0;
+    const gamedayTotal = gameday + oncall;
+    const toolsOverhead = aitools + overhead;
+
+    let grandTotal = laborTotal + gamedayTotal + toolsOverhead;
+
+    // Surge buffer
+    if (document.getElementById('surge').checked) {
+      grandTotal *= 1.05;
+    }
+    // Gain-share
+    if (document.getElementById('gainshare').checked) {
+      grandTotal *= 0.90;
+    }
+
+    // Update summary
+    document.getElementById('s-labor').textContent = fmt(laborTotal);
+    document.getElementById('s-gameday').textContent = fmt(gamedayTotal);
+    document.getElementById('s-extras').textContent = fmt(toolsOverhead);
+    document.getElementById('s-monthly').textContent = fmt(grandTotal / 12);
+    document.getElementById('grand-total').textContent = fmt(grandTotal);
+
+    // Breakdown table
+    const bd = document.getElementById('breakdown');
+    let rows = '';
+    rolesData.filter(r => r.qty > 0).forEach(r => {
+      rows += `<tr><td>${r.qty}× ${r.name}</td><td>${fmtFull(r.qty * r.rate * HOURS * mult)}</td></tr>`;
+    });
+    rows += `<tr class="total-row"><td>Subtotal: Core Labor</td><td>${fmtFull(laborTotal)}</td></tr>`;
+    if (gameday) rows += `<tr><td>Game-Day Travel (2 events)</td><td>${fmtFull(gameday)}</td></tr>`;
+    if (oncall) rows += `<tr><td>Weekend On-Call Premium</td><td>${fmtFull(oncall)}</td></tr>`;
+    if (aitools) rows += `<tr><td>AI Tooling Licenses (${headcount} seats)</td><td>${fmtFull(aitools)}</td></tr>`;
+    if (overhead) rows += `<tr><td>Program Overhead (AE + SA)</td><td>${fmtFull(overhead)}</td></tr>`;
+    if (document.getElementById('surge').checked) rows += `<tr><td>Playoff/SB Surge Buffer (+5%)</td><td>+ 5%</td></tr>`;
+    if (document.getElementById('gainshare').checked) rows += `<tr><td>Gain-Share Discount (–10%)</td><td>– 10%</td></tr>`;
+    rows += `<tr class="grand-total"><td>ANNUAL TOTAL</td><td>${fmtFull(grandTotal)}</td></tr>`;
+    bd.innerHTML = rows;
+
+    // Bar chart
+    const barchart = document.getElementById('barchart');
+    const items = [
+      { label: 'Core Labor', val: laborTotal, total: grandTotal },
+      { label: 'Game-Day Support', val: gamedayTotal, total: grandTotal },
+      { label: 'AI Tools', val: aitools, total: grandTotal },
+      { label: 'Program Overhead', val: overhead, total: grandTotal }
+    ].filter(i => i.val > 0);
+    barchart.innerHTML = items.map(i => `
+      <div class="bar-item">
+        <div class="bar-label"><span>${i.label}</span><span>${fmt(i.val)} · ${Math.round(i.val/i.total*100)}%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(i.val/laborTotal)*100}%"></div></div>
+      </div>
+    `).join('');
+  }
+
+  // Init
+  buildRoles();
+  bindSliders();
+  calculate();
+</script>
+
+
+</body></html>
