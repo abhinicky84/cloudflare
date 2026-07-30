@@ -1,7 +1,7 @@
 export default {
   async fetch(request, env) {
     // -------------------------------------------------------------
-    // 1. BASIC AUTHENTICATION CHECK
+    // 1. BASIC AUTHENTICATION
     // -------------------------------------------------------------
     const USERNAME = "admin";
     const PASSWORD = "WPP2026!";
@@ -35,44 +35,59 @@ export default {
     }
 
     // -------------------------------------------------------------
-    // 2. DYNAMIC SUBDOMAIN ROUTING LOGIC
+    // 2. DYNAMIC SUBDOMAIN & CLEAN URL REWRITING (NO .html in Browser)
     // -------------------------------------------------------------
     const url = new URL(request.url);
     const hostnameParts = url.hostname.split(".");
 
-    // Detect subdomain (e.g., "audit" from "audit.yourdomain.com")
-    // Assumes standard 2-part root domains (e.g., yourdomain.com -> 3 parts for subdomain)
-    // Works with localhost or cloudflare worker subdomains (e.g. audit.site.workers.dev)
+    // Extract subdomain if accessing via subdomain (e.g. audit.yourdomain.com)
     let subdomain = null;
-    if (hostnameParts.length > 2) {
+    if (hostnameParts.length > 2 && !url.hostname.includes("workers.dev")) {
       subdomain = hostnameParts[0].toLowerCase();
     }
 
-    // Determine target HTML path in /public
-    let targetPath = url.pathname;
+    let requestPath = url.pathname;
 
-    // If visiting the homepage "/" of a subdomain (e.g., audit.yourdomain.com/)
-    if (targetPath === "/" || targetPath === "") {
+    // Determine internal target file path inside /public
+    let internalFilePath = requestPath;
+
+    // If visiting homepage of a subdomain (e.g. audit.yourdomain.com/)
+    if (requestPath === "/" || requestPath === "") {
       if (subdomain && subdomain !== "www") {
-        targetPath = `/${subdomain}.html`;
+        internalFilePath = `/${subdomain}.html`;
       } else {
-        targetPath = "/index.html";
+        internalFilePath = "/index.html";
       }
+    } 
+    // If path has no extension (e.g. /development-lifecycle), append .html internally
+    else if (!requestPath.includes(".")) {
+      internalFilePath = `${requestPath}.html`;
     }
 
-    // Construct rewritten request for Static Assets binding
-    const rewrittenUrl = new URL(targetPath, url.origin);
-    const rewrittenRequest = new Request(rewrittenUrl, request);
+    // Rewrite request internally to pull the .html file from /public
+    const assetUrl = new URL(internalFilePath, url.origin);
+    let response = await env.ASSETS.fetch(new Request(assetUrl, request));
 
-    // Serve asset from public/ folder
-    let response = await env.ASSETS.fetch(rewrittenRequest);
-
-    // Fallback: If <subdomain>.html is missing (404), fallback to index.html
-    if (response.status === 404 && targetPath !== "/index.html") {
+    // Fallback to index.html if the requested path doesn't exist (404)
+    if (response.status === 404 && internalFilePath !== "/index.html") {
       const fallbackUrl = new URL("/index.html", url.origin);
       response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
     }
 
-    return response;
+    // -------------------------------------------------------------
+    // 3. FIX INLINE SVG DISTORTION (Enforce UTF-8 Encoding)
+    // -------------------------------------------------------------
+    const updatedHeaders = new Headers(response.headers);
+
+    if (internalFilePath.endsWith(".html")) {
+      // FORCES browser to parse inline SVGs with exact UTF-8 coordinates (like Vercel)
+      updatedHeaders.set("Content-Type", "text/html; charset=utf-8");
+    }
+
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: updatedHeaders,
+    });
   },
 };
