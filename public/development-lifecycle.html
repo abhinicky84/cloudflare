@@ -1,0 +1,620 @@
+<html data-type="html" data-identifier="cb31818d-f756-4cf8-8be4-8a40232491a6" data-title="Ogilvy &amp; Octave Collaboration Microsite" data-version="1" width="1000" height="700"><head>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-light: #1E293B;
+            --accent: #FF3E55; /* Ogilvy Red */
+            --accent-hover: #E02E44;
+            --text-main: #334155;
+            --text-light: #64748B;
+            --bg-light: #F8FAFC;
+            --border-color: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Header & Navigation Bar */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-title span {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.7rem;
+            color: #94A3B8;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-link-item {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .nav-link-item:hover, .nav-link-item.active {
+            color: white;
+            background-color: var(--primary-light);
+        }
+
+        .nav-link-item.active {
+            border-bottom: 2px solid var(--accent);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .badge-support {
+            background-color: rgba(255, 62, 85, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(255, 62, 85, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Main Content Scrollable Container */
+        .main-container {
+            margin-top: 70px; /* Space for fixed navbar */
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 40px 24px;
+        }
+
+        /* Content Sections */
+        .section-container {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 90px; /* Ensures top-nav doesn't block section header after click scroll */
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p.section-desc {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background-color: #F8FAFC;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 32px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        /* Cards */
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Workflow Step Timeline */
+        .timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 28px;
+            border-left: 2px dashed var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: -41px;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        .timeline-badge.highlight {
+            background-color: var(--accent);
+        }
+
+        .timeline-badge.optional {
+            background-color: var(--text-light);
+        }
+
+        .timeline-content {
+            background: #F8FAFC;
+            padding: 16px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .timeline-role {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .role-octave { background-color: #DBEAFE; color: #1E40AF; }
+        .role-Ogilvy { background-color: rgba(255, 62, 85, 0.1); color: var(--accent); }
+        .role-joint { background-color: #FEF3C7; color: #92400E; }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Requirements Cards */
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .req-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .req-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            border-color: var(--accent);
+        }
+
+        .req-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+        }
+
+        .req-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .req-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Support Team Box */
+        .team-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #F8FAFC;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 24px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .team-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: var(--text-light);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .team-info h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .team-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: #94A3B8;
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="brand-section">
+            <div class="brand-title">Ogilvy <span>×</span> OCTAVE</div>
+            <div class="brand-subtitle">Co-Development Collaboration Initiative</div>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#overview" class="nav-link-item active" id="link-overview">Overview</a></li>
+            <li><a href="#workflow" class="nav-link-item" id="link-workflow">Development Lifecycle</a></li>
+            <li><a href="#requirements" class="nav-link-item" id="link-requirements">Enablement</a></li>
+        </ul>
+
+        <span class="badge-support">Parallel Support Activated</span>
+    </nav>
+
+    <!-- Main Content Layout (Single Scrollable Page) -->
+    <div class="main-container">
+        
+        <!-- SECTION 1: OVERVIEW & POV -->
+        <section class="section-container" id="overview">
+            <h2><span>🏠</span> Easing the Load, Accelerating Delivery</h2>
+            <p class="section-desc">A collaborative engineering approach to help Octave scale development velocity without bottlenecking internal leadership.</p>
+
+            <div class="highlight-box">
+                <strong>Our Point of View:</strong> We recognize that Octave's Tech Lead, <strong>Tommy</strong>, is currently managing immense operational overhead—handling architectural planning, day-to-day code reviews, complex deployments, and core feature engineering on his own. We want to lift that burden by working in parallel with his efforts, seamlessly absorbing feature workloads to let him focus on macro strategic decisions.
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🤝 Seamless Parallel Delivery</div>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); margin-bottom: 12px;">
+                        Ogilvy will act as a direct extension of Tommy's capacity. Starting with prioritized backlog items validated by Octave leadership, our seasoned development team takes on self-contained features.
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);">
+                        We execute the entire lifecycle from drafting requirements to staging deployments, providing fully tested, production-ready deliverables for final review.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🎯 Shared Program Goals</div>
+                    <ul style="font-size: 0.95rem; line-height: 1.8; color: var(--text-main); padding-left: 20px;">
+                        <li>Minimize critical dependencies and alleviate pressure on Tommy.</li>
+                        <li>Maintain robust, transparent dev pipelines with multi-stage environments.</li>
+                        <li>Deliver absolute consistency in code standards, performance, and security.</li>
+                        <li>Accelerate general roadmap delivery speed to satisfy product owners.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="team-box">
+                <div class="team-avatar">🎯</div>
+                <div class="team-info">
+                    <h4>Direct Support Architecture for Tommy</h4>
+                    <p>We work adjacent to your teams, delivering code in isolated streams while implementing robust gateways that allow easy oversight without demanding constant manual intervention.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: WAYS OF WORKING -->
+        <section class="section-container" id="workflow">
+            <h2><span>🔄</span> Ways of Working (Proposed Lifecycle)</h2>
+            <p class="section-desc">A predictable, highly automated 10-step software development lifecycle (SDLC) designed to run features in parallel while ensuring complete quality control.</p>
+
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Draft User Stories</span>
+                            <span class="timeline-role role-Ogilvy">Ogilvy Team</span>
+                        </div>
+                        <p class="timeline-desc">Initial technical specifications, acceptance criteria, and operational scopes are thoroughly drafted as actionable tasks inside Wrike.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Octave Product Approval</span>
+                            <span class="timeline-role role-octave">Octave Product Team</span>
+                        </div>
+                        <p class="timeline-desc">Octave's product stakeholders review the specifications in Wrike and formally sign off on requirements, setting clear expectations before any development begins.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Parallel Feature Development &amp; Local Unit Testing</span>
+                            <span class="timeline-role role-Ogilvy">Ogilvy Dev Team</span>
+                        </div>
+                        <p class="timeline-desc">Ogilvy developers pick up the approved user story, build the feature in local feature branches, and write rigorous unit tests to verify initial stability.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge optional">4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Commit to GitHub &amp; Trigger Dev Environment Build</span>
+                            <span class="timeline-role role-joint">Optional Tommy Review</span>
+                        </div>
+                        <p class="timeline-desc">We commit code to the designated branch, which triggers the automated CI/CD pipeline to deploy onto the Dev environment. This serves as an optional code review gate for Tommy.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">5</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Internal Dev Verification</span>
+                            <span class="timeline-role role-Ogilvy">Ogilvy Dev Team</span>
+                        </div>
+                        <p class="timeline-desc">The team validates the implemented feature on the Dev environment to confirm functionality meets Wrike acceptance criteria.</p>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">6</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">QA Hand-off &amp; Trigger QA Environment Build</span>
+                            <span class="timeline-role role-Ogilvy">Ogilvy Dev Team</span>
+                        </div>
+                        <p class="timeline-desc">The CI/CD pipeline is automatically triggered to deploy the verified packages to the isolated QA environment. Marking the issue as ready for QA in Wrike</p>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">7</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">QA Verification &amp; Iterative Bug Fixing</span>
+                            <span class="timeline-role role-joint">Ogilvy QA &amp; Dev</span>
+                        </div>
+                        <p class="timeline-desc">Our QA team thoroughly tests the environment. If issues are found, they are logged transparently in Wrike; developers immediately patch and re-deploy to the QA environment for final pass validation.</p>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">8</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Trigger Staging Environment Build</span>
+                            <span class="timeline-role role-Ogilvy">Ogilvy Dev Team</span>
+                        </div>
+                        <p class="timeline-desc">Once QA signs off, code branches are compiled and automatically deployed to the Stage/Pre-production environment.</p>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge highlight">9</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">UAT Request &amp; Sign-off Gate</span>
+                            <span class="timeline-role role-octave">Tommy &amp; Octave Product</span>
+                        </div>
+                        <p class="timeline-desc">We request formal User Acceptance Testing (UAT) and architectural checks from Tommy and the Octave product team on the Stage environment.</p>
+                    </div>
+                </div>
+
+                <!-- Step 10 -->
+                <div class="timeline-item">
+                    <div class="timeline-badge highlight">10</div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Production Release &amp; Delivery</span>
+                            <span class="timeline-role role-joint">Joint Release Management</span>
+                        </div>
+                        <p class="timeline-desc">With all reviews complete, the certified build is promoted to the live Production environment in coordination with Tommy's release timeline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ACCESS & REQUIREMENTS -->
+        <section class="section-container" id="requirements">
+            <h2><span>🔑</span> Essential Onboarding Access</h2>
+            <p class="section-desc">To kickstart this seamless integration, relieve Tommy's load, and begin delivering on priorities immediately, we require the following enablement parameters:</p>
+
+            <div class="req-grid">
+                <!-- Requirement 1 -->
+                <div class="req-card">
+                    <div class="req-icon">🐙</div>
+                    <div class="req-title">1. Code &amp; Pipeline Access</div>
+                    <p class="req-desc">Read/Write developer access to the relevant GitHub repositories and complete visibility into current CI/CD actions/workflows to integrate build Triggers.</p>
+                </div>
+
+                <!-- Requirement 2 -->
+                <div class="req-card">
+                    <div class="req-icon">🛡️</div>
+                    <div class="req-title">2. Gated Lower Environments</div>
+                    <p class="req-desc">Provisioning of necessary credentials, network access, VPN configs, or IAM security roles needed to connect and deploy to Dev and QA environments safely.</p>
+                </div>
+
+                <!-- Requirement 3 -->
+                <div class="req-card">
+                    <div class="req-icon">🔄</div>
+                    <div class="req-title">3. SDLC Walkthrough &amp; Cadence</div>
+                    <p class="req-desc">A brief collaborative walkthrough of current patterns (e.g., Git branching standards, release tag protocols, dependency managers) if specific custom processes exist.</p>
+                </div>
+
+                <!-- Requirement 4 -->
+                <div class="req-card">
+                    <div class="req-icon">📈</div>
+                    <div class="req-title">4. Quality &amp; Compliance Benchmarks</div>
+                    <p class="req-desc">Sharing of current performance expectations, code linting models, and automated security scanning rules (e.g., SonarQube, Snyk) to ensure matching premium standards.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Ogilvy Team • Strictly Confidential for Octave Development Coordination • © 2026
+    </footer>
+
+    <!-- Section Highlighting & Smooth Navigation Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section-container');
+            const navLinks = document.querySelectorAll('.nav-link-item');
+
+            // Scrollspy active class switching
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Check if window is scrolling past the boundary of a section
+                    if (pageYOffset >= (sectionTop - 110)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Handle active class visually on click immediately
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+</body></html>
