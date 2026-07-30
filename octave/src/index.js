@@ -4,7 +4,7 @@ export default {
     // 1. BASIC AUTHENTICATION
     // -------------------------------------------------------------
     const USERNAME = "admin";
-    const PASSWORD = "WPPEnterprise";
+    const PASSWORD = "Ogilvy2026!";
 
     const authHeader = request.headers.get("Authorization");
 
