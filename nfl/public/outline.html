@@ -1,0 +1,958 @@
+<html data-type="html" data-identifier="ba9e3f70-3d75-4e6f-a45f-71c9ef3b8b7d" data-title="NFL RFP Response Outline - Word Document" data-version="1" width="850" height="1600"><head>
+<meta charset="UTF-8">
+<title id="rt">NFL RFP Response Outline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Barlow+Condensed:wght@600;700&amp;family=Calibri:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e8e8;
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    padding: 20px 0;
+    color: #333;
+  }
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: #fff;
+    margin: 0 auto 20px;
+    padding: 0.75in 1in;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    position: relative;
+    page-break-after: always;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #013369 0%, #013369 60%, #d50a0a 60%, #d50a0a 100%);
+  }
+  .doc-header {
+    border-bottom: 2px solid #013369;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dh-left { display: flex; align-items: center; gap: 12px; }
+  .shield-sm {
+    width: 34px; height: 40px;
+    background: linear-gradient(180deg, #013369 0%, #013369 50%, #d50a0a 50%, #d50a0a 100%);
+    clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+    border: 1.5px solid #013369;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 10px;
+  }
+  .doc-header h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #013369;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+  .doc-header h1 small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: #d50a0a;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .doc-header .meta {
+    text-align: right;
+    font-size: 10px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .doc-header .meta strong { color: #013369; }
+
+  /* Cover title */
+  .cover {
+    text-align: center;
+    padding: 80px 40px;
+    margin: 30px 0;
+    background: linear-gradient(135deg, #013369 0%, #001a3d 100%);
+    color: #fff;
+    position: relative;
+  }
+  .cover::before, .cover::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 4px;
+    background: #d50a0a;
+  }
+  .cover::before { top: 0; }
+  .cover::after { bottom: 0; }
+  .cover .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 4px; text-transform: uppercase;
+    font-size: 12px; opacity: 0.8; margin-bottom: 15px;
+  }
+  .cover h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 34px;
+    letter-spacing: 1px;
+    line-height: 1.05;
+    margin-bottom: 15px;
+  }
+  .cover .subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ff6b6b;
+  }
+  .cover .divider {
+    width: 60px; height: 3px; background: #d50a0a; margin: 20px auto;
+  }
+  .cover .info {
+    font-size: 12px; line-height: 1.8; opacity: 0.9; margin-top: 20px;
+  }
+
+  /* Section headers */
+  .section-header {
+    background: linear-gradient(90deg, #013369 0%, #002050 100%);
+    color: #fff;
+    padding: 12px 20px;
+    margin: 25px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 5px solid #d50a0a;
+  }
+  .section-number {
+    background: #d50a0a;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    padding: 3px 12px;
+    letter-spacing: 0.5px;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 14pt;
+    letter-spacing: 1px;
+  }
+
+  .objective {
+    background: #fff5f5;
+    border-left: 3px solid #d50a0a;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  .objective strong {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 10pt;
+    letter-spacing: 0.5px;
+  }
+
+  .content-block {
+    padding: 0 5px;
+    margin-bottom: 15px;
+  }
+  .content-block h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 11pt;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ddd;
+  }
+  .content-block ul {
+    padding-left: 20px;
+    font-size: 10.5pt;
+    line-height: 1.6;
+  }
+  .content-block ul li {
+    margin-bottom: 4px;
+    color: #333;
+  }
+  .content-block ul ul {
+    margin-top: 4px;
+    font-size: 10pt;
+    color: #555;
+  }
+  .content-block p {
+    font-size: 10.5pt;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .assets-note {
+    background: #f4f5f7;
+    border-left: 3px solid #013369;
+    padding: 8px 15px;
+    margin-top: 10px;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #555;
+  }
+  .assets-note strong {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    letter-spacing: 1px;
+    font-size: 9pt;
+  }
+
+  /* TOC */
+  .toc {
+    padding: 20px 0;
+  }
+  .toc h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 20pt;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #d50a0a;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+    border-bottom: 1px dotted #ccc;
+    font-size: 10.5pt;
+  }
+  .toc-item:hover { background: #f8f9fb; }
+  .toc-num {
+    font-family: 'Oswald', sans-serif;
+    color: #d50a0a;
+    font-weight: 600;
+    margin-right: 12px;
+    min-width: 60px;
+  }
+  .toc-title { flex: 1; color: #013369; font-weight: 600; }
+  .toc-page {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  /* Themes box */
+  .themes-box {
+    background: linear-gradient(135deg, #013369 0%, #001a3d 100%);
+    color: #fff;
+    padding: 25px;
+    margin: 25px 0;
+    position: relative;
+  }
+  .themes-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 5px;
+    background: #d50a0a;
+  }
+  .themes-box h3 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 14pt;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+  .themes-box ol {
+    padding-left: 20px;
+    font-size: 10.5pt;
+    line-height: 1.7;
+  }
+  .themes-box ol li { margin-bottom: 5px; }
+  .themes-box strong { color: #ff6b6b; }
+
+  .checklist {
+    background: #f4f5f7;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #d50a0a;
+  }
+  .checklist h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #013369;
+    font-size: 12pt;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .checklist ul {
+    list-style: none;
+    padding: 0;
+    font-size: 10.5pt;
+    line-height: 1.8;
+  }
+  .checklist ul li::before {
+    content: '☐';
+    color: #d50a0a;
+    font-size: 14pt;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .doc-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 1in;
+    right: 1in;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .doc-footer .conf { color: #d50a0a; font-weight: 700; }
+
+  .print-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .print-btn {
+    background: #d50a0a;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .print-btn:hover { background: #a10808; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; margin: 0; }
+    .print-controls { display: none; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-controls">
+  <button class="print-btn" id="pd">🖨️ Print / Save as PDF</button>
+</div>
+
+<!-- COVER -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left">
+      <div class="shield-sm">NFL</div>
+      <h1 id="dh1">Response Outline<small>Digital Media – Product Development Services</small></h1>
+    </div>
+    <div class="meta"><strong>Confidential</strong><br>Version 1.0 · July 2026</div>
+  </div>
+
+  <div class="cover">
+    <div class="eyebrow">Response Blueprint for NFL Enterprises LLC</div>
+    <h1 id="ct">RFP Response<br>Outline</h1>
+    <div class="divider"></div>
+    <div class="subtitle">Sections 17.1 – 17.17 Mapped &amp; Structured</div>
+    <div class="info">
+      Preparation guide for NFL Digital Media<br>
+      Product Development Services RFP<br><br>
+      <strong>Submission Deadline:</strong> October 1, 2026 · 5:00 PM ET<br>
+      <strong>Engagement Start:</strong> April 2027 (FY27)
+    </div>
+  </div>
+
+  <div class="objective">
+    <strong>Document Purpose</strong><br>
+    This response outline provides a structured blueprint mapping to all 17 required response sections (17.1 – 17.17) as defined in the NFL RFP for Digital Media – Product Development Services. Each section identifies the response objective, required content, and recommended supporting assets to produce a comprehensive, competitive, and compliant submission by October 1, 2026.
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Cover</div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh2">Table of Contents<small>Response Sections</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="toc">
+    <h2 id="tc">Contents</h2>
+    <div class="toc-item"><span class="toc-num">17.1</span><span class="toc-title">Company Overview and Credentials</span><span class="toc-page">Page 3</span></div>
+    <div class="toc-item"><span class="toc-num">17.2</span><span class="toc-title">Team Composition and Bios</span><span class="toc-page">Page 3</span></div>
+    <div class="toc-item"><span class="toc-num">17.3</span><span class="toc-title">Portfolio of Relevant Work and Case Studies</span><span class="toc-page">Page 4</span></div>
+    <div class="toc-item"><span class="toc-num">17.4</span><span class="toc-title">Technology Stack and Tools</span><span class="toc-page">Page 4</span></div>
+    <div class="toc-item"><span class="toc-num">17.5</span><span class="toc-title">Development Methodology and Process</span><span class="toc-page">Page 5</span></div>
+    <div class="toc-item"><span class="toc-num">17.6</span><span class="toc-title">Project Governance and Oversight</span><span class="toc-page">Page 5</span></div>
+    <div class="toc-item"><span class="toc-num">17.7</span><span class="toc-title">Proposed Engagement Model</span><span class="toc-page">Page 6</span></div>
+    <div class="toc-item"><span class="toc-num">17.8</span><span class="toc-title">Pricing Models and Rate Cards</span><span class="toc-page">Page 6</span></div>
+    <div class="toc-item"><span class="toc-num">17.9</span><span class="toc-title">References and Client Testimonials</span><span class="toc-page">Page 7</span></div>
+    <div class="toc-item"><span class="toc-num">17.10</span><span class="toc-title">Transition and Onboarding Approach</span><span class="toc-page">Page 7</span></div>
+    <div class="toc-item"><span class="toc-num">17.11</span><span class="toc-title">Risk Management and Business Continuity</span><span class="toc-page">Page 8</span></div>
+    <div class="toc-item"><span class="toc-num">17.12</span><span class="toc-title">Diversity and Inclusion</span><span class="toc-page">Page 8</span></div>
+    <div class="toc-item"><span class="toc-num">17.13</span><span class="toc-title">Capacity and Availability</span><span class="toc-page">Page 9</span></div>
+    <div class="toc-item"><span class="toc-num">17.14</span><span class="toc-title">Innovation and Continuous Improvement</span><span class="toc-page">Page 9</span></div>
+    <div class="toc-item"><span class="toc-num">17.15</span><span class="toc-title">Communication and Collaboration</span><span class="toc-page">Page 10</span></div>
+    <div class="toc-item"><span class="toc-num">17.16</span><span class="toc-title">Security and Data Protection</span><span class="toc-page">Page 10</span></div>
+    <div class="toc-item"><span class="toc-num">17.17</span><span class="toc-title">AI Governance and Responsible Use</span><span class="toc-page">Page 11</span></div>
+    <div class="toc-item" style="border-top:2px solid #013369; margin-top:10px; padding-top:10px;"><span class="toc-num">—</span><span class="toc-title">Cross-Cutting Guidance &amp; Winning Themes</span><span class="toc-page">Page 11</span></div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 2</div>
+  </div>
+</div>
+
+<!-- Page 3: 17.1 - 17.2 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh3">Sections 17.1 – 17.2<small>Company &amp; Team</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.1</div>
+    <div class="section-title">Company Overview and Credentials</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Establish credibility, scale, and relevance to NFL's DTC and multi-platform digital ecosystem.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Company history:</strong> Founding year, evolution, global footprint</li>
+      <li><strong>Size &amp; structure:</strong> Total headcount, discipline breakdown, org chart</li>
+      <li><strong>Geographic presence:</strong> Delivery centers with time-zone overlap map</li>
+      <li><strong>Years in business:</strong> Emphasize longevity in digital product development</li>
+      <li><strong>Core competencies:</strong> Product strategy, UX/UI, full-stack (JS/TS/React/RN), mobile &amp; CTV, applied AI/ML, DevOps/SRE</li>
+      <li><strong>Relevant industry experience:</strong> Sports, entertainment, streaming/OTT, high-traffic consumer platforms</li>
+      <li><strong>Key differentiators:</strong> AI-native delivery, embedded partnership, senior-heavy model, mission-critical scale experience</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Company fact sheet · Org chart · Capability wheel · Awards / certifications page</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.2</div>
+    <div class="section-title">Team Composition and Bios</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Demonstrate senior practitioner depth and ability to ramp without junior-heavy staffing.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Proposed team structure:</strong> Pod diagram with roles &amp; integration points</li>
+      <li><strong>Named team members</strong> for standardized pod (6 Sr. Eng, 1 Designer, 1 QA, 1 Delivery Lead) with bios covering:
+        <ul>
+          <li>Years of experience (target 8+ years average)</li>
+          <li>Prior client engagements (anonymized where required)</li>
+          <li>Stack and industry vertical expertise</li>
+        </ul>
+      </li>
+      <li><strong>Experience level distribution:</strong> 70%+ senior/principal; no junior-heavy</li>
+      <li><strong>Availability &amp; capacity to scale:</strong> Bench numbers, hiring pipeline</li>
+      <li><strong>Current utilization:</strong> % capacity available for NFL</li>
+      <li><strong>Hiring plan &amp; bench strength:</strong> Pre-qualified engineers per discipline</li>
+      <li><strong>Lead time for assembly &amp; ramp-to-productivity curve</strong></li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Team pod diagrams · Bio cards · Capacity heat-map</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 3</div>
+  </div>
+</div>
+
+<!-- Page 4: 17.3 - 17.4 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh4">Sections 17.3 – 17.4<small>Portfolio &amp; Technology</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.3</div>
+    <div class="section-title">Portfolio of Relevant Work and Case Studies</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Prove capability through 3–5 high-impact, quantified case studies.</div>
+
+  <div class="content-block">
+    <h4>Case Study Structure (per study)</h4>
+    <ul>
+      <li>Client &amp; context (industry, scale, mission-critical nature)</li>
+      <li>Challenge (business problem, technical complexity)</li>
+      <li>Approach (methodology, team composition, timeline)</li>
+      <li>Technology (stack, tools, AI leverage)</li>
+      <li>Outcome (quantified metrics — velocity, uptime, subscribers, revenue)</li>
+      <li>NFL relevance (explicit tie-back)</li>
+    </ul>
+    <h4>Prioritized Themes</h4>
+    <ul>
+      <li>Streaming / OTT platform at 1M+ concurrent users (NFL+ parallel)</li>
+      <li>Sports or entertainment DTC subscription growth</li>
+      <li>Multi-platform: web, iOS, Android, CTV (mirrors NFL's 9 CTV apps)</li>
+      <li>High-traffic event handling (parallel to game-day spikes)</li>
+      <li>Applied AI/ML for personalization or recommendations</li>
+      <li>Long-term embedded partnership (3+ years, showcasing retention)</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Case study PDFs · Video testimonials · Before/after metrics dashboards</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.4</div>
+    <div class="section-title">Technology Stack and Tools</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Demonstrate deep, mandatory-stack expertise (JS / TS / React / React Native).</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Mandatory stack depth:</strong>
+        <ul>
+          <li>JavaScript / TypeScript — years of use, % of engineering base</li>
+          <li>React (web) — SSR/Next.js, performance optimization</li>
+          <li>React Native — iOS/Android, native module integration, code-sharing</li>
+        </ul>
+      </li>
+      <li>Engineer certifications &amp; open-source contributions</li>
+      <li><strong>Ecosystem tooling:</strong> Jira, Figma, GitHub Actions/Copilot, Slack/Teams, Jenkins, Adobe Analytics</li>
+      <li><strong>Staying current:</strong> Tech radar, architecture guild, learning investments</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Tech capability matrix · Stack proficiency heat-map · OSS contribution profile</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 4</div>
+  </div>
+</div>
+
+<!-- Page 5: 17.5 - 17.6 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh5">Sections 17.5 – 17.6<small>Methodology &amp; Governance</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.5</div>
+    <div class="section-title">Development Methodology and Process</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Show pragmatic agile delivery aligned with 2-week sprints and NFL's SAFe practices.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Agile/Scrum:</strong> Sprint planning, backlog refinement, story pointing, velocity tracking</li>
+      <li><strong>Testing &amp; QA:</strong> Unit (Jest), integration (RTL), E2E (Playwright/Cypress/Detox), performance (Lighthouse CI), a11y (axe-core)</li>
+      <li><strong>CI/CD:</strong> GitHub Actions + Jenkins pipelines; blue-green, canary, feature-flag deploy</li>
+      <li><strong>Code review:</strong> PR templates, SLAs, AI-assisted reviews</li>
+      <li><strong>Technical debt:</strong> Registry, quantified cost, 15–20% capacity allocation</li>
+      <li><strong>Version control:</strong> Trunk-based or GitFlow variant</li>
+      <li><strong>Bug tracking:</strong> Severity classification, resolution SLAs, RCA</li>
+      <li><strong>Design system maintenance:</strong> Versioning, contribution model, cross-platform tokens</li>
+      <li><strong>Accessibility:</strong> WCAG 2.1 AA embedded in design/dev/test across web, mobile, CTV</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> SDLC diagram · Sample sprint cadence · DoR/DoD templates · A11y checklist</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.6</div>
+    <div class="section-title">Project Governance and Oversight</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Demonstrate flexible, accountable governance connecting strategy to delivery.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Strategic planning:</strong> Portfolio → Program → Team alignment; SAFe-compatible; OKR mapping; PI planning</li>
+      <li><strong>Adapt/pivot/change:</strong> Lightweight but disciplined change control</li>
+      <li><strong>Communication &amp; transparency:</strong> Sprint reports, QBRs, real-time dashboards, escalation paths</li>
+      <li><strong>Documentation:</strong> ADRs, runbooks, onboarding wikis (see §16.7)</li>
+      <li><strong>Capacity planning:</strong> Rolling 90-day forecast, seasonal surge modeling</li>
+      <li><strong>Business goal alignment:</strong> Traceability from initiative to output</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Governance operating model · Sample QBR deck · Dashboard mockups</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 5</div>
+  </div>
+</div>
+
+<!-- Page 6: 17.7 - 17.8 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh6">Sections 17.7 – 17.8<small>Engagement &amp; Pricing</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.7</div>
+    <div class="section-title">Proposed Engagement Model</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Show genuine understanding of embedded partnership vs. vendor model.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Integrated team extension:</strong> Working in NFL Slack, Jira, Figma (not parallel systems); attending NFL standups/retros; cultural onboarding</li>
+      <li><strong>Collaboration approach:</strong> Daily async standups + weekly sync; shared OKRs with NFL leads</li>
+      <li><strong>Integration plan</strong> with existing teams &amp; tools</li>
+      <li><strong>Flexibility:</strong> Responding to shifting priorities without process overhead</li>
+      <li><strong>Game-day support:</strong>
+        <ul>
+          <li>On-site presence Inglewood, CA (pre-season Wk 1, regular season Wk 1)</li>
+          <li>War-room protocol, real-time monitoring, incident command</li>
+        </ul>
+      </li>
+      <li><strong>Seasonal intensity handling:</strong> Load testing, chaos engineering, scaled on-call rotations, playoff/Super Bowl flex</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Engagement model diagram · "Day-in-the-life" example · Game-day RACI</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.8</div>
+    <div class="section-title">Pricing Models and Rate Cards</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Transparent, value-based pricing with flexibility.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Preferred structure:</strong> Dedicated pod retainer (primary), T&amp;M (surge), hybrid (recommended)</li>
+      <li><strong>Monthly retainer pricing</strong> for small/medium/large pods</li>
+      <li><strong>Individual role rates:</strong> Sr. Eng, Designer, QA, Delivery Lead, Tech Lead, PM</li>
+      <li><strong>Cost optimization:</strong> Nearshore/offshore blend (NFL-approved), seasonality flex, AI-productivity gain-sharing</li>
+      <li><strong>Transparency:</strong> Fully-loaded rate breakdown</li>
+      <li><strong>Standardized scenario pricing:</strong> See Pricing Model Template (annual pod cost with assumptions, exclusions, pass-through)</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Rate card · Pricing model spreadsheet · TCO comparison</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 6</div>
+  </div>
+</div>
+
+<!-- Page 7: 17.9 - 17.10 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh7">Sections 17.9 – 17.10<small>References &amp; Transition</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.9</div>
+    <div class="section-title">References and Client Testimonials</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Prove long-term partnership success.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Minimum 3 client references</strong> with contact info (obtain permission first)</li>
+      <li><strong>Client retention rate</strong> (overall + by engagement type)</li>
+      <li><strong>Average engagement length</strong> — target 3+ years showcased</li>
+      <li><strong>Long-term partnership examples:</strong> 2–3 detailed 3+ year narratives</li>
+      <li><strong>Why clients stay:</strong> Themes from client feedback</li>
+      <li><strong>Why clients leave:</strong> Honest reflection (M&amp;A, insourcing, budget)</li>
+      <li><strong>Growth patterns:</strong> Engagements that grew from 1 pod → multiple pods</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Reference contact sheet · Testimonial video reel · Retention dashboard</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.10</div>
+    <div class="section-title">Transition and Onboarding Approach</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> De-risk the April 2027 start with a phased ramp plan.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Onboarding &amp; ramp timeline:</strong>
+        <ul>
+          <li>Weeks 1–2: Contracting, access, security clearances</li>
+          <li>Weeks 3–6: Cultural onboarding, tool access, shadow teams</li>
+          <li>Weeks 7–10: Pair on live work, take limited ownership</li>
+          <li>Weeks 11–16: Full pod velocity achieved</li>
+        </ul>
+      </li>
+      <li><strong>Knowledge transfer:</strong> Reverse KT, incumbent sessions, codebase walkthroughs</li>
+      <li><strong>Onboarding new NFL members:</strong> Reciprocal onboarding kits</li>
+      <li><strong>Documentation practices:</strong> ADRs, runbooks, video walkthroughs as DoD</li>
+      <li><strong>Team-member transition continuity plans</strong></li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Onboarding Gantt chart · KT template library · Sample runbook</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 7</div>
+  </div>
+</div>
+
+<!-- Page 8: 17.11 - 17.12 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh8">Sections 17.11 – 17.12<small>Risk &amp; D&amp;I</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.11</div>
+    <div class="section-title">Risk Management and Business Continuity</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Provide confidence in zero-downtime, always-on service delivery.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Team-member unavailability:</strong> Named backups, cross-training, PTO coordination</li>
+      <li><strong>Critical game-day backup plans:</strong> Redundant on-call rotations, escalation trees, on-site + remote model</li>
+      <li><strong>Escalation procedures:</strong> SEV-1 to SEV-4 definitions, response SLAs, communication protocols</li>
+      <li><strong>Business continuity:</strong>
+        <ul>
+          <li>Multi-location delivery (no single-point failure)</li>
+          <li>Disaster recovery plan</li>
+          <li>Cyber incident playbook</li>
+          <li>Insurance coverage</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Risk register template · BCP/DR summary · Escalation matrix</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.12</div>
+    <div class="section-title">Diversity and Inclusion</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Demonstrate authentic commitment aligned with NFL's D&amp;I values.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Team diversity metrics:</strong> Gender, ethnicity, veteran, disability representation</li>
+      <li><strong>D&amp;I policies:</strong> Hiring, promotion, ERGs, pay equity</li>
+      <li><strong>Diverse supplier certifications:</strong> MBE, WBE, VBE, LGBTBE, DOBE (if applicable)</li>
+      <li><strong>Inclusive design practices:</strong>
+        <ul>
+          <li>Diverse user research panels</li>
+          <li>Accessibility-first design</li>
+          <li>Inclusive UX copy</li>
+          <li>Representative imagery and content</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> D&amp;I annual report excerpt · Certifications · Inclusive design case study</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 8</div>
+  </div>
+</div>
+
+<!-- Page 9: 17.13 - 17.14 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh9">Sections 17.13 – 17.14<small>Capacity &amp; Innovation</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.13</div>
+    <div class="section-title">Capacity and Availability</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Confirm realistic start-date commitment.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Realistic start date:</strong> April 2027 target; earliest possible 2026 overlap</li>
+      <li><strong>Current capacity:</strong> % bench available now vs. Q1 2027</li>
+      <li><strong>Scale ability:</strong> Additional pod capacity within 30/60/90 days</li>
+      <li><strong>Lead time for assembly:</strong> Signed contract → Day-1 productivity</li>
+      <li><strong>Ramp strategy for 2026 overlap:</strong> Small SWAT team (2–4 people) for KT before full stand-up</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Capacity forecast chart · Ramp timeline visual</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.14</div>
+    <div class="section-title">Innovation and Continuous Improvement</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Prove AI-native operating model and forward-thinking value-add.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>AI-assisted development:</strong>
+        <ul>
+          <li>Approved tools: GitHub Copilot, Cursor, Claude Code (no training on inputs)</li>
+          <li>Embedded in SDLC: code gen, test scaffolding, PR review, docs</li>
+          <li>Measurable impact: velocity %, defect reduction %, test coverage %</li>
+        </ul>
+      </li>
+      <li><strong>Applied AI/ML capabilities:</strong> Personalization, recommendations, content discovery</li>
+      <li><strong>Emerging tech beyond AI:</strong> Edge, WASM, streaming protocols, spatial UI</li>
+      <li><strong>Innovation proposal process:</strong> Innovation days, tech radar, quarterly ideation</li>
+      <li><strong>Proactive recommendation examples:</strong> 2–3 quantified value-add examples</li>
+      <li><strong>Continuous improvement commitment:</strong> Retros, kaizen, quarterly metrics reviews</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> AI tooling inventory · Innovation case studies · Tech radar</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 9</div>
+  </div>
+</div>
+
+<!-- Page 10: 17.15 - 17.16 -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh10">Sections 17.15 – 17.16<small>Communication &amp; Security</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.15</div>
+    <div class="section-title">Communication and Collaboration</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Show mature, proactive communication norms.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Proactive risk/issue surfacing</strong> and solution-oriented framing</li>
+      <li><strong>Regular strategic recommendations:</strong> Quarterly reviews, roadmap input</li>
+      <li><strong>Escalation protocols:</strong> Project-level to exec-level paths</li>
+      <li><strong>Standups &amp; sprint ceremonies:</strong> Full participation in NFL cadence</li>
+      <li><strong>Status reporting:</strong> Weekly written, monthly exec dashboard, quarterly business review</li>
+      <li><strong>Retros &amp; velocity metrics:</strong> Shared with NFL, action items tracked</li>
+      <li><strong>Real-time collaboration:</strong> Direct work in Jira, Figma, GitHub</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Sample status report · Communication cadence chart · Escalation matrix</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.16</div>
+    <div class="section-title">Security and Data Protection</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Demonstrate mature security posture ready for NFL scrutiny.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>Certifications:</strong> SOC 2 Type II, ISO 27001, PCI DSS, HIPAA (if applicable); roadmap if in-progress</li>
+      <li><strong>Secure SDLC:</strong> OWASP standards, SAST/DAST, dependency scanning, secrets management, remediation SLAs (Critical: 24h; High: 7d; Med: 30d; Low: 90d)</li>
+      <li><strong>Access management:</strong> JML process, least-privilege, quarterly access reviews</li>
+      <li><strong>Personnel screening:</strong> Background checks, scope, re-screening frequency</li>
+      <li><strong>Incident response:</strong> Playbooks, client notification SLAs (&lt;24h), 3-year material incident disclosure</li>
+      <li><strong>Personal information handling:</strong> CCPA/CPRA, GDPR compliance</li>
+      <li><strong>Client security review support:</strong> SIG, CAIQ, custom questionnaires</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> Security posture summary · Certifications · SDLC diagram · IR playbook TOC</div>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 10</div>
+  </div>
+</div>
+
+<!-- Page 11: 17.17 + Winning themes -->
+<div class="page">
+  <div class="doc-header">
+    <div class="dh-left"><div class="shield-sm">NFL</div><h1 id="dh11">Section 17.17 &amp; Cross-Cutting Guidance<small>AI Governance &amp; Winning Themes</small></h1></div>
+    <div class="meta"><strong>Confidential</strong><br>July 2026</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-number">17.17</div>
+    <div class="section-title">AI Governance and Responsible Use</div>
+  </div>
+  <div class="objective"><strong>Objective:</strong> Show mature, NFL-compliant AI governance.</div>
+
+  <div class="content-block">
+    <h4>Required Content</h4>
+    <ul>
+      <li><strong>AI tooling inventory:</strong> Tool, vendor, license, hosting, data retention/training config (confirm: NO for NFL work)</li>
+      <li><strong>Controls preventing unapproved use:</strong> DLP on prompts, tool allowlist, config hardening, audit logging</li>
+      <li><strong>Output review &amp; attribution:</strong> Human review pre-merge, license scanning, attribution tracking</li>
+      <li><strong>IP ownership &amp; indemnification:</strong> Full transfer to NFL; standard indemnification in MSA</li>
+      <li><strong>Personnel training:</strong> Mandatory acceptable-use training, annual refreshers</li>
+      <li><strong>Measurable AI outcomes:</strong> Velocity uplift %, quality validation, independent gates</li>
+    </ul>
+    <div class="assets-note"><strong>Supporting Assets:</strong> AI governance policy · Approved tools registry · Sample audit log · AI outcomes dashboard</div>
+  </div>
+
+  <div class="themes-box">
+    <h3 id="wt">Winning Themes to Weave Throughout</h3>
+    <ol>
+      <li><strong>AI-native, not AI-experimental</strong> — we already operate this way</li>
+      <li><strong>Senior practitioner depth</strong> — no junior-heavy staffing</li>
+      <li><strong>Embedded partnership</strong> — one team, not two</li>
+      <li><strong>NFL+ growth alignment</strong> — measurable contribution to 10M / $1B goals</li>
+      <li><strong>Game-day readiness</strong> — proven zero-downtime capability</li>
+      <li><strong>Transparent, accountable, adaptable</strong></li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <h4 id="cl">Compliance Checklist</h4>
+    <ul>
+      <li>All 17 sections answered completely</li>
+      <li>Standardized pod scenario priced (Section 17.8)</li>
+      <li>NDA signed and returned</li>
+      <li>Exhibit A "Intent to Bid" accepted</li>
+      <li>Response submitted electronically by 5:00 PM ET on October 1, 2026</li>
+      <li>3+ named references with contact info</li>
+      <li>No unsolicited creative concepts included</li>
+      <li>90-day response validity acknowledged</li>
+    </ul>
+  </div>
+
+  <div class="doc-footer">
+    <div>NFL RFP · Response Outline</div>
+    <div class="conf">CONFIDENTIAL</div>
+    <div>Page 11</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('pd').addEventListener('click', function() {
+    window.print();
+  });
+</script>
+
+
+</body></html>
