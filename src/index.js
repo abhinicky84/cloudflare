@@ -4,7 +4,7 @@ export default {
     // 1. BASIC AUTHENTICATION
     // -------------------------------------------------------------
     const USERNAME = "admin";
-    const PASSWORD = "WPP2026!";
+    const PASSWORD = "WPPEnterprise";
 
     const authHeader = request.headers.get("Authorization");
 
@@ -12,7 +12,7 @@ export default {
       return new Response("Authentication Required", {
         status: 401,
         headers: {
-          "WWW-Authenticate": 'Basic realm="Protected Multi-Site Report"',
+          "WWW-Authenticate": 'Basic realm="Protected Area"',
         },
       });
     }
@@ -26,7 +26,7 @@ export default {
         return new Response("Invalid Credentials", {
           status: 401,
           headers: {
-            "WWW-Authenticate": 'Basic realm="Protected Multi-Site Report"',
+            "WWW-Authenticate": 'Basic realm="Protected Area"',
           },
         });
       }
@@ -35,59 +35,72 @@ export default {
     }
 
     // -------------------------------------------------------------
-    // 2. DYNAMIC SUBDOMAIN & CLEAN URL REWRITING (NO .html in Browser)
+    // 2. SUBDOMAIN & PATH MAPPING (NO REDIRECT LOOP)
     // -------------------------------------------------------------
     const url = new URL(request.url);
     const hostnameParts = url.hostname.split(".");
 
-    // Extract subdomain if accessing via subdomain (e.g. audit.yourdomain.com)
+    // Extract subdomain if using custom domain or workers.dev multi-level subdomain
     let subdomain = null;
-    if (hostnameParts.length > 2 && !url.hostname.includes("workers.dev")) {
+    if (hostnameParts.length > 2) {
       subdomain = hostnameParts[0].toLowerCase();
     }
 
-    let requestPath = url.pathname;
+    let targetPath = url.pathname;
 
-    // Determine internal target file path inside /public
-    let internalFilePath = requestPath;
-
-    // If visiting homepage of a subdomain (e.g. audit.yourdomain.com/)
-    if (requestPath === "/" || requestPath === "") {
-      if (subdomain && subdomain !== "www") {
-        internalFilePath = `/${subdomain}.html`;
+    // A. Handle Root Path / Homepage Visits
+    if (targetPath === "/" || targetPath === "") {
+      if (subdomain && subdomain !== "www" && subdomain !== "development-lifecycle") {
+        // Map subdomain (e.g. audit.domain.com) to /audit without appending .html
+        targetPath = `/${subdomain}`;
+      } else if (subdomain === "development-lifecycle") {
+        // Specific map for your deployment
+        targetPath = "/development-lifecycle";
       } else {
-        internalFilePath = "/index.html";
+        targetPath = "/index";
       }
-    } 
-    // If path has no extension (e.g. /development-lifecycle), append .html internally
-    else if (!requestPath.includes(".")) {
-      internalFilePath = `${requestPath}.html`;
     }
 
-    // Rewrite request internally to pull the .html file from /public
-    const assetUrl = new URL(internalFilePath, url.origin);
+    // Strip trailing .html if requested directly to prevent Cloudflare 301 redirects
+    if (targetPath.endsWith(".html")) {
+      targetPath = targetPath.slice(0, -5);
+    }
+
+    // Construct asset request for Cloudflare's Clean URL engine
+    const assetUrl = new URL(targetPath, url.origin);
     let response = await env.ASSETS.fetch(new Request(assetUrl, request));
 
-    // Fallback to index.html if the requested path doesn't exist (404)
-    if (response.status === 404 && internalFilePath !== "/index.html") {
-      const fallbackUrl = new URL("/index.html", url.origin);
+    // B. Catch Redirect Responses from Cloudflare Assets and Force 200 OK
+    if (response.status === 301 || response.status === 302) {
+      const location = response.headers.get("Location");
+      if (location) {
+        // Fetch the location asset directly to break any Cloudflare redirect loop
+        const redirectAssetUrl = new URL(location, url.origin);
+        response = await env.ASSETS.fetch(new Request(redirectAssetUrl, request));
+      }
+    }
+
+    // C. Fallback to /index if 404
+    if (response.status === 404 && targetPath !== "/index") {
+      const fallbackUrl = new URL("/index", url.origin);
       response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
     }
 
     // -------------------------------------------------------------
-    // 3. FIX INLINE SVG DISTORTION (Enforce UTF-8 Encoding)
+    // 3. FIX INLINE SVG / HTML UTF-8 ENCODING
     // -------------------------------------------------------------
-    const updatedHeaders = new Headers(response.headers);
-
-    if (internalFilePath.endsWith(".html")) {
-      // FORCES browser to parse inline SVGs with exact UTF-8 coordinates (like Vercel)
-      updatedHeaders.set("Content-Type", "text/html; charset=utf-8");
+    const newHeaders = new Headers(response.headers);
+    
+    // Ensure charset=utf-8 is set so inline SVGs render crisply
+    const contentType = newHeaders.get("Content-Type") || "";
+    if (contentType.includes("text/html") || targetPath.includes("development-lifecycle") || targetPath === "/index") {
+      newHeaders.set("Content-Type", "text/html; charset=utf-8");
     }
 
     return new Response(response.body, {
-      status: response.status,
+      status: response.status === 301 ? 200 : response.status,
       statusText: response.statusText,
-      headers: updatedHeaders,
+      headers: newHeaders,
     });
   },
 };
