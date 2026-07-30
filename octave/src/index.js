@@ -50,15 +50,7 @@ export default {
 
     // A. Handle Root Path / Homepage Visits
     if (targetPath === "/" || targetPath === "") {
-      if (subdomain && subdomain !== "www" && subdomain !== "development-lifecycle") {
-        // Map subdomain (e.g. audit.domain.com) to /audit without appending .html
-        targetPath = `/${subdomain}`;
-      } else if (subdomain === "development-lifecycle") {
-        // Specific map for your deployment
-        targetPath = "/development-lifecycle";
-      } else {
         targetPath = "/index";
-      }
     }
 
     // Strip trailing .html if requested directly to prevent Cloudflare 301 redirects
