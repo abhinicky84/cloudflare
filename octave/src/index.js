@@ -12,7 +12,7 @@ export default {
       return new Response("Authentication Required", {
         status: 401,
         headers: {
-          "WWW-Authenticate": 'Basic realm="Protected Area"',
+          "WWW-Authenticate": 'Basic realm="Octave Protected Reports"',
         },
       });
     }
@@ -26,7 +26,7 @@ export default {
         return new Response("Invalid Credentials", {
           status: 401,
           headers: {
-            "WWW-Authenticate": 'Basic realm="Protected Area"',
+            "WWW-Authenticate": 'Basic realm="Octave Protected Reports"',
           },
         });
       }
@@ -35,64 +35,29 @@ export default {
     }
 
     // -------------------------------------------------------------
-    // 2. SUBDOMAIN & PATH MAPPING (NO REDIRECT LOOP)
+    // 2. FETCH STATIC ASSET (PASS REQUEST DIRECTLY TO PREVENT LOOPS)
+    // -------------------------------------------------------------
+    // Passing `request` directly lets Cloudflare Pages natively:
+    // - Serve public/index.html when visiting /
+    // - Serve public/china-region-pov.html when visiting /china-region-pov
+    // - Eliminate all 301 redirect loops
+    let response = await env.ASSETS.fetch(request);
+
+    // -------------------------------------------------------------
+    // 3. ENFORCE UTF-8 FOR HTML & SVG RENDERING
     // -------------------------------------------------------------
     const url = new URL(request.url);
-    const hostnameParts = url.hostname.split(".");
-
-    // Extract subdomain if using custom domain or workers.dev multi-level subdomain
-    let subdomain = null;
-    if (hostnameParts.length > 2) {
-      subdomain = hostnameParts[0].toLowerCase();
-    }
-
-    let targetPath = url.pathname;
-
-    // A. Handle Root Path / Homepage Visits
-    if (targetPath === "/" || targetPath === "") {
-        targetPath = "/index";
-    }
-
-    // Strip trailing .html if requested directly to prevent Cloudflare 301 redirects
-    if (targetPath.endsWith(".html")) {
-      targetPath = targetPath.slice(0, -5);
-    }
-
-    // Construct asset request for Cloudflare's Clean URL engine
-    const assetUrl = new URL(targetPath, url.origin);
-    let response = await env.ASSETS.fetch(new Request(assetUrl, request));
-
-    // B. Catch Redirect Responses from Cloudflare Assets and Force 200 OK
-    if (response.status === 301 || response.status === 302) {
-      const location = response.headers.get("Location");
-      if (location) {
-        // Fetch the location asset directly to break any Cloudflare redirect loop
-        const redirectAssetUrl = new URL(location, url.origin);
-        response = await env.ASSETS.fetch(new Request(redirectAssetUrl, request));
-      }
-    }
-
-    // C. Fallback to /index if 404
-    if (response.status === 404 && targetPath !== "/index") {
-      const fallbackUrl = new URL("/index", url.origin);
-      response = await env.ASSETS.fetch(new Request(fallbackUrl, request));
-    }
-
-    // -------------------------------------------------------------
-    // 3. FIX INLINE SVG / HTML UTF-8 ENCODING
-    // -------------------------------------------------------------
-    const newHeaders = new Headers(response.headers);
-    
-    // Ensure charset=utf-8 is set so inline SVGs render crisply
-    const contentType = newHeaders.get("Content-Type") || "";
-    if (contentType.includes("text/html") || targetPath.includes("development-lifecycle") || targetPath === "/index") {
+    if (url.pathname === "/" || url.pathname.endsWith(".html") || !url.pathname.includes(".")) {
+      const newHeaders = new Headers(response.headers);
       newHeaders.set("Content-Type", "text/html; charset=utf-8");
+
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: newHeaders,
+      });
     }
 
-    return new Response(response.body, {
-      status: response.status === 301 ? 200 : response.status,
-      statusText: response.statusText,
-      headers: newHeaders,
-    });
-  },
+    return response;
+  }
 };
