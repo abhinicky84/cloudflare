@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octave — Contentful Audit &amp; Recommendations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E7E8E3;
+    --card:#F4F4F1;
+    --ink:#15171A;
+    --ink-2:#4E535A;
+    --ink-3:#797E85;
+    --rule:#CFD1C9;
+    --crit:#A32E1C;
+    --mod:#8A6412;
+    --good:#1D5A4A;
+    --grid:rgba(21,23,26,.045);
+    --sev:var(--ink);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;
+    /*background-color:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);*/
+    background-size:28px 28px;
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- shared type ---------- */
+  .mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  }
+  h1,h2,h3,h4{font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:700;margin:0;line-height:1.02;letter-spacing:-.02em}
+  p{margin:0 0 .85em}
+  a{color:inherit}
+
+  /* ---------- top bar ---------- */
+  .bar{
+    position:sticky;top:0;z-index:40;
+    background:rgba(231,232,227,.93);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  .bar .wrap{display:flex;align-items:center;gap:20px;height:52px}
+  .bar .mark{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:14px;letter-spacing:-.01em;white-space:nowrap}
+  .bar nav{margin-left:auto;display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}
+  .bar nav::-webkit-scrollbar{display:none}
+  .bar nav a{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;text-decoration:none;color:var(--ink-2);white-space:nowrap;
+    padding-bottom:2px;border-bottom:1px solid transparent;
+  }
+  .bar nav a:hover,.bar nav a:focus-visible{color:var(--ink);border-bottom-color:var(--ink)}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:46px 0 30px;border-bottom:1px solid var(--rule)}
+  .masthead h1{font-size:clamp(29px,4.2vw,50px);font-weight:800;margin-top:14px}
+  .masthead .metaline{margin-top:26px}
+  .masthead h1 em{font-style:normal;color:var(--crit)}
+  .metaline{
+    display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:34px;padding-top:16px;border-top:1px solid var(--rule);
+  }
+  .metaline div{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+  .metaline b{color:var(--ink);font-weight:500}
+
+  /* ---------- hero chart ---------- */
+  td.hrs{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:500;text-align:right;white-space:nowrap;width:120px}
+
+  /* ---------- sections ---------- */
+  .section{padding:60px 0}
+  .section + .section{border-top:1px solid var(--rule)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+  .sec-head h2{font-size:clamp(24px,3vw,34px)}
+  .sec-intro{color:var(--ink-2);margin-bottom:38px}
+
+  /* ---------- finding ---------- */
+  .finding{
+    --sev:var(--ink);
+    background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--sev);
+    padding:30px 30px 26px;margin-bottom:22px;
+  }
+  .finding[data-sev="crit"]{--sev:var(--crit)}
+  .finding[data-sev="mod"]{--sev:var(--mod)}
+  .f-top{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-start;justify-content:space-between}
+  .f-id{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--sev);display:flex;align-items:center;gap:10px;
+  }
+  .f-id b{
+    background:var(--sev);color:var(--card);padding:3px 7px;border-radius:2px;font-weight:700;letter-spacing:.1em;
+  }
+  .finding h3{font-size:clamp(21px,2.4vw,27px);margin:12px 0 0}
+
+  .block{margin-top:22px}
+  .block > .eyebrow{display:block;margin-bottom:7px}
+  ul.risks{margin:0;padding-left:0;list-style:none}
+  ul.risks li{position:relative;padding-left:20px;margin-bottom:5px}
+  ul.risks li::before{
+    content:"";position:absolute;left:2px;top:.66em;width:6px;height:6px;background:var(--sev);opacity:.7;border-radius:1px;
+  }
+  code{
+    font-family:"JetBrains Mono",monospace;font-size:.86em;background:rgba(21,23,26,.06);
+    padding:1px 5px;border-radius:2px;
+  }
+
+  .impacts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:24px}
+  .impact{background:var(--card);padding:18px 18px 20px}
+  .impact h4{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sev);margin-bottom:9px;line-height:1.4}
+  .impact p{font-size:15px;line-height:1.55;margin:0;color:var(--ink-2)}
+
+  .rec{margin-top:24px;padding-top:18px;border-top:1px dashed var(--rule)}
+  .question{
+    margin-top:18px;padding:14px 16px;border:1px solid var(--sev);
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:16px;color:var(--sev);
+  }
+  .question span{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:5px;opacity:.75}
+
+  /* ---------- strengths ---------- */
+  .strengths{--sev:var(--good)}
+  .strengths .sec-head h2{color:var(--good)}
+  .slist{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .sitem{background:var(--card);padding:20px 22px}
+  .sitem h4{font-family:"Bricolage Grotesque",sans-serif;font-size:16.5px;font-weight:700;margin-bottom:6px;color:var(--good)}
+  .sitem p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.55}
+
+  /* ---------- priority table ---------- */
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--rule)}
+  caption{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding-bottom:10px}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:15.5px}
+  thead th{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  tbody tr:last-child td{border-bottom:none}
+  tfoot td{border-top:2px solid var(--ink);background:rgba(21,23,26,.045);font-size:15px}
+  td.pri{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:16px;width:52px}
+  td.owner{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-2);white-space:nowrap}
+
+  /* ---------- conclusion ---------- */
+  .conclusion{background:var(--ink);color:var(--paper);margin-top:0}
+  .conclusion .wrap{padding-top:64px;padding-bottom:64px}
+  .conclusion h2{color:var(--paper);font-size:clamp(24px,3vw,34px);margin-bottom:20px}
+  .conclusion p{color:#C7CAC4}
+  .conclusion .eyebrow{color:#8A8F88}
+  .conclusion strong{color:#fff;font-weight:600}
+
+  footer{padding:26px 0 60px}
+  footer p{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);margin:0}
+
+  /* ---------- motion ---------- */
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+  :focus-visible{outline:2px solid var(--crit);outline-offset:3px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .impacts{grid-template-columns:1fr}
+    .slist{grid-template-columns:1fr}
+    .wrap{padding:0 20px}
+    .finding{padding:24px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="mark">Octave x Ogilvy</div>
+    <nav>
+      <a href="#summary">Summary</a>
+      <a href="#critical">Critical</a>
+      <a href="#moderate">Moderate</a>
+      <a href="#strengths">Strengths</a>
+      <a href="#priority">Priority</a>
+    </nav>
+  </div>
+</div>
+
+<header class="masthead" id="summary">
+  <div class="wrap">
+    <div class="eyebrow">Contentful CMS Audit</div>
+    <h1>CMS Analysis &amp; Recommendations</h1>
+    <div class="metaline">
+      <div>Scope <b>All content models, entity families, environments, apps, automation</b></div>
+      <div>Findings <b>3 critical / 4 moderate</b></div>
+      <div>Content types <b>~40+</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="exec">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">01</div><h2>Executive summary</h2></div>
+    <p>The Octave Contentful space implements a governed, component-based marketing site architecture using a decoupled page-builder pattern alongside a paired resource-library model. The naming taxonomy (BM/BT/MA/DC/GN/GF/BS/UT prefixes) and the use of link-indirection primitives (UT2–UT5) represent strong content-model discipline.</p>
+    <p>The audit surfaces several structural risks, most notably a dual asset system (native Contentful assets versus Frontify JSON fields), untyped JSON fields, environment sprawl, and repeated field shapes across resource and article-like content types that should be consolidated. This report details findings by severity, highlights their specific impacts on website performance, content authoring, and technical maintenance, and provides concrete remediation guidance.</p>
+  </div>
+</section>
+
+<section class="section" id="critical">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">02</div><h2>Critical issues</h2></div>
+    <p class="sec-intro">Highest risk of data inconsistency and rendering failure at scale. These carry ambiguity into production, where the cost is a broken page rather than a slow workflow.</p>
+
+    <!-- 1 -->
+    <article class="finding reveal" data-sev="crit">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Critical</b> Finding 01</div>
+          <h3>Dual asset systems: native assets vs. Frontify JSON</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Many content types carry both a native Contentful asset field (e.g. <code>backgroundImage</code>) and a parallel Frontify v2 JSON object field (e.g. <code>backgroundImage Frontify</code>). Native fields are often disabled but still present in the schema, likely retained for legacy entries.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <ul class="risks">
+          <li>Editors and API consumers cannot reliably determine which field is authoritative for a given entry.</li>
+          <li>Front-end rendering logic must branch conditionally (<code>if frontifyImage else if legacyImage</code>), increasing complexity and bug surface.</li>
+          <li>Migrations become error-prone when two competing sources of truth exist.</li>
+        </ul>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Editors face constant confusion over active versus inactive fields, leading to double data entry, broken page previews, or publishing media into deprecated native fields.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Conditional branching in rendering logic inflates client JS bundles and increases evaluation overhead, while missing fallback checks risk rendering broken or missing image tags on live pages.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Data migrations are highly error-prone without a single source of truth, forcing developers to build and maintain defensive fallback parsing across all consuming applications.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <ul class="risks">
+          <li>Fully deprecate and remove native asset fields where Frontify is now the standard, migrating any legacy data via script.</li>
+          <li>If both must coexist temporarily, document in the field descriptions which field is authoritative, and enforce it with required-field validation.</li>
+        </ul>
+      </div>
+
+      <div class="question"><span>Open question for the team</span>Why are we using both Contentful Asset Management and Frontify Asset Management?</div>
+    </article>
+
+    <!-- 2 -->
+    <article class="finding reveal" data-sev="crit">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Critical</b> Finding 02</div>
+          <h3>JSON object fields masquerading as structured data</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Frontify integration fields (<code>frontifyFile</code>, <code>frontifyVideo</code>, <code>imageFrontify</code>, and others) are implemented as generic JSON object fields rather than a validated, structured field type.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <ul class="risks">
+          <li>No schema validation, reference integrity, or self-documentation within Contentful.</li>
+          <li>Any arbitrary JSON can be written to these fields.</li>
+          <li>If Frontify's payload shape changes, nothing in Contentful will catch the mismatch.</li>
+        </ul>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Authors receive no real-time validation or inline guidance in Contentful. Invalid or malformed JSON payloads save without warning, leaving authors unaware until components fail on live pages.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Missing keys or structure changes in raw JSON objects trigger unhandled runtime JavaScript exceptions, causing unrendered media components or full white-screen page crashes.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Contentful cannot enforce reference integrity. Any API or payload shape change from Frontify bypasses validation completely, requiring custom parsing guards in downstream code.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <ul class="risks">
+          <li>Use Frontify's App SDK field validation, if available, rather than raw JSON object fields.</li>
+          <li>At minimum, document the expected JSON shape explicitly in field descriptions for editor and developer clarity.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="finding reveal" data-sev="crit">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Critical</b> Finding 03</div>
+          <h3>Insufficient reference &amp; circular-reference guardrails</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>The <code>blocks</code> array accepts references to roughly 30 different content types; UT2 Internal Link accepts references to roughly 22 content types. Combined with the Deep Clone app, this creates potential for deeply nested or circular reference chains.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <ul class="risks">
+          <li>A block referencing a Page via UT2, where that Page embeds the same block, could create runaway clone trees or rendering loops.</li>
+          <li>Performance degradation on deeply nested pages.</li>
+        </ul>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Sifting through ~30 block choices slows down daily editing. Using Deep Clone on deeply nested blocks can accidentally clone runaway trees, duplicating dozens of unwanted entries.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Circular or deeply recursive page references cause infinite loops in GraphQL/REST API queries or server-side rendering, leading to site build timeouts, elevated TTFB, or site-wide downtime.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Deeply nested payloads degrade query speeds, bloat API response sizes, and make automated content migrations extremely risky to execute.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <ul class="risks">
+          <li>Tighten "Accepted content types" validations on all reference fields rather than allowing broad or any-entry links.</li>
+          <li>Stress-test Deep Clone against deeply nested, real-world page structures to find loop and performance issues before production does.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="moderate">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">03</div><h2>Moderate concerns</h2></div>
+    <p class="sec-intro">These rarely break a page outright. They tax every schema change, every release, and every editor who moves between similar entry forms — and the cost compounds as the space grows.</p>
+
+    <!-- 4 -->
+    <article class="finding reveal" data-sev="mod">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Moderate</b> Finding 04</div>
+          <h3>Environment sprawl with no lifecycle policy</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Multiple dated snapshot environments exist without a visible deletion policy, including <code>content-for-staging</code>, <code>production-5-14-26-1446</code>, <code>master-test-transform-6-30-26</code>, <code>production-7-1-26</code>, and <code>production-7726-1239</code>.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <p>Contentful enforces a maximum number of environments per space, depending on plan. Continued accumulation will eventually block creation of new environments needed for legitimate work.</p>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Authors risk logging into stale snapshot environments by mistake, wasting hours creating or editing content in non-production environments that is then permanently lost.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Hitting Contentful environment limits blocks developer staging environments, halting urgent release pipelines and hotfixes from reaching production.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Accumulating obsolete snapshots prevents automated CI/CD branch environment creation and schema migration testing.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <ul class="risks">
+          <li>Implement a TTL/cleanup policy: export and delete snapshot environments after a defined period, for example 30–60 days.</li>
+          <li>Document the purpose of each snapshot environment at creation time so its lifecycle owner is clear.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="finding reveal" data-sev="mod">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Moderate</b> Finding 05</div>
+          <h3>Duplicate field shapes across content types</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Event Detail, Press Release, and Resource: Blog Page independently repeat the same field shape: <code>eyebrow</code>, <code>headline</code>, <code>cta</code>, <code>textLinks</code>, <code>author</code>, <code>date</code>, <code>postBody</code>, SEO fields, and card display fields.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <p>Every schema change — adding an <code>updatedDate</code> field, for instance — must be replicated manually across three to four or more content types, increasing the likelihood of schema drift and an inconsistent editorial experience.</p>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Editors face subtle inconsistencies across similar entry forms, increasing operational confusion and error rates when moving between content types.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Front-end teams must write duplicate rendering components and query logic, inflating client-side bundle sizes and causing inconsistent SEO meta tag generation.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Routine schema updates require tedious manual replication across multiple content types, significantly increasing development overhead and schema drift risk.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <ul class="risks">
+          <li>Since Contentful lacks true type inheritance, extract shared field groups into linked component entries where feasible — for example an SEO Metadata entry type referenced by all page and article types, instead of inlining six or more SEO fields everywhere.</li>
+          <li>This is a widely recommended Contentful best practice for large multi-type spaces.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="finding reveal" data-sev="mod">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Moderate</b> Finding 06</div>
+          <h3>Card metadata duplication in the resource Page + File pairing</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Both <code>*Page</code> and <code>*File</code> types in the resource library independently carry card metadata: title, description, and image.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <p>Ambiguity over which entity is authoritative for card rendering in DC1/DC2 dynamic blocks, and a risk of inconsistent data if both are edited independently.</p>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Authors must update identical card fields in two separate entries; changing one without the other immediately creates data drift and confusion.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Dynamic grid components (DC1/DC2) render mismatched titles or images on the live site, degrading visual polish and brand trust.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Engineers must write complex fallback logic such as <code>Page.cardImage ?? File.cardImage</code>, complicating GraphQL queries and increasing card listing payloads.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <p>Explicitly designate one entity — recommended: the Page type — as the canonical source for card rendering, and document this in field descriptions and internal governance docs.</p>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="finding reveal" data-sev="mod">
+      <div class="f-top">
+        <div>
+          <div class="f-id"><b>Moderate</b> Finding 07</div>
+          <h3>Long manual enums create scaling friction</h3>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Finding</div>
+        <p>Several fields use long hardcoded enums that require ongoing maintenance: <code>contentSelection</code> on DC1/DC2 dynamic blocks, <code>productOfInterest</code> on the GF Sales Form, and the UT2 Internal Link target type list of roughly 22 content types.</p>
+      </div>
+
+      <div class="block">
+        <div class="eyebrow">Risk</div>
+        <p>Enum values require a content-model migration and deploy to update, unlike reference fields, which editors can manage directly.</p>
+      </div>
+
+      <div class="impacts">
+        <div class="impact"><h4>Content authoring &amp; editorial experience</h4><p>Authors are restricted by rigid static dropdowns and cannot select newly created categories or products until a developer deploys a schema migration.</p></div>
+        <div class="impact"><h4>Website performance &amp; reliability</h4><p>Mismatches between static enum options and dynamic content types cause empty listing components or misrouted form submissions in production.</p></div>
+        <div class="impact"><h4>Technical maintenance &amp; scalability</h4><p>Even simple routine additions, such as adding one product selection option, require developer code changes, migration scripts, and deployment cycles.</p></div>
+      </div>
+
+      <div class="rec">
+        <div class="eyebrow">Recommendation</div>
+        <p>Where feasible, replace hardcoded string enums with reference fields to dedicated entities — a Product or Resource Type content type, for example — allowing editors to add new options without a schema change.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section strengths" id="strengths">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">04</div><h2>Strengths worth preserving</h2></div>
+    <p class="sec-intro">Remediation should not disturb these. They are the reason the space scales as well as it does today.</p>
+    <div class="slist">
+      <div class="sitem"><h4>UT link indirection</h4><p>Avoids hardcoded URLs and enables centralized link management. An excellent, scalable pattern.</p></div>
+      <div class="sitem"><h4>Prefix taxonomy (BM/BT/MA/DC/GN/GF/BS/UT)</h4><p>Significantly aids discoverability across a large space with 30+ block types.</p></div>
+      <div class="sitem"><h4>Enum-driven dynamic content</h4><p><code>contentSelection</code> on DC1/DC2 reduces the manual curation burden for editors.</p></div>
+      <div class="sitem"><h4>Deep Clone scoped to 4 top-level types</h4><p>Page, Hybrid Page, Legal Page, and Resource: Case Study Page only — a sensible scope that avoids uncontrolled clone sprawl.</p></div>
+      <div class="sitem"><h4>Merge app for cross-environment schema diffing</h4><p>An appropriate tooling choice for a multi-environment setup at this scale.</p></div>
+      <div class="sitem"><h4>Page + File pairing for resources</h4><p>Clean separation between SEO-rich landing pages and downloadable or embeddable file assets.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="priority">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">05</div><h2>Recommended prioritization</h2></div>
+    <p class="sec-intro">Sequenced by severity, not by cost. Hour figures are team estimates of the work each item requires — migration scripting, validation, testing, and documentation included — and total <b class="mono">~750 hours</b>. The critical items (1a–3) account for <b class="mono">~440 hours</b> of that.</p>
+    <table>
+      <caption>Order of work, with owning area and estimated effort</caption>
+      <thead>
+        <tr><th>#</th><th>Action</th><th>Owner area</th><th style="text-align:right">Est. hours</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="pri">1a</td><td>Deprecate, migrate, and remove legacy native asset fields</td><td class="owner">Content Model / Engineering</td><td class="hrs">105-115</td></tr>
+        <tr><td class="pri">1b</td><td>Establish Frontify JSON fields as the single authoritative asset source</td><td class="owner">Content Model / Engineering</td><td class="hrs">90-100</td></tr>
+        <tr><td class="pri">2</td><td>Add validation and documentation to JSON object (Frontify) fields</td><td class="owner">Engineering</td><td class="hrs">115-125</td></tr>
+        <tr><td class="pri">3</td><td>Tighten reference field validations to prevent circular refs</td><td class="owner">Content Model</td><td class="hrs">110-115</td></tr>
+        <tr><td class="pri">4</td><td>Establish environment cleanup policy and document snapshot purpose</td><td class="owner">DevOps / Contentful Admin</td><td class="hrs">10-15</td></tr>
+        <tr><td class="pri">5</td><td>Consolidate repeated field shapes (SEO, card metadata) into shared components</td><td class="owner">Content Model</td><td class="hrs">210-220</td></tr>
+        <tr><td class="pri">6</td><td>Convert long hardcoded enums to reference-based fields</td><td class="owner">Content Model</td><td class="hrs">80-85</td></tr>
+      </tbody>
+      <tfoot><tr><td class="pri"></td><td style="font-weight:600">Total estimated effort</td><td class="owner">All areas</td><td class="hrs" style="font-weight:700">740-760</td></tr></tfoot>
+    </table>
+  </div>
+</section>
+
+<section class="conclusion">
+  <div class="wrap">
+    <div class="eyebrow">Conclusion</div>
+    <h2 style="margin-top:14px">Sound architecture, ambiguous edges</h2>
+    <p>The Octave Contentful space is architecturally sound and reflects mature content-modeling practices for a large, multi-locale marketing site. The priority for the team should be <strong>resolving the dual asset-field pattern and the untyped JSON fields</strong>, as these carry the highest risk of data inconsistency and rendering bugs at scale.</p>
+    <p>Addressing environment sprawl and field-shape duplication next will reduce long-term maintenance overhead and improve editorial consistency across the ~40+ content types in this space.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Octave Contentful Content Model Audit &amp; Recommendations</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
