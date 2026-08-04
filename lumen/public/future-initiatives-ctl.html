@@ -1,0 +1,1389 @@
+<html data-type="html" data-identifier="ebc89cbe-68e7-4f99-a2b8-62b1241b01b4" data-title="CenturyLink.com Future Initiatives Recommendations" data-version="2" width="1200" height="900" imagemodel="imagen-4"><head>
+    <style>
+      :root {
+        --lumen-black: #050505;
+        --lumen-charcoal: #161616;
+        --lumen-slate: #2b2f36;
+        --lumen-blue: #00a9e0;
+        --lumen-blue-soft: #dff7ff;
+        --centurylink-green: #118745;
+        --centurylink-lime: #8dc643;
+        --warm-white: #fbfbf8;
+        --cloud: #f3f6f7;
+        --line: rgba(5, 5, 5, 0.12);
+        --text-muted: #606873;
+        --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        --radius-lg: 28px;
+        --radius-md: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--warm-white);
+        color: var(--lumen-black);
+        font-family: "Aptos", "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(251, 251, 248, 0.92);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 260px;
+      }
+
+      .brand-mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background:
+          linear-gradient(90deg, transparent 0 48%, var(--lumen-blue) 48% 100%),
+          linear-gradient(135deg, var(--lumen-black), var(--lumen-charcoal));
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 169, 224, 0.18);
+      }
+
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 6px;
+        top: 6px;
+        border-radius: 50%;
+        background: var(--centurylink-lime);
+      }
+
+      .brand-copy {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-copy strong {
+        letter-spacing: -0.04em;
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .brand-copy span {
+        color: var(--text-muted);
+        font-size: 12px;
+        margin-top: 4px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--lumen-slate);
+        padding: 9px 12px;
+        border-radius: 999px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        background: var(--lumen-blue-soft);
+        color: var(--lumen-black);
+      }
+
+      .hero {
+        background:
+          radial-gradient(circle at 20% 20%, rgba(0, 169, 224, 0.24), transparent 28%),
+          radial-gradient(circle at 80% 10%, rgba(141, 198, 67, 0.28), transparent 24%),
+          linear-gradient(135deg, #050505 0%, #161616 48%, #20242b 100%);
+        color: #fff;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, #000 0%, transparent 75%);
+      }
+
+      .hero-inner {
+        position: relative;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 86px 24px 76px;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 42px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 999px;
+        color: rgba(255,255,255,0.82);
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--lumen-blue);
+        box-shadow: 0 0 0 7px rgba(0,169,224,0.16);
+      }
+
+      h1, h2, h3, h4 {
+        margin: 0;
+        letter-spacing: -0.05em;
+        line-height: 1.02;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 7vw, 86px);
+        max-width: 820px;
+      }
+
+      .hero h1 span {
+        color: var(--lumen-blue);
+      }
+
+      .hero-lede {
+        color: rgba(255,255,255,0.76);
+        font-size: 20px;
+        max-width: 720px;
+        margin: 24px 0 32px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        background: var(--lumen-blue);
+        color: #001018;
+      }
+
+      .btn-secondary {
+        border: 1px solid rgba(255,255,255,0.22);
+        color: #fff;
+      }
+
+      .hero-panel {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        backdrop-filter: blur(18px);
+        box-shadow: 0 20px 80px rgba(0,0,0,0.25);
+      }
+
+      .scorecard {
+        display: grid;
+        gap: 14px;
+      }
+
+      .score-row {
+        display: grid;
+        grid-template-columns: 52px 1fr auto;
+        align-items: center;
+        gap: 14px;
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.09);
+      }
+
+      .score-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        background: rgba(0,169,224,0.16);
+        color: var(--lumen-blue);
+        font-size: 22px;
+      }
+
+      .score-row strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .score-row span {
+        display: block;
+        font-size: 12px;
+        color: rgba(255,255,255,0.66);
+        margin-top: 2px;
+      }
+
+      .tag {
+        color: #06120f;
+        background: var(--centurylink-lime);
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .section {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 82px 24px;
+      }
+
+      .section-tight {
+        padding-top: 48px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 28px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-kicker {
+        color: var(--centurylink-green);
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .section h2 {
+        font-size: clamp(32px, 5vw, 58px);
+      }
+
+      .section-intro {
+        color: var(--text-muted);
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 26px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .card h3 {
+        font-size: 25px;
+        margin-bottom: 14px;
+      }
+
+      .card p {
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .card ul {
+        color: var(--text-muted);
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .card li {
+        margin: 7px 0;
+      }
+
+      .metric {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        color: var(--lumen-black);
+        margin-bottom: 8px;
+      }
+
+      .metric span {
+        color: var(--lumen-blue);
+      }
+
+      .recommendation {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 22px;
+        align-items: stretch;
+        margin-bottom: 22px;
+      }
+
+      .rec-label {
+        background: var(--lumen-black);
+        color: #fff;
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        min-height: 100%;
+      }
+
+      .rec-label::after {
+        content: "";
+        position: absolute;
+        right: -50px;
+        bottom: -50px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: rgba(0,169,224,0.28);
+      }
+
+      .rec-number {
+        color: var(--lumen-blue);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      .rec-label h3 {
+        font-size: 31px;
+      }
+
+      .rec-label p {
+        color: rgba(255,255,255,0.7);
+        margin: 14px 0 0;
+      }
+
+      .rec-content {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .rec-content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .mini-block {
+        border-radius: var(--radius-md);
+        padding: 18px;
+        background: var(--cloud);
+      }
+
+      .mini-block h4 {
+        font-size: 16px;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+
+      .mini-block ul {
+        color: var(--text-muted);
+        margin: 0;
+        padding-left: 18px;
+        font-size: 14px;
+      }
+
+      .mini-block li {
+        margin: 6px 0;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .pill {
+        border-radius: 999px;
+        background: var(--lumen-blue-soft);
+        color: #07313e;
+        font-weight: 800;
+        font-size: 12px;
+        padding: 8px 11px;
+      }
+
+      .pill.green {
+        background: rgba(141,198,67,0.22);
+        color: #24440c;
+      }
+
+      .roadmap {
+        background: var(--lumen-black);
+        color: #fff;
+        border-radius: 34px;
+        padding: 36px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .roadmap::before {
+        content: "";
+        position: absolute;
+        inset: auto -80px -160px auto;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0,169,224,0.34), transparent 64%);
+      }
+
+      .roadmap-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .roadmap-card {
+        background: rgba(255,255,255,0.09);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      .roadmap-card h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+
+      .roadmap-card ul {
+        color: rgba(255,255,255,0.72);
+        margin: 0;
+        padding-left: 18px;
+        font-size: 14px;
+      }
+
+      .roadmap-card li {
+        margin: 7px 0;
+      }
+
+      .timeline-chip {
+        display: inline-flex;
+        margin-bottom: 16px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: var(--lumen-blue);
+        color: #001018;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--card-shadow);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 880px;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--lumen-black);
+        color: #fff;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      td strong {
+        color: var(--lumen-black);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .callout {
+        background:
+          linear-gradient(135deg, rgba(0,169,224,0.12), rgba(141,198,67,0.16)),
+          #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 34px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .callout h2 {
+        font-size: clamp(30px, 4vw, 48px);
+      }
+
+      .callout ul {
+        color: var(--text-muted);
+        max-width: 760px;
+        margin: 14px 0 0;
+        padding-left: 18px;
+        font-size: 17px;
+      }
+
+      .footer {
+        background: var(--lumen-black);
+        color: #fff;
+        padding: 42px 24px;
+      }
+
+      .footer-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .footer p {
+        color: rgba(255,255,255,0.68);
+        margin: 8px 0 0;
+      }
+
+      .legend {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255,255,255,0.72);
+        font-size: 13px;
+      }
+
+      .legend i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .blue-dot {
+        background: var(--lumen-blue);
+      }
+
+      .green-dot {
+        background: var(--centurylink-green);
+      }
+
+      .lime-dot {
+        background: var(--centurylink-lime);
+      }
+
+      @media (max-width: 980px) {
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero-inner,
+        .section-head,
+        .recommendation,
+        .callout {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-3,
+        .grid-2,
+        .roadmap-grid,
+        .rec-content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-inner {
+          padding: 58px 18px;
+        }
+
+        .section {
+          padding: 58px 18px;
+        }
+
+        .card,
+        .rec-content,
+        .rec-label,
+        .roadmap,
+        .callout {
+          padding: 22px;
+          border-radius: 22px;
+        }
+
+        .hero h1 {
+          font-size: 44px;
+        }
+
+        .hero-lede {
+          font-size: 17px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#home" aria-label="Go to microsite home">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-copy">
+            <strong>Lumen x Verticurl</strong>
+            <span>Digital Experience Recommendations</span>
+          </div>
+        </a>
+        <nav class="nav-links" aria-label="Page sections">
+          <a href="#overview">Overview</a>
+          <a href="#diagnosis">Current Gaps</a>
+          <a href="#recommendations">Recommendations</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#prioritization">Prioritization</a>
+          <a href="#operating-model">Operating Model</a>
+          <a href="#next-steps">Next Steps</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>Short-term wins. Long-term digital growth initiatives.</span>
+            </div>
+            <h1 id="h1-hero-title">Turning CenturyLink.com into a <span>smarter acquisition engine</span></h1>
+            <p id="p-hero-lede" class="hero-lede">A business-first and technology-aware roadmap to improve localization, personalization, navigation, search, responsiveness, analytics, and content management maturity across the CenturyLink digital ecosystem.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#recommendations">Explore recommendations</a>
+              <a class="btn btn-secondary" href="#roadmap">View roadmap</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Opportunity scorecard">
+            <div class="scorecard">
+              <div class="score-row">
+                <div class="score-icon">🇪🇸</div>
+                <div>
+                  <strong>Spanish localization</strong>
+                  <span>Unlock underserved US Hispanic audiences</span>
+                </div>
+                <span class="tag">High ROI</span>
+              </div>
+              <div class="score-row">
+                <div class="score-icon">🎯</div>
+                <div>
+                  <strong>Personalization</strong>
+                  <span>Move from static pages to audience-aware journeys</span>
+                </div>
+                <span class="tag">Target</span>
+              </div>
+              <div class="score-row">
+                <div class="score-icon">🔎</div>
+                <div>
+                  <strong>Search and navigation</strong>
+                  <span>Help customers find plans, support, and account tasks faster</span>
+                </div>
+                <span class="tag">UX</span>
+              </div>
+              <div class="score-row">
+                <div class="score-icon">📊</div>
+                <div>
+                  <strong>Analytics and feedback</strong>
+                  <span>Capture better signals for continuous improvement</span>
+                </div>
+                <span class="tag">Data</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="overview" class="section section-tight">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Executive overview</div>
+            <h2 id="h2-overview-title">The opportunity is bigger than UI polish</h2>
+          </div>
+          <p id="p-overview-intro" class="section-intro">CenturyLink.com can become a stronger conversion, service-deflection, and customer insight platform by modernizing how content is managed, personalized, discovered, translated, measured, and governed.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="metric">01<span>.</span></div>
+            <h3 id="h3-overview-short-term">Short-term AEM wins</h3>
+            <ul>
+              <li>Fix visible UX issues</li>
+              <li>Add Spanish content</li>
+              <li>Improve navigation and search</li>
+              <li>Launch feedback touchpoints</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="metric">02<span>.</span></div>
+            <h3 id="h3-overview-business-case">Business outcomes</h3>
+            <ul>
+              <li>Higher conversion potential</li>
+              <li>Better customer inclusion</li>
+              <li>Lower support friction</li>
+              <li>Stronger digital trust</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="metric">03<span>.</span></div>
+            <h3 id="h3-overview-long-term">Long-term platform vision</h3>
+            <ul>
+              <li>Unify web and portal journeys</li>
+              <li>Reuse content across channels</li>
+              <li>Activate customer data</li>
+              <li>Standardize experience governance</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="diagnosis" class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Current gap diagnosis</div>
+            <h2 id="h2-diagnosis-title">What is holding the experience back?</h2>
+          </div>
+          <p id="p-diagnosis-intro" class="section-intro">The site appears to have a solid enterprise foundation, but several customer-facing and operational gaps limit its ability to serve diverse users, guide high-intent traffic, and create measurable digital outcomes.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3 id="h3-gap-content">Content management maturity</h3>
+            <ul>
+              <li>Limited reuse of modular content</li>
+              <li>Opportunity for stronger governance</li>
+              <li>Need scalable localization workflows</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-gap-personalization">Limited personalization</h3>
+            <ul>
+              <li>Mostly static user experience</li>
+              <li>Limited audience-based messaging</li>
+              <li>Underused Adobe Target potential</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-gap-navigation">Shallow navigation</h3>
+            <ul>
+              <li>L1-heavy top navigation</li>
+              <li>Limited deep links to key journeys</li>
+              <li>More clicks than needed</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-gap-search">Search underperformance</h3>
+            <ul>
+              <li>Basic results experience</li>
+              <li>Limited filtering and suggestions</li>
+              <li>Missed support-deflection opportunity</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-gap-responsive">Responsive and visual QA</h3>
+            <ul>
+              <li>Hero image cropping issues</li>
+              <li>Mobile layout QA opportunities</li>
+              <li>Need stronger visual standards</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-gap-analytics">Analytics and customer feedback</h3>
+            <ul>
+              <li>Limited visible feedback loops</li>
+              <li>Need stronger funnel dashboards</li>
+              <li>Search and form insights can improve</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="recommendations" class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Strategic recommendations</div>
+            <h2 id="h2-recommendations-title">Future initiatives for Lumen</h2>
+          </div>
+          <p id="p-recommendations-intro" class="section-intro">Each recommendation is written for business stakeholders first, with a technical overview that can help development, architecture, analytics, and operations teams understand the implementation path.</p>
+        </div>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 01</div>
+            <h3 id="h3-rec-localization">Launch Spanish localization</h3>
+            <p id="p-rec-localization-label">Make CenturyLink.com inclusive and discoverable for Spanish-speaking customers in the US market.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-localization-business">Business value</h4>
+                <ul>
+                  <li>Reach a larger US audience</li>
+                  <li>Improve trust and accessibility</li>
+                  <li>Grow Spanish SEO traffic</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-localization-technical">Technical approach</h4>
+                <ul>
+                  <li>Create AEM language copies</li>
+                  <li>Add language switcher and hreflang</li>
+                  <li>Define translation governance</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">AEM MSM</span>
+              <span class="pill">Language switcher</span>
+              <span class="pill">Spanish SEO</span>
+              <span class="pill green">Short-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 02</div>
+            <h3 id="h3-rec-personalization">Activate personalization with Adobe Target</h3>
+            <p id="p-rec-personalization-label">Shift from one-size-fits-all pages to audience-aware journeys that improve conversion and relevance.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-personalization-business">Business value</h4>
+                <ul>
+                  <li>Increase offer relevance</li>
+                  <li>Improve conversion paths</li>
+                  <li>Reduce generic messaging</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-personalization-technical">Technical approach</h4>
+                <ul>
+                  <li>Test geo-based offers</li>
+                  <li>Segment new vs. returning users</li>
+                  <li>Use language and campaign signals</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Adobe Target</span>
+              <span class="pill">Audience rules</span>
+              <span class="pill">A/B testing</span>
+              <span class="pill green">Short-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 03</div>
+            <h3 id="h3-rec-navigation">Modernize top navigation</h3>
+            <p id="p-rec-navigation-label">Help customers move directly to the right product, support, or account destination.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-navigation-business">Business value</h4>
+                <ul>
+                  <li>Reduce clicks to content</li>
+                  <li>Expose high-value pages</li>
+                  <li>Improve product and support discovery</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-navigation-technical">Technical approach</h4>
+                <ul>
+                  <li>Build AEM-managed mega-menu</li>
+                  <li>Add L2/L3 content taxonomy</li>
+                  <li>Track menu interactions</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Mega-menu</span>
+              <span class="pill">L2/L3 taxonomy</span>
+              <span class="pill">Navigation analytics</span>
+              <span class="pill green">Short-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 04</div>
+            <h3 id="h3-rec-search">Rebuild site search as a conversion tool</h3>
+            <p id="p-rec-search-label">Transform search from a basic utility into a guided discovery and support-deflection experience.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-search-business">Business value</h4>
+                <ul>
+                  <li>Help high-intent users faster</li>
+                  <li>Reduce support dependency</li>
+                  <li>Improve plan and help discovery</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-search-technical">Technical approach</h4>
+                <ul>
+                  <li>Add typeahead and synonyms</li>
+                  <li>Use filters and promoted results</li>
+                  <li>Track failed and top queries</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Auto-suggest</span>
+              <span class="pill">Faceted results</span>
+              <span class="pill">Search analytics</span>
+              <span class="pill green">Mid-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 05</div>
+            <h3 id="h3-rec-responsive">Fix responsive image and page QA</h3>
+            <p id="p-rec-responsive-label">Protect brand credibility with clean, polished experiences across desktop and mobile.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-responsive-business">Business value</h4>
+                <ul>
+                  <li>Improve brand credibility</li>
+                  <li>Fix visible page defects</li>
+                  <li>Create a fast quality win</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-responsive-technical">Technical approach</h4>
+                <ul>
+                  <li>Audit key breakpoints</li>
+                  <li>Set image focal points</li>
+                  <li>Use responsive renditions</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Viewport QA</span>
+              <span class="pill">Responsive images</span>
+              <span class="pill">Image focal points</span>
+              <span class="pill green">Immediate win</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 06</div>
+            <h3 id="h3-rec-forms">Add forms, CSAT, and feedback loops</h3>
+            <p id="p-rec-forms-label">Capture user intent, sentiment, and support needs directly from the website.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-forms-business">Business value</h4>
+                <ul>
+                  <li>Collect customer sentiment</li>
+                  <li>Generate leads and requests</li>
+                  <li>Identify content pain points</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-forms-technical">Technical approach</h4>
+                <ul>
+                  <li>Add lightweight AEM Forms</li>
+                  <li>Track CSAT and helpfulness</li>
+                  <li>Connect form analytics</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">AEM Forms</span>
+              <span class="pill">CSAT</span>
+              <span class="pill">Lead capture</span>
+              <span class="pill green">Short-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 07</div>
+            <h3 id="h3-rec-analytics">Strengthen analytics and insight operations</h3>
+            <p id="p-rec-analytics-label">Create a measurement model that turns site behavior into prioritized action.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-analytics-business">Business value</h4>
+                <ul>
+                  <li>Measure what drives conversion</li>
+                  <li>Prioritize fixes with data</li>
+                  <li>Improve stakeholder reporting</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-analytics-technical">Technical approach</h4>
+                <ul>
+                  <li>Define tagging plan</li>
+                  <li>Track navigation, search, forms</li>
+                  <li>Build role-based dashboards</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Adobe Analytics</span>
+              <span class="pill">Tagging plan</span>
+              <span class="pill">Dashboards</span>
+              <span class="pill green">Short-term</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="recommendation">
+          <div class="rec-label">
+            <div class="rec-number">Recommendation 08</div>
+            <h3 id="h3-rec-portal">Align the transactional portal</h3>
+            <p id="p-rec-portal-label">Extend the strategy beyond the marketing website into the logged-in customer experience.</p>
+          </div>
+          <div class="rec-content">
+            <div class="rec-content-grid">
+              <div class="mini-block">
+                <h4 id="h4-portal-business">Business value</h4>
+                <ul>
+                  <li>Create consistent customer experience</li>
+                  <li>Reduce duplicate content effort</li>
+                  <li>Support retention and cross-sell</li>
+                </ul>
+              </div>
+              <div class="mini-block">
+                <h4 id="h4-portal-technical">Technical approach</h4>
+                <ul>
+                  <li>Explore headless AEM content</li>
+                  <li>Share design system standards</li>
+                  <li>Unify analytics across journeys</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill">Headless content</span>
+              <span class="pill">Design system</span>
+              <span class="pill">Portal analytics</span>
+              <span class="pill green">Long-term</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="roadmap" class="section">
+        <div class="roadmap">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Roadmap</div>
+              <h2 id="h2-roadmap-title">Phased execution plan</h2>
+            </div>
+            <p id="p-roadmap-intro" class="section-intro" style="color: rgba(255,255,255,0.72);">Start with high-visibility improvements in the current AEM stream, then mature into personalization, analytics, and portal transformation initiatives.</p>
+          </div>
+
+          <div class="roadmap-grid">
+            <article class="roadmap-card">
+              <span class="timeline-chip">0–30 days</span>
+              <h3 id="h3-roadmap-phase-one">Discovery and proof</h3>
+              <ul>
+                <li>Capture UX issues</li>
+                <li>Audit navigation and search</li>
+                <li>Review analytics gaps</li>
+              </ul>
+            </article>
+            <article class="roadmap-card">
+              <span class="timeline-chip">30–60 days</span>
+              <h3 id="h3-roadmap-phase-two">Quick wins</h3>
+              <ul>
+                <li>Fix hero image QA</li>
+                <li>Prototype mega-menu</li>
+                <li>Add feedback widgets</li>
+              </ul>
+            </article>
+            <article class="roadmap-card">
+              <span class="timeline-chip">60–120 days</span>
+              <h3 id="h3-roadmap-phase-three">Capability Build</h3>
+              <ul>
+                <li>Pilot Spanish pages</li>
+                <li>Improve search UX</li>
+                <li>Launch Target tests</li>
+              </ul>
+            </article>
+            <article class="roadmap-card">
+              <span class="timeline-chip">120+ days</span>
+              <h3 id="h3-roadmap-phase-four">Platform vision</h3>
+              <ul>
+                <li>Align portal strategy</li>
+                <li>Share content architecture</li>
+                <li>Unify analytics model</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="prioritization" class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Prioritization</div>
+            <h2 id="h2-prioritization-title">Recommended initiative sequence</h2>
+          </div>
+          <p id="p-prioritization-intro" class="section-intro">The sequencing below balances business value, implementation effort, stakeholder visibility, and whether the work can be delivered within the current AEM-centered stream.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table aria-label="Initiative prioritization table">
+            <thead>
+              <tr>
+                <th>Initiative</th>
+                <th>Business value</th>
+                <th>Technical direction</th>
+                <th>Timing</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Responsive image and visual QA</strong></td>
+                <td>Quick brand-quality improvement.</td>
+                <td>Breakpoint, image, and template QA.</td>
+                <td>Short-term</td>
+                <td>Very high</td>
+              </tr>
+              <tr>
+                <td><strong>Spanish localization</strong></td>
+                <td>Reach Spanish-speaking customers.</td>
+                <td>AEM language copies and hreflang.</td>
+                <td>Short to mid-term</td>
+                <td>Very high</td>
+              </tr>
+              <tr>
+                <td><strong>Navigation modernization</strong></td>
+                <td>Reduce clicks to key journeys.</td>
+                <td>L2/L3 mega-menu and taxonomy.</td>
+                <td>Short-term</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Search experience upgrade</strong></td>
+                <td>Improve self-service and discovery.</td>
+                <td>Auto-suggest, facets, and analytics.</td>
+                <td>Mid-term</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Adobe Target personalization</strong></td>
+                <td>Increase content relevance.</td>
+                <td>Adobe Target audience tests.</td>
+                <td>Short to mid-term</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Forms and CSAT</strong></td>
+                <td>Capture feedback and leads.</td>
+                <td>AEM Forms and tracking.</td>
+                <td>Short-term</td>
+                <td>Medium-high</td>
+              </tr>
+              <tr>
+                <td><strong>Transactional portal alignment</strong></td>
+                <td>Create end-to-end customer consistency.</td>
+                <td>Headless content and shared design system.</td>
+                <td>Long-term</td>
+                <td>Strategic</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="operating-model" class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Operating model</div>
+            <h2 id="h2-operating-model-title">How Lumen can operationalize the work</h2>
+          </div>
+          <p id="p-operating-model-intro" class="section-intro">The initiatives should not be positioned as isolated website fixes. They should become a repeatable optimization model across product, marketing, technology, analytics, and operations.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3 id="h3-operating-governance">Governance</h3>
+            <ul>
+              <li>Own taxonomy and content standards</li>
+              <li>Define localization workflow</li>
+              <li>Add release QA checkpoints</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-operating-testing">Testing culture</h3>
+            <ul>
+              <li>Prioritize test hypotheses</li>
+              <li>Run Adobe Target pilots</li>
+              <li>Scale what works</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-operating-reporting">Reporting rhythm</h3>
+            <ul>
+              <li>Monthly performance readouts</li>
+              <li>Search and funnel dashboards</li>
+              <li>CSAT and feedback insights</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="next-steps" class="section">
+        <div class="callout">
+          <div>
+            <h2 id="h2-next-steps-title">Recommended next move</h2>
+            <ul>
+              <li>Start with a quick UX and content audit.</li>
+              <li>Package findings as short-term AEM wins.</li>
+              <li>Use that momentum to open the long-term portal discussion.</li>
+            </ul>
+          </div>
+          <a class="btn btn-primary" href="#overview">Back to top</a>
+        </div>
+
+        <div class="grid-3" style="margin-top: 20px;">
+          <article class="card">
+            <h3 id="h3-next-step-one">1. Build evidence</h3>
+            <ul>
+              <li>Screenshot issues</li>
+              <li>Document search gaps</li>
+              <li>Map missing Spanish journeys</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-next-step-two">2. Create the pitch</h3>
+            <ul>
+              <li>Link to business value</li>
+              <li>Show quick wins</li>
+              <li>Highlight Adobe stack potential</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 id="h3-next-step-three">3. Seed the roadmap</h3>
+            <ul>
+              <li>Start with AEM improvements</li>
+              <li>Introduce personalization</li>
+              <li>Expand to portal strategy</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong>Lumen x Verticurl : Digital Experience Initiative</strong>
+          <p id="p-footer-note">Prepared as a business and technical recommendation for future initiative discussions with Lumen stakeholders.</p>
+        </div>
+      </div>
+    </footer>
+  
+</body></html>
