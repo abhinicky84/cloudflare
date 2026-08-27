@@ -1,0 +1,51 @@
+     <!doctype html>
+     <html>
+       <head>
+         <title>This is the title of the webpage!</title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       </head>
+       <body>
+       <div class="customafsection"/>
+         <p>This section is replaced with the adaptive form.</p>
+
+      <script>
+      var options = {path:"https://dev-media.nfl.com/content/forms/af/national-football-league/phi/br/de/event-rsvp/signup.html", CSS_Selector:".customafsection"};
+      alert(options.path);
+      var loadAdaptiveForm = function(options){
+      //alert(options.path);
+         if(options.path) {
+             // options.path refers to the path of the adaptive form
+             // For Example: /content/forms/af/ABC, where ABC is the adaptive form
+             // Note: If AEM server is running on a context path, the adaptive form URL must contain the context path
+             var path = options.path;
+             $.ajax({
+                 url  : path ,
+                 type : "GET",
+                 data : {
+                     // wcmmode=disabled is only required for author instance
+                     // wcmmode : "disabled"
+                 },
+                 async: false,
+                 success: function (data) {
+                     // If jquery is loaded, set the inner html of the container
+                     // If jquery is not loaded, use APIs provided by document to set the inner HTML but these APIs would not        evaluate the script tag in HTML as per the HTML5 spec
+                     // For example: document.getElementById().innerHTML
+                     if(window.$ && options.CSS_Selector){
+                         // HTML API of jquery extracts the tags, updates the DOM, and evaluates the code embedded in the        script tag.
+                         $(options.CSS_Selector).html(data);
+                     }
+                 },
+                 error: function (data) {
+                     // any error handler
+                 }
+             });
+         } else {
+             if (typeof(console) !== "undefined") {
+                 console.log("Path of Adaptive Form not specified to loadAdaptiveForm");
+             }
+         }
+      }(options);
+
+      </script>
+       </body>
+     </html>
