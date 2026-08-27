@@ -9,6 +9,22 @@
     <p>This section is replaced with the adaptive form.</p>
 </div>
 <script>
+
+// 1. Capture the guideBridge instance as initialization kicks off
+window.addEventListener("bridgeInitializeStart", function (event) {
+    const bridge = event.detail.guideBridge;
+
+    // 2. Establish a connection to target the specific form container
+    bridge.connect(function () {
+        console.log("GuideBridge is connected and ready for interaction.");
+        
+        // Your custom Core Component logic here
+        // initializeFormInteractions(bridge);
+        bridge.registerConfig("baseUrl", "https://publish.example.com");
+        
+    }, null); // Context object can be passed as the second argument if needed
+});
+
 var options = {path:"https://dev-media.nfl.com/content/forms/af/national-football-league/phi/br/de/event-rsvp/signup.html", CSS_Selector:".customafsection"};
 alert(options.path);
 var loadAdaptiveForm = function(options){
@@ -46,17 +62,6 @@ var loadAdaptiveForm = function(options){
     }
 }(options);
 
-    window.addEventListener("bridgeInitializeStart", function () {
-        window.guideBridge.connect(function () {
-            console.log("GuideBridge connected via event!");
-            window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
-        });
-    });
-
-guideBridge.connect(function() {
-   console.log("Hurrah! Guide Bridge Activated");
-   guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
-})
 </script>
 </body>
 </html>
