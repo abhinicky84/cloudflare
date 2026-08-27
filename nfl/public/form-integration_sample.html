@@ -46,19 +46,17 @@ var loadAdaptiveForm = function(options){
     }
 }(options);
 
-if (window.guideBridge) {
-    window.guideBridge.connect(function () {
-        console.log("GuideBridge connected!");
-        window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
-    });
-} else {
     window.addEventListener("bridgeInitializeStart", function () {
         window.guideBridge.connect(function () {
             console.log("GuideBridge connected via event!");
             window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
         });
     });
-}
+
+guideBridge.connect(function() {
+   console.log("Hurrah! Guide Bridge Activated");
+   guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
+})
 </script>
 </body>
 </html>
