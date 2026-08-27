@@ -9,58 +9,69 @@
     <p>This section is replaced with the adaptive form.</p>
 </div>
 <script>
+(function (window, $) {
+    var adaptiveFormOptions = {
+        baseUrl: "https://dev-media.nfl.com",
+        path: "/content/forms/af/national-football-league/phi/br/de/event-rsvp/signup.html",
+        CSS_Selector: ".customafsection"
+    };
 
-// 1. Capture the guideBridge instance as initialization kicks off
-window.addEventListener("bridgeInitializeStart", function (event) {
-    const bridge = event.detail.guideBridge;
+    function getFormUrl(options) {
+        if (/^https?:\/\//i.test(options.path)) {
+            return options.path;
+        }
 
-    // 2. Establish a connection to target the specific form container
-    bridge.connect(function () {
-        console.log("GuideBridge is connected and ready for interaction.");
-        
-        // Your custom Core Component logic here
-        // initializeFormInteractions(bridge);
-        bridge.registerConfig("baseUrl", "https://publish.example.com");
-        
-    }, null); // Context object can be passed as the second argument if needed
-});
+        return options.baseUrl.replace(/\/$/, "") + "/" + options.path.replace(/^\//, "");
+    }
 
-var options = {path:"https://dev-media.nfl.com/content/forms/af/national-football-league/phi/br/de/event-rsvp/signup.html", CSS_Selector:".customafsection"};
-alert(options.path);
-var loadAdaptiveForm = function(options){
-//alert(options.path);
-    if(options.path) {
-        // options.path refers to the path of the adaptive form
-        // For Example: /content/forms/af/ABC, where ABC is the adaptive form
-        // Note: If AEM server is running on a context path, the adaptive form URL must contain the context path
-        var path = options.path;
+    function connectGuideBridge(guideBridge) {
+        if (!guideBridge || guideBridge.__nflEmbeddedFormConfigured) {
+            return;
+        }
+
+        guideBridge.__nflEmbeddedFormConfigured = true;
+        guideBridge.connect(function () {
+            guideBridge.registerConfig("baseUrl", adaptiveFormOptions.baseUrl);
+            console.log("GuideBridge connected. baseUrl set to " + adaptiveFormOptions.baseUrl);
+        });
+    }
+
+    window.addEventListener("bridgeInitializeStart", function (event) {
+        connectGuideBridge(event.detail && event.detail.guideBridge);
+    });
+
+    if (window.guideBridge) {
+        connectGuideBridge(window.guideBridge);
+    }
+
+    function loadAdaptiveForm(options) {
+        if (!options.path) {
+            console.log("Path of Adaptive Form not specified to loadAdaptiveForm");
+            return;
+        }
+
+        if (!$) {
+            console.error("jQuery is required to embed an AEM Adaptive Form.");
+            return;
+        }
+
         $.ajax({
-            url  : path ,
-            type : "GET",
-            data : {
-                // wcmmode=disabled is only required for author instance
-                // wcmmode : "disabled"
-            },
-            async: false,
+            url: getFormUrl(options),
+            type: "GET",
+            dataType: "html",
             success: function (data) {
-                // If jquery is loaded, set the inner html of the container
-                // If jquery is not loaded, use APIs provided by document to set the inner HTML but these APIs would not        evaluate the script tag in HTML as per the HTML5 spec
-                // For example: document.getElementById().innerHTML
-                if(window.$ && options.CSS_Selector){
-                    // HTML API of jquery extracts the tags, updates the DOM, and evaluates the code embedded in the        script tag.
+                if (options.CSS_Selector) {
                     $(options.CSS_Selector).html(data);
                 }
             },
-            error: function (data) {
-                // any error handler
+            error: function (xhr, status, error) {
+                console.error("Unable to load Adaptive Form.", status, error);
             }
         });
-    } else {
-        if (typeof(console) !== "undefined") {
-            console.log("Path of Adaptive Form not specified to loadAdaptiveForm");
-        }
     }
-}(options);
+
+    loadAdaptiveForm(adaptiveFormOptions);
+}(window, window.jQuery));
 
 </script>
 </body>
