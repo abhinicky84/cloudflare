@@ -5,9 +5,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="customafsection"/>
+<div class="customafsection">
     <p>This section is replaced with the adaptive form.</p>
-
+</div>
 <script>
 var options = {path:"/content/forms/af/national-football-league/phi/br/de/event-rsvp/signup.html", CSS_Selector:".customafsection"};
 alert(options.path);
@@ -46,9 +46,19 @@ var loadAdaptiveForm = function(options){
     }
 }(options);
 
-window.guideBridge.connect(function () {
-    window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
-});
+if (window.guideBridge) {
+    window.guideBridge.connect(function () {
+        console.log("GuideBridge connected!");
+        window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
+    });
+} else {
+    window.addEventListener("bridgeInitializeStart", function () {
+        window.guideBridge.connect(function () {
+            console.log("GuideBridge connected via event!");
+            window.guideBridge.registerConfig("baseUrl", "https://dev-media.nfl.com");
+        });
+    });
+}
 </script>
 </body>
 </html>
