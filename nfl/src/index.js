@@ -3,9 +3,9 @@ export default {
     const url = new URL(request.url);
     const AEM_ORIGIN = "https://dev-media.nfl.com";
     const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs"];
-    console.log("Request URL:", url.href);
+
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
-      console.log("Proxying request to AEM:", url.href);
+      console.log(`Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
       return proxyToAem(request, url, AEM_ORIGIN);
     }
 
@@ -71,14 +71,13 @@ export default {
 };
 
 function shouldProxyToAem(pathname, proxyPaths) {
-  console.log("Checking if should proxy to AEM for pathname:", pathname);
   return proxyPaths.some((pathPrefix) => {
     return pathname === pathPrefix || pathname.startsWith(pathPrefix + "/");
   });
 }
 
 async function proxyToAem(request, sourceUrl, origin) {
-  console.log("Proxying request to AEM. Source URL:", sourceUrl.href, "Origin:", origin);
+  console.log(`Proxying request for ${sourceUrl.pathname} to AEM at ${origin}`);
   const targetUrl = new URL(sourceUrl.pathname + sourceUrl.search, origin);
   const proxyHeaders = new Headers(request.headers);
   const proxyRequestInit = {
@@ -87,6 +86,9 @@ async function proxyToAem(request, sourceUrl, origin) {
     redirect: "manual",
   };
 
+  proxyHeaders.delete("Authorization");
+  proxyHeaders.delete("Cookie");
+  proxyHeaders.delete("Host");
   proxyHeaders.set("X-Forwarded-Host", sourceUrl.host);
   proxyHeaders.set("X-Forwarded-Proto", sourceUrl.protocol.replace(":", ""));
 
@@ -100,6 +102,9 @@ async function proxyToAem(request, sourceUrl, origin) {
   const responseHeaders = new Headers(response.headers);
   const location = responseHeaders.get("Location");
 
+  responseHeaders.set("X-AEM-Origin", targetUrl.origin);
+  responseHeaders.set("X-AEM-Proxied-Path", targetUrl.pathname);
+
   if (location) {
     responseHeaders.set("Location", rewriteAemLocation(location, sourceUrl, origin));
   }
@@ -112,7 +117,6 @@ async function proxyToAem(request, sourceUrl, origin) {
 }
 
 function rewriteAemLocation(location, sourceUrl, origin) {
-  console.log("Rewriting AEM location. Original location:", location, "Source URL:", sourceUrl.href, "Origin:", origin);
   try {
     const redirectUrl = new URL(location, origin);
     const aemOrigin = new URL(origin);
