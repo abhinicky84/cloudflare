@@ -1,7 +1,7 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const AEM_ORIGIN = "https://stage-fanexperience.nfl.com";
+    const AEM_ORIGIN = "https://dev-media.nfl.com";
     const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs"];
 
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
