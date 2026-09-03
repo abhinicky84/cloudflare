@@ -3,8 +3,9 @@ export default {
     const url = new URL(request.url);
     const AEM_ORIGIN = "https://dev-media.nfl.com";
     const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs"];
-
+    console.log("Request URL:", url.href);
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
+      console.log("Proxying request to AEM:", url.href);
       return proxyToAem(request, url, AEM_ORIGIN);
     }
 
@@ -70,12 +71,14 @@ export default {
 };
 
 function shouldProxyToAem(pathname, proxyPaths) {
+  console.log("Checking if should proxy to AEM for pathname:", pathname);
   return proxyPaths.some((pathPrefix) => {
     return pathname === pathPrefix || pathname.startsWith(pathPrefix + "/");
   });
 }
 
 async function proxyToAem(request, sourceUrl, origin) {
+  console.log("Proxying request to AEM. Source URL:", sourceUrl.href, "Origin:", origin);
   const targetUrl = new URL(sourceUrl.pathname + sourceUrl.search, origin);
   const proxyHeaders = new Headers(request.headers);
   const proxyRequestInit = {
@@ -109,6 +112,7 @@ async function proxyToAem(request, sourceUrl, origin) {
 }
 
 function rewriteAemLocation(location, sourceUrl, origin) {
+  console.log("Rewriting AEM location. Original location:", location, "Source URL:", sourceUrl.href, "Origin:", origin);
   try {
     const redirectUrl = new URL(location, origin);
     const aemOrigin = new URL(origin);
