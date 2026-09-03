@@ -1,5 +1,13 @@
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+    const AEM_ORIGIN = "https://stage-fanexperience.nfl.com";
+    const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs"];
+
+    if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
+      return proxyToAem(request, url, AEM_ORIGIN);
+    }
+
     // -------------------------------------------------------------
     // 1. BASIC AUTHENTICATION
     // -------------------------------------------------------------
@@ -46,7 +54,6 @@ export default {
     // -------------------------------------------------------------
     // 3. ENFORCE UTF-8 FOR HTML & SVG RENDERING
     // -------------------------------------------------------------
-    const url = new URL(request.url);
     if (url.pathname === "/" || url.pathname.endsWith(".html") || !url.pathname.includes(".")) {
       const newHeaders = new Headers(response.headers);
       newHeaders.set("Content-Type", "text/html; charset=utf-8");
@@ -61,3 +68,58 @@ export default {
     return response;
   }
 };
+
+function shouldProxyToAem(pathname, proxyPaths) {
+  return proxyPaths.some((pathPrefix) => {
+    return pathname === pathPrefix || pathname.startsWith(pathPrefix + "/");
+  });
+}
+
+async function proxyToAem(request, sourceUrl, origin) {
+  const targetUrl = new URL(sourceUrl.pathname + sourceUrl.search, origin);
+  const proxyHeaders = new Headers(request.headers);
+  const proxyRequestInit = {
+    method: request.method,
+    headers: proxyHeaders,
+    redirect: "manual",
+  };
+
+  proxyHeaders.set("X-Forwarded-Host", sourceUrl.host);
+  proxyHeaders.set("X-Forwarded-Proto", sourceUrl.protocol.replace(":", ""));
+
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    proxyRequestInit.body = request.body;
+  }
+
+  const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
+
+  const response = await fetch(proxyRequest);
+  const responseHeaders = new Headers(response.headers);
+  const location = responseHeaders.get("Location");
+
+  if (location) {
+    responseHeaders.set("Location", rewriteAemLocation(location, sourceUrl, origin));
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: responseHeaders,
+  });
+}
+
+function rewriteAemLocation(location, sourceUrl, origin) {
+  try {
+    const redirectUrl = new URL(location, origin);
+    const aemOrigin = new URL(origin);
+
+    if (redirectUrl.origin === aemOrigin.origin) {
+      redirectUrl.protocol = sourceUrl.protocol;
+      redirectUrl.host = sourceUrl.host;
+    }
+
+    return redirectUrl.toString();
+  } catch (_) {
+    return location;
+  }
+}
