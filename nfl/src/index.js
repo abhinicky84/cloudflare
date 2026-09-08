@@ -107,12 +107,47 @@ async function proxyToAem(request, sourceUrl, origin) {
   }
 
   const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
-  console.log(`Proxy Request: ${proxyRequest.toString()}`);
+  // 1. Log the basic metadata immediately
+console.log({
+  url: proxyRequest.url,
+  method: proxyRequest.method,
+  headers: Object.fromEntries(proxyRequest.headers.entries()),
+  redirect: proxyRequest.redirect
+});
+
+// 2. Clone and log the body safely (if it has one)
+if (proxyRequest.body) {
+  const clonedRequest = proxyRequest.clone();
+  clonedRequest.text().then(bodyText => {
+    try {
+      console.log('Body (JSON):', JSON.parse(bodyText));
+    } catch {
+      console.log('Body (Text):', bodyText);
+    }
+  });
+}
+  //console.log(`Proxy Request: ${proxyRequest.json()}`);
   const response = await fetch(proxyRequest);
-  console.log(`Proxy Response: ${response.toString()}`);
+  // 1. Log basic metadata safely
+console.log(`Status: ${response.status} ${response.statusText}`);
+console.log(`URL: ${response.url}`);
+
+// 2. CLONE the response so you don't break your app's stream
+const clonedResponse = response.clone();
+
+// 3. Read and log the cloned body (assuming JSON)
+try {
+  const data = await clonedResponse.json();
+  console.log("Response Body Data:", data);
+} catch (e) {
+  // If it's not JSON, try logging it as plain text
+  const text = await clonedResponse.text();
+  console.log("Response Body Text:", text);
+}
+  //console.log(`Proxy Response: ${response.json()}`);
   const responseHeaders = new Headers(response.headers);
   const location = responseHeaders.get("Location");
-  console.log(`Location Header: ${location}`);
+  //console.log(`Location Header: ${location}`);
 
   responseHeaders.set("Cache-Control", "no-store");
   responseHeaders.set("X-Worker-Route", "aem-proxy");
