@@ -3,7 +3,7 @@ export default {
     const url = new URL(request.url);
     const AEM_ORIGIN = "https://dev-media.nfl.com";
     const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs", "/libs"];
-
+    console.log(`Request URL Incoming in index.js for ${request.url}`);  
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
       console.log(`Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
       return proxyToAem(request, url, AEM_ORIGIN);
@@ -98,9 +98,9 @@ async function proxyToAem(request, sourceUrl, origin) {
 
   proxyHeaders.delete("Authorization");
   proxyHeaders.delete("Cookie");
-  proxyHeaders.delete("Host");
+  //proxyHeaders.delete("Host");
   proxyHeaders.set("X-Forwarded-Host", sourceUrl.host);
-  proxyHeaders.set("X-Forwarded-Proto", sourceUrl.protocol.replace(":", ""));
+  proxyHeaders.set("X-Forwarded-Protocol", sourceUrl.protocol.replace(":", ""));
 
   if (request.method !== "GET" && request.method !== "HEAD") {
     proxyRequestInit.body = request.body;
@@ -108,10 +108,10 @@ async function proxyToAem(request, sourceUrl, origin) {
 
   const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
     console.log(`proxyRequest.url: ${proxyRequest.url}`);
-   console.log(`proxyRequest.method: ${proxyRequest.method}`);
-    console.log(`proxyRequest.headers.entries(): ${proxyRequest.headers.entries()}`);
+   console.log(`proxyRequest..method: ${proxyRequest.method}`);
+   // console.log(`proxyRequest.headers.entries(): ${proxyRequest.headers.entries()}`);
     for (const [key, value] of proxyRequest.headers.entries()) {
-  console.log(`${key}: ${value}`);
+  console.log(`proxyRequest header ${key}: ${value}`);
 }
     //console.log(`proxyRequest.redirect: ${proxyRequest.redirect}`);
   //console.log(`Proxy Request: ${proxyRequest.json()}`);
@@ -119,9 +119,9 @@ async function proxyToAem(request, sourceUrl, origin) {
   //console.log(`response.body: ${response.body}`);
    console.log(`response.statusText: ${response.statusText}`);
     console.log(`response.status: ${response.status}`);
-    console.log(`response.headers: ${response.headers.entries()}`);
+   // console.log(`response.headers: ${response.headers.entries()}`);
     for (const [key, value] of response.headers.entries()) {
-  console.log(`${key}: ${value}`);
+  console.log(`response header ${key}: ${value}`);
 }
   
   //console.log(`Proxy Response: ${response.json()}`);
