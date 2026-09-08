@@ -86,8 +86,9 @@ function shouldProxyToAem(pathname, proxyPaths) {
 }
 
 async function proxyToAem(request, sourceUrl, origin) {
-  console.log(`Proxying request for ${sourceUrl.pathname} to AEM at ${origin}`);
+  //console.log(`Proxying request for ${sourceUrl.pathname} to AEM at ${origin}`);
   const targetUrl = new URL(sourceUrl.pathname + sourceUrl.search, origin);
+  console.log(`Target URL: ${targetUrl.toString()}`);
   const proxyHeaders = new Headers(request.headers);
   const proxyRequestInit = {
     method: request.method,
@@ -106,10 +107,12 @@ async function proxyToAem(request, sourceUrl, origin) {
   }
 
   const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
-
+  console.log(`Proxy Request: ${proxyRequest.toString()}`);
   const response = await fetch(proxyRequest);
+  console.log(`Proxy Response: ${response.toString()}`);
   const responseHeaders = new Headers(response.headers);
   const location = responseHeaders.get("Location");
+  console.log(`Location Header: ${location}`);
 
   responseHeaders.set("Cache-Control", "no-store");
   responseHeaders.set("X-Worker-Route", "aem-proxy");
