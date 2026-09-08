@@ -107,9 +107,16 @@ async function proxyToAem(request, sourceUrl, origin) {
   }
 
   const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
-  
+    console.log(`proxyRequest.url: ${proxyRequest.url}`);
+   console.log(`proxyRequest.method: ${proxyRequest.method}`);
+    console.log(`proxyRequest.headers.entries(): ${proxyRequest.headers.entries()}`);
+    console.log(`proxyRequest.redirect: ${proxyRequest.redirect}`);
   //console.log(`Proxy Request: ${proxyRequest.json()}`);
   const response = await fetch(proxyRequest);
+  console.log(`response.body: ${response.body}`);
+   console.log(`response.statusText: ${response.statusText}`);
+    console.log(`response.status: ${response.status}`);
+    console.log(`response.headers: ${response.headers.entries()}`);
   
   //console.log(`Proxy Response: ${response.json()}`);
   const responseHeaders = new Headers(response.headers);
