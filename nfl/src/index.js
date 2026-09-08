@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const AEM_ORIGIN = "https://dev-media.nfl.com";
-    const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs"];
+    const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs", "/libs"];
 
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
       console.log(`Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
@@ -58,6 +58,8 @@ export default {
     if (url.pathname === "/" || url.pathname.endsWith(".html") || !url.pathname.includes(".")) {
       const newHeaders = new Headers(response.headers);
       newHeaders.set("Content-Type", "text/html; charset=utf-8");
+      newHeaders.set("Cache-Control", "no-store");
+      newHeaders.set("X-Worker-Route", "assets");
 
       return new Response(response.body, {
         status: response.status,
@@ -66,7 +68,14 @@ export default {
       });
     }
 
-    return response;
+    const responseHeaders = new Headers(response.headers);
+    responseHeaders.set("X-Worker-Route", "assets");
+
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: responseHeaders,
+    });
   }
 };
 
@@ -102,6 +111,8 @@ async function proxyToAem(request, sourceUrl, origin) {
   const responseHeaders = new Headers(response.headers);
   const location = responseHeaders.get("Location");
 
+  responseHeaders.set("Cache-Control", "no-store");
+  responseHeaders.set("X-Worker-Route", "aem-proxy");
   responseHeaders.set("X-AEM-Origin", targetUrl.origin);
   responseHeaders.set("X-AEM-Proxied-Path", targetUrl.pathname);
 
