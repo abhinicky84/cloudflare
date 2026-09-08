@@ -1,157 +1,51 @@
-<!doctype html>
-<html>
-<head>
-    <title>This is the title of the webpage!</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<div class="customafsection">
-    <p>This section is replaced with the adaptive form.</p>
-</div>
-<script>
-(function (window, $) {
-    var LOG_PREFIX = "[NFL AEM Form]";
-    var adaptiveFormOptions = {
-        baseUrl: window.location.origin,
-        path: "/content/forms/af/national-football-league/phi/br/en/event-interest/signup.html",
-        CSS_Selector: ".customafsection"
-    };
+     <!doctype html>
+     <html>
+       <head>
+         <title>This is the title of the webpage!</title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       </head>
+       <body>
+       <div class="customafsection"/>
+         <p>This section is replaced with the adaptive form.</p>
 
-    function log() {
-        var args = Array.prototype.slice.call(arguments);
-        args.unshift(LOG_PREFIX);
-        console.log.apply(console, args);
-    }
+      <script>
+      var options = {path:"https://dev-media.nfl.com/content/forms/af/national-football-league/phi/br/en/event-interest/signup.html", CSS_Selector:".customafsection"};
+      //alert(options.path);
+      var loadAdaptiveForm = function(options){
+      //alert(options.path);
+         if(options.path) {
+             // options.path refers to the path of the adaptive form
+             // For Example: /content/forms/af/ABC, where ABC is the adaptive form
+             // Note: If AEM server is running on a context path, the adaptive form URL must contain the context path
+             var path = options.path;
+             $.ajax({
+                 url  : path ,
+                 type : "GET",
+                 data : {
+                     // wcmmode=disabled is only required for author instance
+                     // wcmmode : "disabled"
+                 },
+                 async: false,
+                 success: function (data) {
+                     // If jquery is loaded, set the inner html of the container
+                     // If jquery is not loaded, use APIs provided by document to set the inner HTML but these APIs would not        evaluate the script tag in HTML as per the HTML5 spec
+                     // For example: document.getElementById().innerHTML
+                     if(window.$ && options.CSS_Selector){
+                         // HTML API of jquery extracts the tags, updates the DOM, and evaluates the code embedded in the        script tag.
+                         $(options.CSS_Selector).html(data);
+                     }
+                 },
+                 error: function (data) {
+                     // any error handler
+                 }
+             });
+         } else {
+             if (typeof(console) !== "undefined") {
+                 console.log("Path of Adaptive Form not specified to loadAdaptiveForm");
+             }
+         }
+      }(options);
 
-    function warn() {
-        var args = Array.prototype.slice.call(arguments);
-        args.unshift(LOG_PREFIX);
-        console.warn.apply(console, args);
-    }
-
-    function error() {
-        var args = Array.prototype.slice.call(arguments);
-        args.unshift(LOG_PREFIX);
-        console.error.apply(console, args);
-    }
-
-    function getFormUrl(options) {
-        if (/^https?:\/\//i.test(options.path)) {
-            return options.path;
-        }
-
-        return options.baseUrl.replace(/\/$/, "") + "/" + options.path.replace(/^\//, "");
-    }
-
-    window.addEventListener("error", function (event) {
-        var target = event.target;
-
-        if (!target || target === window) {
-            return;
-        }
-
-        var resourceUrl = target.src || target.href;
-
-        if (resourceUrl) {
-            error("Resource failed to load", {
-                tagName: target.tagName,
-                url: resourceUrl
-            });
-        }
-    }, true);
-
-    function connectGuideBridge(guideBridge) {
-        if (!guideBridge || guideBridge.__nflEmbeddedFormConfigured) {
-            warn("GuideBridge unavailable or already configured", {
-                hasGuideBridge: Boolean(guideBridge),
-                alreadyConfigured: Boolean(guideBridge && guideBridge.__nflEmbeddedFormConfigured)
-            });
-            return;
-        }
-
-        guideBridge.__nflEmbeddedFormConfigured = true;
-        guideBridge.connect(function () {
-            guideBridge.registerConfig("baseUrl", adaptiveFormOptions.baseUrl);
-            log("GuideBridge connected", {
-                baseUrl: adaptiveFormOptions.baseUrl
-            });
-        });
-    }
-
-    window.addEventListener("bridgeInitializeStart", function (event) {
-        log("bridgeInitializeStart received");
-        connectGuideBridge(event.detail && event.detail.guideBridge);
-    });
-
-    if (window.guideBridge) {
-        log("GuideBridge found on window during initial load");
-        connectGuideBridge(window.guideBridge);
-    } else {
-        warn("GuideBridge not available during initial load");
-    }
-
-    function loadAdaptiveForm(options) {
-        if (!options.path) {
-            error("Path of Adaptive Form not specified to loadAdaptiveForm");
-            return;
-        }
-
-        if (!$) {
-            error("jQuery is required to embed an AEM Adaptive Form.");
-            return;
-        }
-
-        var formUrl = getFormUrl(options);
-
-        log("Loading adaptive form", {
-            url: formUrl,
-            selector: options.CSS_Selector,
-            baseUrl: options.baseUrl
-        });
-
-        $.ajax({
-            url: formUrl,
-            type: "GET",
-            dataType: "html",
-            success: function (data) {
-                log("Adaptive form HTML loaded", {
-                    url: formUrl,
-                    bytes: data.length
-                });
-
-                if (options.CSS_Selector) {
-                    $(options.CSS_Selector).html(data);
-                    log("Adaptive form HTML injected", {
-                        selector: options.CSS_Selector
-                    });
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error(LOG_PREFIX, "Unable to load Adaptive Form", {
-                    url: formUrl,
-                    status: status,
-                    error: error,
-                    httpStatus: xhr.status,
-                    responseHeaders: xhr.getAllResponseHeaders()
-                });
-            },
-            complete: function (xhr, status) {
-                log("Adaptive form request completed", {
-                    url: formUrl,
-                    status: status,
-                    httpStatus: xhr.status,
-                    workerRoute: xhr.getResponseHeader("X-Worker-Route"),
-                    aemOrigin: xhr.getResponseHeader("X-AEM-Origin"),
-                    proxiedPath: xhr.getResponseHeader("X-AEM-Proxied-Path")
-                });
-            }
-        });
-    }
-
-    log("Initializing adaptive form integration", adaptiveFormOptions);
-    loadAdaptiveForm(adaptiveFormOptions);
-}(window, window.jQuery));
-
-</script>
-</body>
-</html>
+      </script>
+       </body>
+     </html>
