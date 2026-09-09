@@ -2,10 +2,10 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const AEM_ORIGIN = "https://dev-media.nfl.com";
-    const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs", "/libs"];
-    console.log(`Request URL Incoming in index.js for ${request.url}`);  
+    const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs", "/libs", "/bin"];
+    console.log(`1. Request URL Incoming in index.js for ${request.url}`);  
     if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
-      console.log(`Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
+      console.log(`2. Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
       return proxyToAem(request, url, AEM_ORIGIN);
     }
 
@@ -88,12 +88,12 @@ function shouldProxyToAem(pathname, proxyPaths) {
 async function proxyToAem(request, sourceUrl, origin) {
   //console.log(`Proxying request for ${sourceUrl.pathname} to AEM at ${origin}`);
   const targetUrl = new URL(sourceUrl.pathname + sourceUrl.search, origin);
-  console.log(`Target URL: ${targetUrl.toString()}`);
+  console.log(`3. Target URL: ${targetUrl.toString()}`);
   const proxyHeaders = new Headers(request.headers);
   const proxyRequestInit = {
     method: request.method,
     headers: proxyHeaders,
-    redirect: "manual",
+    //redirect: "manual",
   };
 
   proxyHeaders.delete("Authorization");
@@ -107,21 +107,21 @@ async function proxyToAem(request, sourceUrl, origin) {
   }
 
   const proxyRequest = new Request(targetUrl.toString(), proxyRequestInit);
-    console.log(`proxyRequest.url: ${proxyRequest.url}`);
-   console.log(`proxyRequest..method: ${proxyRequest.method}`);
+    console.log(`4. proxyRequest.url: ${proxyRequest.url}`);
+   console.log(`5. proxyRequest..method: ${proxyRequest.method}`);
    // console.log(`proxyRequest.headers.entries(): ${proxyRequest.headers.entries()}`);
     for (const [key, value] of proxyRequest.headers.entries()) {
-  console.log(`proxyRequest header ${key}: ${value}`);
+  console.log(`6. proxyRequest header ${key}: ${value}`);
 }
     //console.log(`proxyRequest.redirect: ${proxyRequest.redirect}`);
   //console.log(`Proxy Request: ${proxyRequest.json()}`);
   const response = await fetch(proxyRequest);
   //console.log(`response.body: ${response.body}`);
-   console.log(`response.statusText: ${response.statusText}`);
-    console.log(`response.status: ${response.status}`);
+   console.log(`7. response.statusText: ${response.statusText}`);
+    console.log(`8. response.status: ${response.status}`);
    // console.log(`response.headers: ${response.headers.entries()}`);
     for (const [key, value] of response.headers.entries()) {
-  console.log(`response header ${key}: ${value}`);
+  console.log(`9. response header ${key}: ${value}`);
 }
   
   //console.log(`Proxy Response: ${response.json()}`);
