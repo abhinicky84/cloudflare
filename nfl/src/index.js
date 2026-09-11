@@ -99,7 +99,9 @@ async function proxyToAem(request, sourceUrl, origin) {
   proxyHeaders.delete("Authorization");
   proxyHeaders.delete("Cookie");
   //proxyHeaders.delete("Host");
-  proxyHeaders.set("X-Forwarded-Host", sourceUrl.host);
+  proxyHeaders.set("Host", targetUrl.origin);
+   proxyHeaders.set("referer", targetUrl.origin);
+  proxyHeaders.set("X-Forwarded-Host", targetUrl.origin);
   proxyHeaders.set("X-Forwarded-Protocol", sourceUrl.protocol.replace(":", ""));
 
   if (request.method !== "GET" && request.method !== "HEAD") {
