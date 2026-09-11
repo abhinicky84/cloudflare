@@ -4,7 +4,7 @@ export default {
     const AEM_ORIGIN = "https://stage-fanexperience.nfl.com";
     const AEM_PROXY_PATHS = ["/content", "/etc", "/etc.clientlib", "/etc.clientlibs", "/libs", "/bin"];
     console.log(`1. Request URL Incoming in index.js for ${request.url}`);  
-    if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS)) {
+    if (shouldProxyToAem(url.pathname, AEM_PROXY_PATHS) || isThankYouPath(url)) {
       console.log(`2. Proxying request for ${url.pathname} to AEM at ${AEM_ORIGIN}`);
       return proxyToAem(request, url, AEM_ORIGIN);
     }
@@ -83,6 +83,10 @@ function shouldProxyToAem(pathname, proxyPaths) {
   return proxyPaths.some((pathPrefix) => {
     return pathname === pathPrefix || pathname.startsWith(pathPrefix + "/");
   });
+}
+
+function isThankYouPath(url) {
+  return url.pathname.replace(/\/+$/, "").endsWith("/thank-you");
 }
 
 async function proxyToAem(request, sourceUrl, origin) {
