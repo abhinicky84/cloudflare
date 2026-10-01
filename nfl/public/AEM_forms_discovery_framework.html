@@ -1,0 +1,672 @@
+<html data-type="html" data-identifier="bc9628b8-1040-468b-8206-2b315fb649d7" data-title="AEM Forms Visual Design Discovery — NFL × Verticurl" data-version="2" width="1200" height="800"><head>
+<meta charset="UTF-8">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #013369; --navy-mid: #022a5e; --navy-dark: #010F2E;
+  --red: #D50A0A; --red-soft: #ff6b6b;
+  --white: #FFFFFF; --off-white: #F4F6F9;
+  --border: #E2E8F0; --text: #1A202C; --text-mid: #4A5568; --text-light: #718096;
+  --vcurl: #0055A5; --vcurl-light: #EBF4FF; --vcurl-border: #BFDBFE;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+body { font-family: var(--font); color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+
+/* NAV */
+.nav {
+  background: var(--navy-dark); padding: 0 64px; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--red);
+}
+.nav-brand { font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 1.2px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.nav-brand .x { color: var(--red); }
+.nav-pill { background: rgba(213,10,10,0.15); border: 1px solid rgba(213,10,10,0.3); color: var(--red-soft); font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+.nav-meta { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(145deg, var(--navy-dark) 0%, var(--navy) 60%, #022F6E 100%);
+  padding: 80px 64px 72px; position: relative; overflow: hidden;
+}
+.hero::before { content: ''; position: absolute; top: -100px; right: -60px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(213,10,10,0.07) 0%, transparent 65%); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red) 0%, #6BA3FF 50%, var(--vcurl) 100%); }
+.hero-eyebrow { display: inline-block; background: rgba(213,10,10,0.12); border: 1px solid rgba(213,10,10,0.3); color: var(--red-soft); font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; }
+.hero h1 { font-size: 48px; font-weight: 900; color: var(--white); line-height: 1.1; max-width: 720px; margin-bottom: 20px; letter-spacing: -1px; }
+.hero h1 .hl { color: #6BA3FF; }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 36px; }
+.hero-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-tag { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+.vp-strip { display: flex; align-items: center; width: fit-content; border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; overflow: hidden; }
+.vp-item { display: flex; align-items: center; gap: 10px; padding: 12px 22px; border-right: 1px solid rgba(255,255,255,0.1); }
+.vp-item:last-child { border-right: none; }
+.vp-item:hover { background: rgba(255,255,255,0.06); }
+.vp-screen { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.25); border-radius: 3px; }
+.vp-screen.desk { width: 32px; height: 20px; }
+.vp-screen.tab { width: 20px; height: 28px; }
+.vp-screen.mob { width: 14px; height: 26px; }
+.vp-lbl { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600; display: block; }
+.vp-res { font-size: 10px; color: rgba(255,255,255,0.3); }
+
+/* SECTIONS */
+.section { padding: 72px 64px; }
+.section.grey { background: var(--off-white); }
+.section.dark { background: var(--navy); color: var(--white); }
+.section.darkest { background: var(--navy-dark); color: var(--white); }
+.sec-label { font-size: 9.5px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.dark .sec-label, .darkest .sec-label { color: var(--red-soft); }
+.sec-title { font-size: 32px; font-weight: 900; line-height: 1.15; margin-bottom: 6px; letter-spacing: -0.5px; }
+.dark .sec-title, .darkest .sec-title { color: var(--white); }
+.sec-sub { font-size: 15px; color: var(--text-mid); max-width: 640px; line-height: 1.7; margin-bottom: 40px; }
+.dark .sec-sub, .darkest .sec-sub { color: rgba(255,255,255,0.6); }
+.divider { width: 40px; height: 3px; background: var(--red); border-radius: 2px; margin: 12px 0 36px; }
+.dark .divider, .darkest .divider { background: var(--red-soft); }
+
+/* INITIATIVE (2-col) */
+.init-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.init-points { display: flex; flex-direction: column; gap: 18px; }
+.init-point { display: flex; gap: 14px; align-items: flex-start; }
+.ip-num { width: 26px; height: 26px; border-radius: 50%; background: var(--red); color: var(--white); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.ip-text { font-size: 14.5px; color: var(--text-mid); line-height: 1.65; }
+.ip-text strong { color: var(--text); }
+.init-callout { background: var(--navy); border-radius: 12px; padding: 28px; }
+.ic-head { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #6BA3FF; margin-bottom: 18px; }
+.ic-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+.ic-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 8px; }
+.ic-item p { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.ic-item p em { color: #6BA3FF; font-style: normal; font-weight: 600; }
+
+/* GOALS GRID */
+.goals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.goal-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; transition: all 0.2s; }
+.goal-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(1,51,105,0.1); border-color: var(--navy); }
+.goal-icon { font-size: 26px; margin-bottom: 12px; }
+.goal-card h3 { font-size: 14.5px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.goal-card p { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+
+/* KEY OUTCOMES */
+.outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.outcome-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; padding: 36px 32px; transition: all 0.2s; }
+.outcome-card:hover { background: rgba(255,255,255,0.1); }
+.oc-num { font-size: 9px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red-soft); margin-bottom: 10px; }
+.outcome-card h3 { font-size: 26px; font-weight: 900; color: var(--white); margin-bottom: 10px; letter-spacing: -0.3px; }
+.outcome-card p { font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 22px; }
+.oc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.oc-tag { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); padding: 6px 14px; border-radius: 20px; font-size: 11.5px; font-weight: 500; }
+
+/* VIEWPORT CARDS */
+.vp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px; }
+.vp-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: all 0.2s; }
+.vp-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(1,51,105,0.1); border-color: var(--navy); }
+.vp-card .vc-badge { font-size: 9.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.vp-card .vc-title { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.vp-card .vc-icon { font-size: 24px; margin-bottom: 12px; }
+.vp-card p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+.vp-res-badge { display: inline-block; margin-top: 12px; background: var(--off-white); color: var(--text-light); font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+.design-alert { background: #FFF8F8; border: 1px solid #FECACA; border-left: 4px solid var(--red); border-radius: 0 10px 10px 0; padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+.design-alert .da-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.design-alert p { font-size: 13.5px; color: var(--text); line-height: 1.6; }
+.design-alert strong { color: var(--red); }
+
+/* DISCOVERY */
+.starter-banner { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #F59E0B; border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 28px; display: flex; align-items: flex-start; gap: 12px; }
+.sb-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+.starter-banner p { font-size: 13px; color: #78350F; line-height: 1.55; }
+.starter-banner strong { color: #92400E; }
+.disc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.disc-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: all 0.25s; }
+.disc-card:hover { background: var(--white); border-color: var(--navy); box-shadow: 0 6px 24px rgba(1,51,105,0.1); transform: translateY(-2px); }
+.disc-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+.disc-num { font-size: 9.5px; font-weight: 900; color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 7px; }
+.disc-icon { font-size: 20px; margin-bottom: 10px; }
+.disc-card h3 { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.disc-card p { font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+.disc-wide-left { border-right: 1px solid var(--border); padding-right: 24px; }
+.disc-wide-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.dw-tag { background: var(--white); border: 1px solid var(--border); color: var(--text-mid); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px; }
+.disc-footer { margin-top: 28px; background: var(--vcurl-light); border: 1px solid var(--vcurl-border); border-radius: 10px; padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+.disc-footer p { font-size: 13px; color: var(--navy); line-height: 1.55; }
+.disc-footer strong { color: var(--vcurl); }
+
+/* COMPONENTS */
+.principles-bar { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+.pb-label { font-size: 9.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); flex-shrink: 0; }
+.pb-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+.pb-pills { display: flex; gap: 8px; }
+.pb-pill { padding: 6px 16px; border-radius: 20px; font-size: 12.5px; font-weight: 700; }
+.pb-pill.dyn { background: rgba(107,163,255,0.12); border: 1px solid rgba(107,163,255,0.3); color: #6BA3FF; }
+.pb-pill.reu { background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3); color: #34D399; }
+.pb-pill.fle { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); color: #FBC224; }
+.pb-desc { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-left: auto; max-width: 400px; text-align: right; }
+.comp-categories { display: flex; flex-direction: column; gap: 24px; }
+.cat-label { font-size: 9.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 7px; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); transition: all 0.2s; }
+.chip:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.22); transform: translateY(-1px); }
+.chip.inp { background: rgba(107,163,255,0.1); border-color: rgba(107,163,255,0.25); }
+.chip.sel { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.25); }
+.chip.lay { background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.25); }
+.chip.con { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25); }
+.chip.act { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.25); }
+.comp-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+.leg-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: rgba(255,255,255,0.45); }
+.leg-dot { width: 7px; height: 7px; border-radius: 2px; }
+.leg-dot.inp { background: rgba(107,163,255,0.85); }
+.leg-dot.sel { background: rgba(167,139,250,0.85); }
+.leg-dot.lay { background: rgba(52,211,153,0.85); }
+.leg-dot.con { background: rgba(251,191,36,0.85); }
+.leg-dot.act { background: rgba(248,113,113,0.85); }
+
+/* PARITY */
+.parity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.parity-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 26px; }
+.parity-card h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+.parity-type { font-size: 10.5px; color: var(--text-light); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 12px; }
+.parity-card p { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 14px; }
+.ptags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ptag { background: var(--off-white); color: var(--text-mid); font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 5px; }
+.aem-adv { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: 12px; padding: 28px; }
+.aem-adv h3 { font-size: 15px; font-weight: 800; color: var(--white); margin-bottom: 18px; }
+.adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.adv-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 14px; text-align: center; transition: background 0.2s; }
+.adv-item:hover { background: rgba(255,255,255,0.1); }
+.adv-ico { font-size: 18px; margin-bottom: 7px; }
+.adv-item p { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+/* ROLES */
+.own-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.own-col { border-radius: 12px; padding: 28px; }
+.own-col.vcurl { background: var(--vcurl-light); border: 1px solid var(--vcurl-border); }
+.own-col.nfl { background: #FFF5F5; border: 1px solid #FECACA; }
+.own-col h3 { font-size: 15px; font-weight: 800; margin-bottom: 3px; }
+.own-col.vcurl h3 { color: var(--vcurl); }
+.own-col.nfl h3 { color: var(--red); }
+.own-role { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+.own-col.vcurl .own-role { color: #4A90D9; }
+.own-col.nfl .own-role { color: #C53030; }
+.own-list { list-style: none; }
+.own-list li { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 11px; font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+.own-list li::before { content: '→'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.own-col.vcurl .own-list li::before { color: var(--vcurl); }
+.own-col.nfl .own-list li::before { color: var(--red); }
+.jira-box { margin-top: 24px; background: var(--navy-dark); border-radius: 10px; padding: 20px 26px; display: flex; align-items: center; gap: 16px; }
+.jira-ico { font-size: 26px; flex-shrink: 0; }
+.jira-box p { font-size: 13.5px; color: rgba(255,255,255,0.78); line-height: 1.6; }
+.jira-box strong { color: var(--white); }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+.step { display: grid; grid-template-columns: 56px 1fr; align-items: start; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 22px; transition: all 0.2s; }
+.step:hover { background: rgba(255,255,255,0.08); }
+.step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; color: var(--white); }
+.step-body h3 { font-size: 14.5px; font-weight: 800; color: var(--white); margin-bottom: 5px; }
+.step-body p { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.55; }
+.step-tag { display: inline-block; margin-top: 7px; font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; }
+.step-tag.nfl { background: rgba(213,10,10,0.2); color: #FF9494; }
+.step-tag.joint { background: rgba(107,163,255,0.15); color: #6BA3FF; }
+
+/* FOOTER */
+.footer { background: #070B14; padding: 36px 64px; display: flex; justify-content: space-between; align-items: center; border-top: 3px solid var(--red); }
+.footer-l p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+.footer-l .fw { color: rgba(255,255,255,0.7); font-weight: 700; }
+.footer-r { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 7px 16px; font-size: 11px; color: rgba(255,255,255,0.45); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand"> 
+    NFL <span class="x">×</span> Verticurl
+    <span class="nav-pill">Thought Leadership</span>
+  </div>
+  <div class="nav-meta">AEM Forms Discovery · October 2026</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Discussion Starter · Thought Leadership Brief</div>
+  <h1>Reimagining NFL's<br><span class="hl">Digital Forms Experience</span></h1>
+  <p class="hero-sub">A discovery-first approach to building a generic, visually designed AEM Forms capability — giving NFL authors the freedom to create any form, without IT.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🔍 Discovery Framework</span>
+    <span class="hero-tag">⚙️ AEM Forms</span>
+    <span class="hero-tag">📐 Visual Design</span>
+    <span class="hero-tag">✍️ Author Empowerment</span>
+    <span class="hero-tag">🤝 NFL × Verticurl</span>
+  </div>
+  <div class="vp-strip">
+    <div class="vp-item">
+      <div class="vp-screen desk"></div>
+      <div><span class="vp-lbl">Desktop</span><span class="vp-res">1280px+</span></div>
+    </div>
+    <div class="vp-item">
+      <div class="vp-screen tab"></div>
+      <div><span class="vp-lbl">Tablet</span><span class="vp-res">768–1279px</span></div>
+    </div>
+    <div class="vp-item">
+      <div class="vp-screen mob"></div>
+      <div><span class="vp-lbl">Mobile</span><span class="vp-res">375–767px</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: INITIATIVE -->
+<section class="section">
+  <div class="sec-label">The Initiative</div>
+  <h2 class="sec-title">A Forms Platform. Not Just a Form.</h2>
+  <div class="divider"></div>
+  <div class="init-grid">
+    <div class="init-points">
+      <div class="init-point">
+        <div class="ip-num">1</div>
+        <div class="ip-text">This is a <strong>generic forms capability</strong> — not tied to any single form type. Club Interest, Content Preference, Fan Registration, Sweepstakes — all served by one flexible platform.</div>
+      </div>
+      <div class="init-point">
+        <div class="ip-num">2</div>
+        <div class="ip-text">Verticurl has shared <strong>initial design directions</strong> with NFL — the response has been positive. The next step is grounding that visual direction in structured discovery and approved requirements.</div>
+      </div>
+      <div class="init-point">
+        <div class="ip-num">3</div>
+        <div class="ip-text">Discovery converts design intent into <strong>component-level requirements</strong> — defining how each piece looks, behaves, and what authors can control — before a single line of code is written.</div>
+      </div>
+    </div>
+    <div class="init-callout">
+      <div class="ic-head">This Build Is About</div>
+      <div class="ic-item"><div class="ic-dot"></div><p><em>Author empowerment</em> — any form, any layout, without IT involvement</p></div>
+      <div class="ic-item"><div class="ic-dot"></div><p><em>Component-level clarity</em> — requirements defined per component, not per form</p></div>
+      <div class="ic-item"><div class="ic-dot"></div><p><em>Platform parity</em> — matching Digioh and MS Forms, then going further</p></div>
+      <div class="ic-item"><div class="ic-dot"></div><p><em>Discovery-first</em> — design approval precedes build, always</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: GOALS -->
+<section class="section grey">
+  <div class="sec-label">Discovery Goals</div>
+  <h2 class="sec-title">What We're Setting Out to Achieve</h2>
+  <div class="divider"></div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-icon">✍️</div>
+      <h3>Author Freedom, No IT Dependency</h3>
+      <p>Authors build and publish any form — any layout, any requirement — independently. Zero developer involvement for day-to-day form creation.</p>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon">♾️</div>
+      <h3>One Generic Capability</h3>
+      <p>A single, flexible forms platform that serves every use case — fan forms, club forms, B2B, surveys — not a purpose-built solution for each.</p>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon">⚖️</div>
+      <h3>Platform Feature Parity</h3>
+      <p>Every capability authors rely on today in Digioh and MS Forms must be matched — and ideally exceeded — in AEM.</p>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon">📐</div>
+      <h3>Design Consistency at Scale</h3>
+      <p>On-brand, visually approved forms across every viewport — Desktop, Tablet, and Mobile — built from a shared design system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: KEY OUTCOMES -->
+<section class="section dark">
+  <div class="sec-label">Key Outcomes</div>
+  <h2 class="sec-title">What Discovery Must Deliver</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">Two concrete deliverables mark the completion of discovery. Everything else feeds into one of these.</p>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <div class="oc-num">Outcome 01</div>
+      <h3>Approved Visual Design</h3>
+      <p>A signed-off visual design for every form component — reviewed and approved per viewport. Design precedes development. No exceptions.</p>
+      <div class="oc-tags">
+        <span class="oc-tag">🖥️ Desktop</span>
+        <span class="oc-tag">⬜ Tablet</span>
+        <span class="oc-tag">📱 Mobile</span>
+        <span class="oc-tag">Per Component</span>
+        <span class="oc-tag">Per Behavior</span>
+      </div>
+    </div>
+    <div class="outcome-card">
+      <div class="oc-num">Outcome 02</div>
+      <h3>JIRA Requirements Backlog</h3>
+      <p>All discovery decisions formally documented as JIRA stories with acceptance criteria — component-level, sprint-ready, and traceable.</p>
+      <div class="oc-tags">
+        <span class="oc-tag">📋 JIRA Stories</span>
+        <span class="oc-tag">✅ Acceptance Criteria</span>
+        <span class="oc-tag">Sprint-Ready</span>
+        <span class="oc-tag">NFL Owned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: VIEWPORT DESIGN -->
+<section class="section grey">
+  <div class="sec-label">Design Philosophy</div>
+  <h2 class="sec-title">Design Approved Across Every Viewport</h2>
+  <div class="divider"></div>
+  <div class="vp-cards">
+    <div class="vp-card">
+      <div class="vc-badge">Viewport 01</div>
+      <div class="vc-icon">🖥️</div>
+      <div class="vc-title">Desktop</div>
+      <p>Richest layout. Multi-column grids (1–4 columns), full visual hierarchy, expanded wizard navigation. Primary design canvas.</p>
+      <span class="vp-res-badge">1280px and above</span>
+    </div>
+    <div class="vp-card">
+      <div class="vc-badge">Viewport 02</div>
+      <div class="vc-icon">⬜</div>
+      <div class="vc-title">Tablet</div>
+      <p>Adaptive transition. Columns collapse thoughtfully, touch patterns emerge, and spacing is recalibrated for medium screens.</p>
+      <span class="vp-res-badge">768px – 1279px</span>
+    </div>
+    <div class="vp-card">
+      <div class="vc-badge">Viewport 03</div>
+      <div class="vc-icon">📱</div>
+      <div class="vc-title">Mobile</div>
+      <p>Most constrained, often most critical. Single-column, full-width inputs, simplified wizard flow, and finger-friendly controls.</p>
+      <span class="vp-res-badge">375px – 767px</span>
+    </div>
+  </div>
+  <div class="design-alert">
+    <div class="da-icon">⚠️</div>
+    <p><strong>Design sign-off is a prerequisite to build.</strong> Initial mockups set the direction — they are not a specification. Every component's visual treatment must be reviewed and formally approved across all three viewports before development begins.</p>
+  </div>
+</section>
+
+<!-- SECTION: DISCOVERY FRAMEWORK -->
+<section class="section">
+  <div class="sec-label">Discovery Framework</div>
+  <h2 class="sec-title">Dimensions to Explore</h2>
+  <div class="divider"></div>
+  <div class="starter-banner">
+    <div class="sb-icon">💡</div>
+    <p><strong>This is a starter list — not an exhaustive one.</strong> The 7 dimensions below are initial prompts to structure discovery. As conversations progress, more requirements, edge cases, and considerations will naturally surface. Capture everything.</p>
+  </div>
+  <div class="disc-grid">
+
+    <div class="disc-card">
+      <div class="disc-num">01</div>
+      <div class="disc-icon">📐</div>
+      <h3>Component Rendering &amp; Layouts</h3>
+      <p>How does each component render in 1–4 column grids? How do checkboxes and radio groups display — vertical or horizontal? Layout rules per viewport?</p>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-num">02</div>
+      <div class="disc-icon">🎨</div>
+      <h3>Component Configuration Options</h3>
+      <p>What can authors control per component — color, font, label styling, alignment? What is fixed by the design system vs. open for author customization?</p>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-num">03</div>
+      <div class="disc-icon">🏗️</div>
+      <h3>Template-Level Flexibility</h3>
+      <p>Can authors set background colors or images? Full-bleed vs. 8-column grid? What layout variants exist at the template level?</p>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-num">04</div>
+      <div class="disc-icon">🧭</div>
+      <h3>Multi-Step Form Wizard</h3>
+      <p>Is a wizard needed? If yes — vertical side rail or horizontal top bar for steps? Mobile behavior? Validation and navigation rules between steps?</p>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-num">05</div>
+      <div class="disc-icon">📤</div>
+      <h3>Submission &amp; Data Flow</h3>
+      <p>Supported endpoints: AEP, custom AWS URLs. Confirmation states, error handling, and redirect behavior per submission type.</p>
+    </div>
+
+    <div class="disc-card">
+      <div class="disc-num">06</div>
+      <div class="disc-icon">⚡</div>
+      <h3>Dynamic &amp; Conditional Behaviors</h3>
+      <p>Show/hide fields based on selections. Field dependencies, pre-fill from user profiles or URL params, context-based validation rules.</p>
+    </div>
+
+    <div class="disc-card wide">
+      <div class="disc-wide-left">
+        <div class="disc-num">07</div>
+        <div class="disc-icon">📋</div>
+        <h3>Pre-Defined Data Sources</h3>
+        <p>Which dropdowns need centrally managed lists? Who maintains them? How do authors reference them without developer help?</p>
+      </div>
+      <div>
+        <p style="font-size:11.5px;color:#718096;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Example Lists to Scope</p>
+        <div class="disc-wide-tags">
+          <span class="dw-tag">🏈 NFL Clubs</span>
+          <span class="dw-tag">🌍 Countries</span>
+          <span class="dw-tag">🗣️ Languages</span>
+          <span class="dw-tag">🏛️ US States</span>
+          <span class="dw-tag">📅 Seasons</span>
+          <span class="dw-tag">⚙️ TBD by Discovery</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="disc-footer">
+    <span style="font-size:16px;flex-shrink:0;">📌</span>
+    <p><strong>NFL owns discovery.</strong> Outputs — decisions made, options agreed — become JIRA stories. Verticurl guides and validates throughout, but the inputs, stakeholder decisions, and sign-offs belong to NFL.</p>
+  </div>
+</section>
+
+<!-- SECTION: COMPONENT INVENTORY -->
+<section class="section dark">
+  <div class="sec-label">Component Library</div>
+  <h2 class="sec-title">Core Component Inventory</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">20 foundational components. Each requires component-level requirements — what it does, how it looks, and what authors can configure.</p>
+  <div class="principles-bar">
+    <span class="pb-label">Component Foundation</span>
+    <div class="pb-divider"></div>
+    <div class="pb-pills">
+      <span class="pb-pill dyn">⚡ Dynamic</span>
+      <span class="pb-pill reu">♻️ Reusable</span>
+      <span class="pb-pill fle">🔧 Flexible</span>
+    </div>
+    <div class="pb-desc">Components are built with a shared foundation that enables authors to configure, repurpose, and adapt each element freely — across any form, any layout, without developer help.</div>
+  </div>
+  <div class="comp-categories">
+    <div>
+      <div class="cat-label">📝 Input Fields</div>
+      <div class="chips">
+        <span class="chip inp">✏️ Text Box</span>
+        <span class="chip inp">📞 Phone Field</span>
+        <span class="chip inp">✉️ Email Field</span>
+        <span class="chip inp">📅 Date Picker</span>
+        <span class="chip inp">▼ Drop Down List</span>
+        <span class="chip inp">📎 File Attachment</span>
+      </div>
+    </div>
+    <div>
+      <div class="cat-label">☑️ Selection Controls</div>
+      <div class="chips">
+        <span class="chip sel">🔘 Radio Button</span>
+        <span class="chip sel">☑ Checkbox</span>
+        <span class="chip sel">🔘 Radio Group</span>
+        <span class="chip sel">☑ Checkbox Group</span>
+      </div>
+    </div>
+    <div>
+      <div class="cat-label">🏗️ Layout &amp; Navigation</div>
+      <div class="chips">
+        <span class="chip lay">📦 Panel</span>
+        <span class="chip lay">🗂️ Tabs</span>
+        <span class="chip lay">🧭 Wizard</span>
+        <span class="chip lay">⬆️ Header</span>
+        <span class="chip lay">⬇️ Footer</span>
+      </div>
+    </div>
+    <div>
+      <div class="cat-label">🖼️ Content &amp; Display</div>
+      <div class="chips">
+        <span class="chip con">🔤 Text / Title</span>
+        <span class="chip con">🖼️ Image / Logo</span>
+        <span class="chip con">📄 Terms &amp; Conditions</span>
+      </div>
+    </div>
+    <div>
+      <div class="cat-label">🎯 Form Actions</div>
+      <div class="chips">
+        <span class="chip act">✅ Submit Button</span>
+        <span class="chip act">🔄 Reset Button</span>
+      </div>
+    </div>
+  </div>
+  <div class="comp-legend">
+    <div class="leg-item"><div class="leg-dot inp"></div>Input Fields (6)</div>
+    <div class="leg-item"><div class="leg-dot sel"></div>Selection Controls (4)</div>
+    <div class="leg-item"><div class="leg-dot lay"></div>Layout &amp; Navigation (5)</div>
+    <div class="leg-item"><div class="leg-dot con"></div>Content &amp; Display (3)</div>
+    <div class="leg-item"><div class="leg-dot act"></div>Form Actions (2)</div>
+  </div>
+</section>
+
+<!-- SECTION: PLATFORM PARITY -->
+<section class="section grey">
+  <div class="sec-label">Platform Parity</div>
+  <h2 class="sec-title">Benchmarking Against Existing Platforms</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">Discovery must map what NFL authors currently use in Digioh and MS Forms — feature by feature. Parity is the minimum. AEM goes further.</p>
+  <div class="parity-grid">
+    <div class="parity-card">
+      <h3>Digioh</h3>
+      <div class="parity-type">Current Primary Form Platform</div>
+      <p>Specialized form and landing page platform with strong drag-and-drop authoring, conditional logic, and marketing automation integrations.</p>
+      <div class="ptags">
+        <span class="ptag">Drag-and-drop</span>
+        <span class="ptag">Conditional logic</span>
+        <span class="ptag">A/B testing</span>
+        <span class="ptag">Marketing integrations</span>
+        <span class="ptag">Responsive forms</span>
+      </div>
+    </div>
+    <div class="parity-card">
+      <h3>Microsoft Forms</h3>
+      <div class="parity-type">Secondary Form Platform</div>
+      <p>M365-native tool for surveys and internal data collection. Simple authoring, survey branching logic, and native SharePoint/Teams integration.</p>
+      <div class="ptags">
+        <span class="ptag">Survey layout</span>
+        <span class="ptag">Branching logic</span>
+        <span class="ptag">File upload</span>
+        <span class="ptag">M365 integration</span>
+        <span class="ptag">Rating inputs</span>
+      </div>
+    </div>
+  </div>
+  <div class="aem-adv">
+    <h3>🎯 Why AEM Goes Beyond Parity</h3>
+    <div class="adv-grid">
+      <div class="adv-item"><div class="adv-ico">🌐</div><p>Unified authoring within AEM CMS — no tool-switching</p></div>
+      <div class="adv-item"><div class="adv-ico">🎨</div><p>On-brand forms using NFL's design system natively</p></div>
+      <div class="adv-item"><div class="adv-ico">🔗</div><p>Native AEP integration and Adobe stack connectivity</p></div>
+      <div class="adv-item"><div class="adv-ico">♻️</div><p>Reusable components across all fan, club, B2B use cases</p></div>
+      <div class="adv-item"><div class="adv-ico">🛡️</div><p>Enterprise governance, accessibility, and compliance</p></div>
+      <div class="adv-item"><div class="adv-ico">⚡</div><p>Author-controlled dynamic logic — no developer needed</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: ROLES -->
+<section class="section">
+  <div class="sec-label">Collaboration Model</div>
+  <h2 class="sec-title">Who Does What</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">Roles are clear. Verticurl brings the approach and expertise. NFL brings the context, decisions, and ownership.</p>
+  <div class="own-grid">
+    <div class="own-col vcurl">
+      <h3>Verticurl</h3>
+      <div class="own-role">Collaborative Support &amp; Approach</div>
+      <ul class="own-list">
+        <li>Define and share the discovery framework</li>
+        <li>Provide component inventory and capability thinking</li>
+        <li>Share initial design mockups for stakeholder alignment</li>
+        <li>Translate design decisions into AEM technical requirements</li>
+        <li>Guide component-level requirement definition with AEM best practices</li>
+        <li>Review and validate requirements as they are documented</li>
+      </ul>
+    </div>
+    <div class="own-col nfl">
+      <h3>NFL</h3>
+      <div class="own-role">Discovery Ownership &amp; Delivery</div>
+      <ul class="own-list">
+        <li>Drive and own the discovery process end-to-end</li>
+        <li>Convene stakeholders — Marketing, Product, CMS/IT, Content</li>
+        <li>Evaluate components against actual NFL authoring use cases</li>
+        <li>Decide on configuration options, styling scope, and behaviors</li>
+        <li>Provide visual design sign-off across all three viewports</li>
+        <li>Document all outputs as JIRA stories with acceptance criteria</li>
+      </ul>
+    </div>
+  </div>
+  <div class="jira-box">
+    <div class="jira-ico">📋</div>
+    <p><strong>Requirements live in JIRA.</strong> Every discovery decision — component behavior, template options, submission logic, dynamic rules — becomes a JIRA story with clear acceptance criteria. This is the build team's source of truth.</p>
+  </div>
+</section>
+
+<!-- SECTION: NEXT STEPS -->
+<section class="section darkest">
+  <div class="sec-label">Path Forward</div>
+  <h2 class="sec-title">Recommended Next Steps</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">From alignment to action. Five steps to move discovery from conversation to a build-ready backlog.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Stakeholder Alignment Session</h3>
+        <p>NFL convenes Marketing, Product, CMS/IT, and Content teams to confirm discovery scope and assign internal ownership.</p>
+        <span class="step-tag nfl">NFL Owned</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Visual Design Review &amp; Viewport Sign-Off</h3>
+        <p>NFL reviews Verticurl's mockups across all three viewports. Behavioral expectations are captured alongside visual approvals.</p>
+        <span class="step-tag joint">NFL + Verticurl</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Component-Level Discovery Workshops</h3>
+        <p>Working sessions by component category — defining behaviors, configuration options, and dynamic logic per component.</p>
+        <span class="step-tag joint">NFL + Verticurl</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Platform Parity Audit</h3>
+        <p>NFL documents active Digioh and MS Forms capabilities feature-by-feature. Ensures no authoring regression in the AEM build.</p>
+        <span class="step-tag nfl">NFL Owned</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>JIRA Backlog Formation</h3>
+        <p>All discovery outputs documented as sprint-ready JIRA stories with acceptance criteria. Build begins only when backlog is approved.</p>
+        <span class="step-tag nfl">NFL Owned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-l">
+    <p><span class="fw">NFL × Verticurl</span> · AEM Forms Visual Design Discovery · October 2026<br>A collaborative thought leadership brief on discovery framework.</p>
+  </div>
+</footer>
+
+
+</body></html>
